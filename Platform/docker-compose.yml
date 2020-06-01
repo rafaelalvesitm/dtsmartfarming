@@ -1,0 +1,126 @@
+version: "3.5"
+services:
+    mongodb:
+        image: mongo:3.6
+        hostname: mongodb
+        container_name: db-mongo
+        ports:
+            - "27017:27017"
+        command: --bind_ip_all --smallfiles
+        volumes:
+            - mongodb:/data
+
+    mysqldb:
+        restart: always
+        image: mysql:5.7
+        hostname: mysqldb
+        container_name: db-mysql
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+        networks:
+            - default
+        environment:
+            - "MYSQL_ROOT_PASSWORD=123"
+            - "MYSQL_ROOT_HOST=%"
+        volumes:
+            - mysql-db:/var/lib/mysql
+
+    draco:
+        image: ging/fiware-draco:1.1.0
+        hostname: draco
+        container_name: fiware-draco
+        networks:
+            - default
+        environment:
+            - NIFI_WEB_HTTP_PORT=9090
+        expose:
+            - "5050"
+            - "9090"
+        ports:
+            - "9090:9090"
+            - "5050:5050"
+        healthcheck:
+            test: curl --fail -s http://draco:9090/nifi-api/system-diagnostics || exit 1
+            start_period: 1m
+
+    grafana:
+        image: grafana/grafana
+        container_name: grafana
+        depends_on:
+            - mysqldb
+            - mongodb
+            - orion-cb
+        ports:
+            - "3000:3000"
+        environment:
+            - "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-worldmap-panel"
+        volumes:
+            - grafana:/var/lib/grafana
+
+    orion-cb:
+        image: fiware/orion:2.2.0
+        hostname: orion-cb
+        container_name: fiware-orion
+        depends_on:
+            - mongodb
+        expose:
+            - "1026"
+        ports:
+            - "1026:1026"
+        command: -dbhost mongodb -logLevel DEBUG
+        healthcheck:
+            test: curl --fail -s http://orion:1026/version || exit 1
+
+    iot-agent-ul:
+        image: fiware/iotagent-ul:1.8.0
+        hostname: iot-agent-ul
+        depends_on:
+            - mongodb
+        ports:
+            - "4042:4042"
+            - "7897:7897"
+        environment:
+            - IOTA_CB_HOST=orion # name of the context broker to update context
+            - IOTA_CB_PORT=1026 # port the context broker listens on to update context
+            - IOTA_NORTH_PORT=4042
+            - IOTA_REGISTRY_TYPE=mongodb #Whether to hold IoT device info in memory or in a database
+            - IOTA_LOG_LEVEL=DEBUG # The log level of the IoT Agent
+            - IOTA_TIMESTAMP=true # Supply timestamp information with each measurement
+            - IOTA_CB_NGSI_VERSION=v2 # use NGSIv2 when sending updates for active attributes
+            - IOTA_AUTOCAST=true # Ensure Ultralight number values are read as numbers not strings
+            - IOTA_MONGO_HOST=mongodb # The host name of MongoDB
+            - IOTA_MONGO_PORT=27017 # The port mongoDB is listening on
+            - IOTA_MONGO_DB=iotagentul # The name of the database used in mongoDB
+            - IOTA_HTTP_PORT=7897 # The port used for device traffic over HTTP
+            - IOTA_PROVIDER_URL=http://iot-agent-ul:4042
+        healthcheck:
+            test: curl --fail -s http://iot-agent-ul:4042/iot/about || exit 1
+
+    iot-agent-json:
+        image: fiware/iotagent-json
+        hostname: iot-agent-json
+        depends_on:
+            - mongodb
+        expose:
+            - "4041"
+            - "7896"
+        ports:
+            - "4041:4041"
+            - "7896:7896"
+        environment:
+            - "IOTA_CB_HOST=orion"
+            - "IOTA_CB_PORT=1026"
+            - "IOTA_NORTH_PORT=4041"
+            - "IOTA_REGISTRY_TYPE=mongodb"
+            - "IOTA_MONGO_HOST=mongodb"
+            - "IOTA_MONGO_PORT=27017"
+            - "IOTA_MONGO_DB=iotagent-json"
+            - "IOTA_HTTP_PORT=7896"
+            - "IOTA_PROVIDER_URL=http://iot-agent-json:4041"
+
+volumes:
+    mongodb: ~
+    grafana: ~
+    mysql-db: ~
