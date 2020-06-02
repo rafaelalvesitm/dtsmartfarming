@@ -9,3 +9,5 @@ R. G. Alves et al., "A digital twin for smart farming," 2019 IEEE Global Humanit
 This work uses FIWARE to create the cloud enviroment to collect data from sensors and to send commands to actuators. For more information about FIWARE use this link https://www.fiware.org/.
 
 This is just a new message using visual studio code
+
+Atualizando a nova versão do GitHub para funcionar com os sistemas previstos de envio de dados. Espero que resolva
