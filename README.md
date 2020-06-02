@@ -11,3 +11,7 @@ This work uses FIWARE to create the cloud enviroment to collect data from sensor
 This is just a new message using visual studio code
 
 Atualizando a nova versão do GitHub para funcionar com os sistemas previstos de envio de dados. Espero que resolva
+
+Atividades
+1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
+2. Configuração da pasta Git para contribuir para esta branch. 
