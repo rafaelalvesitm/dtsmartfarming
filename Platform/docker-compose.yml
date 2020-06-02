@@ -1,19 +1,19 @@
 version: "3.5"
 services:
-    mongodb:
+    mongo-db:
         image: mongo:3.6
-        hostname: mongodb
+        hostname: mongo-db
         container_name: db-mongo
         ports:
             - "27017:27017"
         command: --bind_ip_all --smallfiles
         volumes:
-            - mongodb:/data
+            - mongo-db:/data
 
-    mysqldb:
+    mysql-db:
         restart: always
         image: mysql:5.7
-        hostname: mysqldb
+        hostname: mysql-db
         container_name: db-mysql
         expose:
             - "3306"
@@ -29,29 +29,24 @@ services:
 
     draco:
         image: ging/fiware-draco:1.1.0
-        hostname: draco
-        container_name: fiware-draco
-        networks:
-            - default
+        container_name: draco
+        depends_on:
+            - mysql-db
         environment:
             - NIFI_WEB_HTTP_PORT=9090
-        expose:
-            - "5050"
-            - "9090"
         ports:
             - "9090:9090"
             - "5050:5050"
         healthcheck:
-            test: curl --fail -s http://draco:9090/nifi-api/system-diagnostics || exit 1
-            start_period: 1m
+            test: curl --fail -s http://localhost:9090/nifi-api/system-diagnostics || exit 1
 
     grafana:
         image: grafana/grafana
         container_name: grafana
         depends_on:
-            - mysqldb
-            - mongodb
-            - orion-cb
+            - mysql-db
+            - mongo-db
+            - orion
         ports:
             - "3000:3000"
         environment:
@@ -59,12 +54,12 @@ services:
         volumes:
             - grafana:/var/lib/grafana
 
-    orion-cb:
-        image: fiware/orion:2.2.0
-        hostname: orion-cb
+    orion:
+        image: fiware/orion:latest
+        hostname: orion
         container_name: fiware-orion
         depends_on:
-            - mongodb
+            - mongo-db
         expose:
             - "1026"
         ports:
@@ -77,7 +72,7 @@ services:
         image: fiware/iotagent-ul:1.8.0
         hostname: iot-agent-ul
         depends_on:
-            - mongodb
+            - mongo-db
         ports:
             - "4042:4042"
             - "7897:7897"
@@ -102,7 +97,7 @@ services:
         image: fiware/iotagent-json
         hostname: iot-agent-json
         depends_on:
-            - mongodb
+            - mongo-db
         expose:
             - "4041"
             - "7896"
@@ -121,6 +116,6 @@ services:
             - "IOTA_PROVIDER_URL=http://iot-agent-json:4041"
 
 volumes:
-    mongodb: ~
+    mongo-db: ~
     grafana: ~
     mysql-db: ~
