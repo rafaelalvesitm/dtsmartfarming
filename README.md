@@ -15,3 +15,8 @@ Atualizando a nova versão do GitHub para funcionar com os sistemas previstos de
 Atividades
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
 2. Configuração da pasta Git para contribuir para esta branch. 
+3. Pasta Data criada com um csv dos dados do projeto do Gilberto e também um Script Python capaz de ler tais dados e publica-los no Fiware
+
+Trabalhar ainda:
+1. A notificação do Cygnus para o Mysql vai com o timestamp da notificação e não o timestamp que está no Orion, mesmo que o IoT Agent sobrescreva esse valor. Será que existe uma forma do Cygnus salvar tais dados no MySQL com a sobreescrição do IoT Agent?
+2. Se não for possivel fazer tal modificação transformar a planilha de dados do Gilberto para a forma com que a apresentação ficaria no MySQL. 

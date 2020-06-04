@@ -1,0 +1,28 @@
+A query abaixo serve para obter os dados e criar dashboards no Grafana. 
+Lembrando que o nome das variáveis estão determinados no Orion e IoT Agent e que a subscrição atual do Cygnus engloba todas as variáveis do probe. 
+
+SELECT
+  UNIX_TIMESTAMP(recvTime) AS "time",
+  attrName AS metric,
+  Convert(attrValue, SIGNED) AS "value"
+FROM `urn_ngsi-ld_SoilProbe_001_SoilProbe`
+WHERE attrName = "soilMoistureRawDepth2" OR attrName = "soilMoistureRawDepth1" OR attrName = "soilMoistureRawDepth3"
+ORDER BY recvTime
+
+SELECT
+  DISTINCT UNIX_TIMESTAMP(MAX(CASE attrName WHEN 'TimeInstant' THEN attrValue END)) as "time",
+  CAST(MAX(CASE attrName WHEN 'soilMoistureRawDepth1' THEN attrValue END) as Decimal)as soilMoistureRaw1,
+  CAST(MAX(CASE attrName WHEN 'soilMoistureRawDepth2' THEN attrValue END)as Decimal) as soilMoistureRaw2,
+  CAST(MAX(CASE attrName WHEN 'soilMoistureCalibratedDepth1' THEN attrValue END) as Decimal) as soilMoistureCalibratedDepth1,
+  CAST(MAX(CASE attrName WHEN 'soilMoistureCalibratedDepth2' THEN attrValue END)as Decimal) as soilMoistureCalibratedDepth2,
+  CAST(MAX(CASE attrName WHEN 'airHumidity' THEN attrValue END) as Decimal) as airHumidity,
+  CAST(MAX(CASE attrName WHEN 'airTemperature' THEN attrValue END) as Decimal) as airTemperature,
+  CAST(MAX(CASE attrName WHEN 'soilTemperature' THEN attrValue END) as Decimal) as soilTemperature
+FROM `urn_ngsi-ld_SoilProbe_001_SoilProbe`
+GROUP BY recvTime, "time"
+ORDER BY "time"
+
+
+
+
+docker exec -it  db-mysql mysql -h mysql-db -P 3306  -u root -p123
