@@ -1,0 +1,58 @@
+{
+    "id": "urn:ngsi-ld:SoilProbe:3",
+    "type": "SoilProbe",
+    "name": {
+        "type": "text",
+        "value": "2 depth soil probe"
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                -23.725252,
+                -46.583149
+            ]
+        }
+    },
+    "manufacturer": {
+        "type": "text",
+        "value": "FEI"
+    },
+    "soilMoistureRawDepth1": {
+        "type": "number",
+        "value": ""
+    },
+    "soilMoistureRawDepth2": {
+        "type": "number",
+        "value": ""
+    },
+    "soilMoistureCalibratedDepth1": {
+        "type": "number",
+        "value": ""
+    },
+    "soilMoistureCalibratedDepth2": {
+        "type": "number",
+        "value": ""
+    },
+    "airHumidity": {
+        "type": "number",
+        "value": ""
+    },
+    "airTemperature": {
+        "type": "number",
+        "value": ""
+    },
+    "soilTemperature": {
+        "type": "number",
+        "value": ""
+    },
+    "luminosity": {
+        "type": "number",
+        "value": ""
+    },
+    "refManagementZone": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:ManagementZone:3"
+    }
+}
