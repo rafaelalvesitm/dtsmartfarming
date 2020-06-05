@@ -12,6 +12,15 @@ This is just a new message using visual studio code
 
 Atualizando a nova versão do GitHub para funcionar com os sistemas previstos de envio de dados. Espero que resolva
 
+List of entities (Entities are stored inside Data Model -> Orion Entities):
+1. 10 Sprinklers
+2. 1 Central Pivot
+3. 8 Management zones 
+4. 8 Soil Probes
+5. 8 Fuzzy Needs
+6. 8 Irrigation recomendation
+7. 1 Weather Station
+
 Atividades
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
 2. Configuração da pasta Git para contribuir para esta branch. 
