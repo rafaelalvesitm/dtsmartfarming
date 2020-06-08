@@ -1,0 +1,16 @@
+{
+    "description": "Notify Cygnus of all context changes",
+    "subject": {
+        "entities": [
+            {
+                "idPattern": ".*"
+            }
+        ]
+    },
+    "notification": {
+        "http": {
+            "url": "http://cygnus:5050/notify"
+        }
+    },
+    "throttling": 1
+}
