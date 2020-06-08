@@ -1,0 +1,66 @@
+{
+    "id": "urn:ngsi-ld:CentralPivot:1",
+    "type": "CentralPivot",
+    "name": {
+        "type": "Text",
+        "value": "Main Pivot"
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                13.3986,
+                52.5547
+            ]
+        }
+    },
+    "manufacturer": {
+        "type": "Text",
+        "value": "FEI"
+    },
+    "rotation": {
+        "type": "Text",
+        "value": "clockwise"
+    },
+    "radialVelocity": {
+        "type": "Number",
+        "value": ""
+    },
+    "status": {
+        "type": "Text",
+        "value": "Off"
+    },
+    "angle": {
+        "type": "Text",
+        "value": ""
+    },
+    "refManagementZone": {
+        "type": "Relationship",
+        "value": [
+            "urn:ngsi-ld:ManagementZone:1",
+            "urn:ngsi-ld:ManagementZone:2",
+            "urn:ngsi-ld:ManagementZone:3",
+            "urn:ngsi-ld:ManagementZone:4",
+            "urn:ngsi-ld:ManagementZone:5",
+            "urn:ngsi-ld:ManagementZone:6",
+            "urn:ngsi-ld:ManagementZone:7",
+            "urn:ngsi-ld:ManagementZone:8"
+        ]
+    },
+    "refSprinkler": {
+        "type": "Relationship",
+        "value": [
+            "urn:ngsi-ld:Sprinkler:1",
+            "urn:ngsi-ld:Sprinkler:2",
+            "urn:ngsi-ld:Sprinkler:3",
+            "urn:ngsi-ld:Sprinkler:4",
+            "urn:ngsi-ld:Sprinkler:5",
+            "urn:ngsi-ld:Sprinkler:6",
+            "urn:ngsi-ld:Sprinkler:7",
+            "urn:ngsi-ld:Sprinkler:8",
+            "urn:ngsi-ld:Sprinkler:9",
+            "urn:ngsi-ld:Sprinkler:10"
+        ]
+    }
+}

@@ -1,58 +1,34 @@
 {
-    "id": "urn:ngsi-ld:SoilProbe:4",
-    "type": "SoilProbe",
+    "id": "urn:ngsi-ld:ManagementZone:1",
+    "type": "ManagementZone",
     "name": {
-        "type": "text",
-        "value": "2 depth soil probe"
+        "type": "Text",
+        "value": "Zone 1"
     },
     "location": {
         "type": "geo:json",
         "value": {
             "type": "Point",
             "coordinates": [
-                -23.725252,
-                -46.583149
+                13.3986,
+                52.5547
             ]
         }
     },
-    "manufacturer": {
-        "type": "text",
-        "value": "FEI"
-    },
-    "soilMoistureRawDepth1": {
-        "type": "number",
-        "value": ""
-    },
-    "soilMoistureRawDepth2": {
-        "type": "number",
-        "value": ""
-    },
-    "soilMoistureCalibratedDepth1": {
-        "type": "number",
-        "value": ""
-    },
-    "soilMoistureCalibratedDepth2": {
-        "type": "number",
-        "value": ""
-    },
-    "airHumidity": {
-        "type": "number",
-        "value": ""
-    },
-    "airTemperature": {
-        "type": "number",
-        "value": ""
-    },
-    "soilTemperature": {
-        "type": "number",
-        "value": ""
-    },
-    "luminosity": {
-        "type": "number",
-        "value": ""
-    },
-    "refManagementZone": {
+    "refFuzzyNeeds": {
         "type": "Relationship",
-        "value": "urn:ngsi-ld:ManagementZone:4"
+        "value": "urn:ngsi-ld:FuzzyNeeds:1"
+    },
+    "refIrrigationRecommendarion": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:IrrigationRecomendation:1"
+    },
+    "refSoilProbe": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:SoilProbe:1"
+    },
+    "refCentralPivot": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:CentralPivot:1"
     }
 }

@@ -53,6 +53,6 @@
     },
     "refManagementZone": {
         "type": "Relationship",
-        "value": "urn:ngsi-ld:ManagementZone:4"
+        "value": "urn:ngsi-ld:ManagementZone:5"
     }
 }

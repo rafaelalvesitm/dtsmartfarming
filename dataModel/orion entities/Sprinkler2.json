@@ -1,58 +1,28 @@
 {
-    "id": "urn:ngsi-ld:SoilProbe:4",
-    "type": "SoilProbe",
+    "id": "urn:ngsi-ld:Sprinkler:2",
+    "type": "Sprinkler",
     "name": {
-        "type": "text",
-        "value": "2 depth soil probe"
+        "type": "Text",
+        "value": "Sprinkler 2"
     },
-    "location": {
-        "type": "geo:json",
-        "value": {
-            "type": "Point",
-            "coordinates": [
-                -23.725252,
-                -46.583149
-            ]
-        }
+    "position": {
+        "type": "number",
+        "value": "2"
     },
     "manufacturer": {
-        "type": "text",
+        "type": "Text",
         "value": "FEI"
     },
-    "soilMoistureRawDepth1": {
+    "status": {
+        "type": "Text",
+        "value": ""
+    },
+    "flowRate": {
         "type": "number",
         "value": ""
     },
-    "soilMoistureRawDepth2": {
-        "type": "number",
-        "value": ""
-    },
-    "soilMoistureCalibratedDepth1": {
-        "type": "number",
-        "value": ""
-    },
-    "soilMoistureCalibratedDepth2": {
-        "type": "number",
-        "value": ""
-    },
-    "airHumidity": {
-        "type": "number",
-        "value": ""
-    },
-    "airTemperature": {
-        "type": "number",
-        "value": ""
-    },
-    "soilTemperature": {
-        "type": "number",
-        "value": ""
-    },
-    "luminosity": {
-        "type": "number",
-        "value": ""
-    },
-    "refManagementZone": {
+    "refCentralPivot": {
         "type": "Relationship",
-        "value": "urn:ngsi-ld:ManagementZone:4"
+        "value": "urn:ngsi-ld:CentralPivot:1"
     }
 }

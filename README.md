@@ -19,7 +19,8 @@ List of entities (Entities are stored inside Data Model -> Orion Entities):
 4. 8 Soil Probes
 5. 8 Fuzzy Needs
 6. 8 Irrigation recomendation
-7. 1 Weather Station
+7. 1 Weather Observed
+8. 1 Weather Forecast
 
 Atividades
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
@@ -28,4 +29,9 @@ Atividades
 
 Trabalhar ainda:
 1. A notificação do Cygnus para o Mysql vai com o timestamp da notificação e não o timestamp que está no Orion, mesmo que o IoT Agent sobrescreva esse valor. Será que existe uma forma do Cygnus salvar tais dados no MySQL com a sobreescrição do IoT Agent?
-2. Se não for possivel fazer tal modificação transformar a planilha de dados do Gilberto para a forma com que a apresentação ficaria no MySQL. 
+
+O Cynus utiliza o timestamp da notificação para gravar no banco de dados. É possivel realizar uma query no banco de dados para transformar as colunas do banco e assim fornecer os dados na forma necessária para reconstruir os gráficos publicados. 
+
+2. Desenvolver a planilha do Gilberto para outras zonas de manejo. Para isso será necessário modificar os cálculos realizados na planilha dele de forma a criar zonas de manejo com comportamentos diferentes como por exemplo ambiente mais seco, mais umido, totalmente molhado etc. Também é possivel criar uma irrigação com o modelo Fuzzy e outra apenas com o modelo FAO etc. 
+
+3. Criar a simulação de irrigação utilizando como elementos principais a velocidade do pivô central, a capacidade de irrigação de cada sprinkler, o ângulo do pivo central etc. 

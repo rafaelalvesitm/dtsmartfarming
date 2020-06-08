@@ -1,58 +1,32 @@
 {
-    "id": "urn:ngsi-ld:SoilProbe:4",
-    "type": "SoilProbe",
+    "id": "urn:ngsi-ld:FuzzyNeeds:6",
+    "type": "FuzzyNeeds",
     "name": {
         "type": "text",
-        "value": "2 depth soil probe"
+        "value": "Water needs mgm 6"
     },
-    "location": {
-        "type": "geo:json",
-        "value": {
-            "type": "Point",
-            "coordinates": [
-                -23.725252,
-                -46.583149
-            ]
-        }
-    },
-    "manufacturer": {
-        "type": "text",
-        "value": "FEI"
-    },
-    "soilMoistureRawDepth1": {
-        "type": "number",
+    "etc": {
+        "type": "Number",
         "value": ""
     },
-    "soilMoistureRawDepth2": {
-        "type": "number",
+    "moisture": {
+        "type": "Number",
         "value": ""
     },
-    "soilMoistureCalibratedDepth1": {
-        "type": "number",
+    "daysAfterSeeding": {
+        "type": "Number",
         "value": ""
     },
-    "soilMoistureCalibratedDepth2": {
-        "type": "number",
+    "rainForecast": {
+        "type": "Number",
         "value": ""
     },
-    "airHumidity": {
-        "type": "number",
-        "value": ""
-    },
-    "airTemperature": {
-        "type": "number",
-        "value": ""
-    },
-    "soilTemperature": {
-        "type": "number",
-        "value": ""
-    },
-    "luminosity": {
-        "type": "number",
+    "rainForecastProbability": {
+        "type": "Number",
         "value": ""
     },
     "refManagementZone": {
         "type": "Relationship",
-        "value": "urn:ngsi-ld:ManagementZone:4"
+        "value": "urn:ngsi-ld:ManagementZone:6"
     }
 }
