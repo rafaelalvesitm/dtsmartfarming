@@ -44,15 +44,15 @@
         "value": ""
     },
     "airTemperature": {
-        "type": "number",
+        "type": "Number",
         "value": ""
     },
     "soilTemperature": {
-        "type": "number",
+        "type": "Number",
         "value": ""
     },
     "luminosity": {
-        "type": "number",
+        "type": "Number",
         "value": ""
     },
     "refManagementZone": {

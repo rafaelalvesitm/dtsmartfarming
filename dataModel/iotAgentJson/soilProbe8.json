@@ -1,0 +1,59 @@
+{
+    "devices": [
+        {
+            "device_id": "Probe1",
+            "entity_name": "urn:ngsi-ld:SoilProbe:8",
+            "entity_type": "SoilProbe",
+            "transport": "HTTP",
+            "attributes": [
+                {
+                    "object_id": "smr1",
+                    "name": "soilMoistureRawDepth1",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "smr2",
+                    "name": "soilMoistureRawDepth2",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "smc1",
+                    "name": "soilMoistureCalibratedDepth1",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "smc2",
+                    "name": "soilMoistureCalibratedDepth2",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "ah",
+                    "name": "airHumidity",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "at",
+                    "name": "airTemperature",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "st",
+                    "name": "soilTemperature",
+                    "type": "Number"
+                },
+                {
+                    "object_id": "lum",
+                    "name": "luminosity",
+                    "type": "Number"
+                }
+            ],
+            "static_attributes": [
+                {
+                    "name": "refManagementZone",
+                    "type": "Relationship",
+                    "value": "urn:ngsi-ld:ManagementZone:8"
+                }
+            ]
+        }
+    ]
+}
