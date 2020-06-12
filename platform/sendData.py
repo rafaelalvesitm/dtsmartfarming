@@ -14,7 +14,7 @@ while True:
         'fiware-service': 'lab',
         'fiware-servicepath': '/'
     }
-    print("Sendind measurements")
+    print("Sending measurements")
     response = requests.request("POST", url, headers=headers, data = payload)
 
     print(response.text.encode('utf8'))

@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3.8"
 services:
     mongodb:
         image: mongo:3.6
@@ -9,6 +9,8 @@ services:
         command: --bind_ip_all --smallfiles
         volumes:
             - mongodb:/data
+        networks:
+            - default
 
     mysql-db:
         restart: always
@@ -63,6 +65,8 @@ services:
             - "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-worldmap-panel"
         volumes:
             - grafana:/var/lib/grafana
+        networks:
+            - default
 
     orion:
         image: fiware/orion:latest
@@ -77,6 +81,8 @@ services:
         command: -dbhost mongodb -logLevel DEBUG
         healthcheck:
             test: curl --fail -s http://orion:1026/version || exit 1
+        networks:
+            - default
 
     iot-agent-ul:
         image: fiware/iotagent-ul:1.8.0
@@ -102,6 +108,8 @@ services:
             - IOTA_PROVIDER_URL=http://iot-agent-ul:4042
         healthcheck:
             test: curl --fail -s http://iot-agent-ul:4042/iot/about || exit 1
+        networks:
+            - default
 
     iot-agent-json:
         image: fiware/iotagent-json
@@ -124,6 +132,22 @@ services:
             - "IOTA_MONGO_DB=iotagent-json"
             - "IOTA_HTTP_PORT=7896"
             - "IOTA_PROVIDER_URL=http://iot-agent-json:4041"
+        networks:
+            - default
+
+    fuzzyneeds:
+        build:
+            context: ./fuzzyneeds
+        image: fuzzyneeds:test
+        hostname: orion
+        container_name: fuzzyneeds 
+        ports:
+            - "1234:1234" 
+        networks:
+            - default
+
+networks:
+  default:
 
 volumes:
     mongodb: ~
