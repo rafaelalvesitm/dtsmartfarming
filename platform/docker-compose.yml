@@ -139,10 +139,7 @@ services:
         build:
             context: ./fuzzyneeds
         image: fuzzyneeds:test
-        hostname: orion
         container_name: fuzzyneeds 
-        ports:
-            - "1234:1234" 
         networks:
             - default
 
