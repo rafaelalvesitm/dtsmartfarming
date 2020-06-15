@@ -49,12 +49,22 @@ A conexão entre os diversos componentes da plataforma é feita da seguinte form
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
 2. Configuração da pasta Git para contribuir para esta branch. 
 3. Pasta Data criada com um csv dos dados do projeto do Gilberto e também um Script Python capaz de ler tais dados e publica-los no Fiware
+4. Configurei o WSL 2 no desktop (Ubuntu 20.04 LTS). A versão 2 tem melhor compatibilidade junto ao docker e também aos módulos do Linux. Também configurei o Visual Studio Code para trabalhar no WSL2. 
+5. Comecei a trabalhar na construção do script python para rodar dentro do docker. Assim sendo é possivel deixar um script python rodando automaticamente dentro da arquitetura da plataforma. 
 
 Trabalhar ainda:
-1. A notificação do Cygnus para o Mysql vai com o timestamp da notificação e não o timestamp que está no Orion, mesmo que o IoT Agent sobrescreva esse valor. Será que existe uma forma do Cygnus salvar tais dados no MySQL com a sobreescrição do IoT Agent?
-
-O Cynus utiliza o timestamp da notificação para gravar no banco de dados. É possivel realizar uma query no banco de dados para transformar as colunas do banco e assim fornecer os dados na forma necessária para reconstruir os gráficos publicados. 
+1R. A notificação do Cygnus para o MySQL sempre salva as colunas de TImestamp como o tempo em que a notificação é recebida e não o tempo em que o dado é enviado. Para utilizar o tempo em que o dado é enviado é necessário filtrar a tabela para apresentar o AttrName = TimeInstante como o Timestamp. 
 
 2. Desenvolver a planilha do Gilberto para outras zonas de manejo. Para isso será necessário modificar os cálculos realizados na planilha dele de forma a criar zonas de manejo com comportamentos diferentes como por exemplo ambiente mais seco, mais umido, totalmente molhado etc. Também é possivel criar uma irrigação com o modelo Fuzzy e outra apenas com o modelo FAO etc. 
 
-3. Criar a simulação de irrigação utilizando como elementos principais a velocidade do pivô central, a capacidade de irrigação de cada sprinkler, o ângulo do pivo central etc. 
+3R. O modelo de dados de entidades foi criado levando em consideração as entidades apresentadas anterioremente. Esse modelo de dados leva em consideração 8 áreas diferentes com recomendações de irrigação diferentes. 
+
+4. Criar a simulacão do pivô central no Process Simualte e realizar a configuração de movimentações difernetes para o pivô central. Testes devem ser realizados em elementos simples. 
+
+5. Realizar a conexão do process simulate com um simulador de PLC para verificar as funcionalidades dos elementos e possivelmente conectar de maneira automática todos os elementos. 
+
+6. Conectar o process simulate e o simulador de PLC com um servidor OPC UA. Essa intergração ainda está nebulosa para min mas acredito ser possivel de realizar. 
+
+7. Realizar a integração o servidor OPC UA com o Fiware através do IoT Agent. E também do Mindsphere através do MindConnect. 
+
+8. Testar a possibilidade de acionar os sismtemas de irrigação através das plataformas IoT para assim automatizar completamente os sismteas e fazer a integração final criando assim o gêmeo digital do sistema. 
