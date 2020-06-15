@@ -43,6 +43,7 @@ Após a instalação do docker e do docker-compose você pode acessar a pasta pl
 
 A conexão entre os diversos componentes da plataforma é feita da seguinte forma:
 
+![Arquitetura da plataforma](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/platform.png)
 
 ## Atividades
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
