@@ -45,7 +45,11 @@ A conexão entre os diversos componentes da plataforma é feita da seguinte form
 
 ![Arquitetura da plataforma](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/platform.png)
 
-Após todos os serviços estarem funcionando nos seus devidos containers é necessário criar o modelo de dados a ser utilizado para o experimento. Navegue até a pasta dataModel e rode o script setup.py
+Após todos os serviços estarem funcionando nos seus devidos containers é necessário criar o modelo de dados a ser utilizado para o experimento. Navegue até a pasta dataModel e rode o script setup.py. Esse escript criará todoas as entidades no Orion, no IoT Agent Json e também o service group no ioT Agent e a subscrição no Orion. 
+
+Com toidas as entidades criadas navegue até a pasta data e rode o script uploaddata.py. Esse script é responsável por enviar todos os dados utilizados para a siomulação para o IoT Agent. Os dados, para cada sonda de solo, podem ser conferidos na pasta soilProbeData.
+
+A próxima etapa será a de configurar o Grafana para visualizar os dados de cada sensor bem como outras informações relevantes. Para isso utilize abre um navegador qualquer e digite localhost:3000. Coloque como login Admin e senha admin. escolha uma nova senha e salve/ 
 
 ## Atividades
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
