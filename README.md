@@ -45,6 +45,8 @@ A conexão entre os diversos componentes da plataforma é feita da seguinte form
 
 ![Arquitetura da plataforma](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/platform.png)
 
+Após todos os serviços estarem funcionando nos seus devidos containers é necessário criar o modelo de dados a ser utilizado para o experimento. Navegue até a pasta dataModel e rode o script setup.py
+
 ## Atividades
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
 2. Configuração da pasta Git para contribuir para esta branch. 

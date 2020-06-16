@@ -2,14 +2,6 @@ A query abaixo serve para obter os dados e criar dashboards no Grafana.
 Lembrando que o nome das variáveis estão determinados no Orion e IoT Agent e que a subscrição atual do Cygnus engloba todas as variáveis do probe. 
 
 SELECT
-  UNIX_TIMESTAMP(recvTime) AS "time",
-  attrName AS metric,
-  Convert(attrValue, SIGNED) AS "value"
-FROM `urn_ngsi-ld_SoilProbe_001_SoilProbe`
-WHERE attrName = "soilMoistureRawDepth2" OR attrName = "soilMoistureRawDepth1" OR attrName = "soilMoistureRawDepth3"
-ORDER BY recvTime
-
-SELECT
   DISTINCT UNIX_TIMESTAMP(MAX(CASE attrName WHEN 'TimeInstant' THEN attrValue END)) as "time",
   CAST(MAX(CASE attrName WHEN 'soilMoistureRawDepth1' THEN attrValue END) as Decimal)as soilMoistureRaw1,
   CAST(MAX(CASE attrName WHEN 'soilMoistureRawDepth2' THEN attrValue END)as Decimal) as soilMoistureRaw2,
