@@ -65,7 +65,7 @@ Trabalhar ainda:
 
 3R. O modelo de dados de entidades foi criado levando em consideração as entidades apresentadas anterioremente. Esse modelo de dados leva em consideração 8 áreas diferentes com recomendações de irrigação diferentes. 
 
-4. Criar a simulacão do pivô central no Process Simualte e realizar a configuração de movimentações difernetes para o pivô central. Testes devem ser realizados em elementos simples. 
+4. Realizado testes para elementos simples. Possivel ligar e desligar o pivobem como controlar a velocidade de movimentação. Sinais são enviados caso o pivó esteja em 1 dos 4 quadrantes. Pensar em como indicar se o Sprinkler deve ser ligado ou desligado em cada um dos elementos e qual a vazão deles.  
 
 5. Realizar a conexão do process simulate com um simulador de PLC para verificar as funcionalidades dos elementos e possivelmente conectar de maneira automática todos os elementos. 
 

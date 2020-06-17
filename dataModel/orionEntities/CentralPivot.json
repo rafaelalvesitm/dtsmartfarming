@@ -39,28 +39,7 @@
         "type": "Relationship",
         "value": [
             "urn:ngsi-ld:ManagementZone:1",
-            "urn:ngsi-ld:ManagementZone:2",
-            "urn:ngsi-ld:ManagementZone:3",
-            "urn:ngsi-ld:ManagementZone:4",
-            "urn:ngsi-ld:ManagementZone:5",
-            "urn:ngsi-ld:ManagementZone:6",
-            "urn:ngsi-ld:ManagementZone:7",
-            "urn:ngsi-ld:ManagementZone:8"
-        ]
-    },
-    "refSprinkler": {
-        "type": "Relationship",
-        "value": [
-            "urn:ngsi-ld:Sprinkler:1",
-            "urn:ngsi-ld:Sprinkler:2",
-            "urn:ngsi-ld:Sprinkler:3",
-            "urn:ngsi-ld:Sprinkler:4",
-            "urn:ngsi-ld:Sprinkler:5",
-            "urn:ngsi-ld:Sprinkler:6",
-            "urn:ngsi-ld:Sprinkler:7",
-            "urn:ngsi-ld:Sprinkler:8",
-            "urn:ngsi-ld:Sprinkler:9",
-            "urn:ngsi-ld:Sprinkler:10"
+            "urn:ngsi-ld:ManagementZone:2"
         ]
     }
 }
