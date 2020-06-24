@@ -19,10 +19,6 @@
         "type": "Text",
         "value": "FEI"
     },
-    "rotation": {
-        "type": "Text",
-        "value": "clockwise"
-    },
     "radialVelocity": {
         "type": "Number",
         "value": ""
