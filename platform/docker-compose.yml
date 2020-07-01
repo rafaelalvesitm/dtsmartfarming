@@ -143,6 +143,17 @@ services:
         networks:
             - default
 
+    OpcUAServer:
+        build:
+            context: ./OpcUAServer
+        image: opc_ua_server:test
+        container_name: opc_ua_server
+        networks:
+            - default
+        ports:
+            - "5001:5001"
+            - "4840:4840"
+
 networks:
   default:
 
