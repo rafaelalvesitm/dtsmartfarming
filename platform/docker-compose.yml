@@ -144,6 +144,7 @@ services:
             - default
 
     OpcUAServer:
+        hostname: OpcUAServer
         build:
             context: ./OpcUAServer
         image: opc_ua_server:test
@@ -153,6 +154,22 @@ services:
         ports:
             - "5001:5001"
             - "4840:4840"
+          
+    iot-agent-opcua:
+        hostname: iot-agent-opcua
+        image: iotagent4fiware/iotagent-opcua:latest
+        networks:
+            - default
+        ports:
+            - "4003:4003"
+            - "4081:8080"
+        depends_on:
+            - mongodb
+            - orion
+        volumes:
+            - ./AGECONF:/opt/iotagent-opcua/conf
+            - ./certificates:/opt/iotagent-opcua/certificates
+        command: /usr/bin/tail -f /var/log/lastlog
 
 networks:
   default:
