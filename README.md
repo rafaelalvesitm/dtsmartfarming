@@ -65,12 +65,16 @@ Trabalhar ainda:
 
 3R. O modelo de dados de entidades foi criado levando em consideração as entidades apresentadas anterioremente. Esse modelo de dados leva em consideração 8 áreas diferentes com recomendações de irrigação diferentes. 
 
-4. Realizado testes para elementos simples. Possivel ligar e desligar o pivobem como controlar a velocidade de movimentação. Sinais são enviados caso o pivó esteja em 1 dos 4 quadrantes. Pensar em como indicar se o Sprinkler deve ser ligado ou desligado em cada um dos elementos e qual a vazão deles.  
+4. Realizado testes para elementos simples. Possivel ligar e desligar o pivobem como controlar a velocidade de movimentação. Sinais são enviados caso o pivó esteja em 1 dos 2 quadrantes. Pensar em como indicar se o Sprinkler deve ser ligado ou desligado em cada um dos elementos e qual a vazão deles.  
 
-5. Realizar a conexão do process simulate com um simulador de PLC para verificar as funcionalidades dos elementos e possivelmente conectar de maneira automática todos os elementos. 
+5. Conectar o process simulate e o simulador de PLC com um servidor OPC UA. Essa intergração ainda está nebulosa para min mas acredito ser possivel de realizar. 
 
-6. Conectar o process simulate e o simulador de PLC com um servidor OPC UA. Essa intergração ainda está nebulosa para min mas acredito ser possivel de realizar. 
+5R. Existe uma possibilidade de conectar o Process Simulate a um servidor OPC UA localizado na mesma rede que o software. Isso abre possibilidade para fazer a configuração do servidor num container docker e assim conectar aos Process Simulate. Para verificar tal possibilidade eu teria que estar na rede da FEI. 
 
-7. Realizar a integração o servidor OPC UA com o Fiware através do IoT Agent. E também do Mindsphere através do MindConnect. 
+6. Realizar a integração o servidor OPC UA com o Fiware através do IoT Agent. E também do Mindsphere através do MindConnect.
 
-8. Testar a possibilidade de acionar os sismtemas de irrigação através das plataformas IoT para assim automatizar completamente os sismteas e fazer a integração final criando assim o gêmeo digital do sistema. 
+6R. A conexão do IoT Agent OPC UA com o servidor OPC UA é possível mais ainda é limitada. O IoT Agent ainda está em seus estágios iniciais de desenvolvimento e assim sendo ainda está bastante trabalho. Já a conexão pelo MindConnect até onde eu descobri é feita através de um dispositivo mindconnect seja o IoT 2040 ou outro similar (Talvez seja possivel codificar essa transmissão de dados mas ainda não sei como faze-la)
+
+7. Testar a possibilidade de acionar os sismtemas de irrigação através das plataformas IoT para assim automatizar completamente os sismteas e fazer a integração final criando assim o gêmeo digital do sistema. 
+
+7R. Isso é possível através dos métodos do servidor OPC UA, contudo ainda não compreendi direito como eles funcionam e qual é a melhor forma de fazer com que tais comandos sejam executados. 
