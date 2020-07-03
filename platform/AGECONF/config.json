@@ -1,40 +1,81 @@
 {
-  "logLevel" : "INFO",
-  "contextBroker" : {
-    "host" : "orion",
-    "port" : 1026
+  "logLevel": "INFO",
+  "contextBroker": {
+    "host": "orion",
+    "port": 1026
   },
-  "server" : {
-    "port" : 4003,
-    "baseRoot" : "/"
+  "server": {
+    "port": 4003,
+    "baseRoot": "/"
   },
-  "deviceRegistry" : {
-    "type" : "memory"
+  "deviceRegistry": {
+    "type": "memory"
   },
-  "mongodb" : {
-    "host" : "mongodb",
-    "port" : "27017",
-    "db" : "iotagent-opcua",
-    "retries" : 5,
-    "retryTime" : 5
+  "mongodb": {
+    "host": "mongodb",
+    "port": "27017",
+    "db": "iotagent-opcua",
+    "retries": 5,
+    "retryTime": 5
   },
-  "types" : {
-    "Device" : {
-      "service" : "lab",
-      "subservice" : "/",
-      "active" : [ ],
-      "lazy" : [ ],
-      "commands" : [ ]
+  "types": {
+    "Device": {
+      "service": "lab",
+      "subservice": "/",
+      "active": [
+        {
+          "name": "Pressure",
+          "type": "Number"
+        },
+        {
+          "name": "Temperature",
+          "type": "Number"
+        },
+        {
+          "name": "Current",
+          "type": "Number"
+        }
+      ],
+      "lazy": [],
+      "commands": []
     }
   },
-  "browseServerOptions" : null,
-  "service" : "lab",
-  "subservice" : "/",
-  "providerUrl" : "http://iotage:4003",
-  "pollingExpiration" : "200000",
-  "pollingDaemonFrequency" : "20000",
-  "deviceRegistrationDuration" : "P1M",
-  "defaultType" : null,
-  "contexts" : [ ],
-  "contextSubscriptions" : []
+  "browseServerOptions": null,
+  "service": "lab",
+  "subservice": "/",
+  "providerUrl": "http://iotage:4003",
+  "pollingExpiration": "200000",
+  "pollingDaemonFrequency": "20000",
+  "deviceRegistrationDuration": "P1M",
+  "defaultType": null,
+  "contexts": [
+    {
+      "id": "Pivot",
+      "type": "Device",
+      "service": "lab",
+      "subservice": "/",
+      "polling": false,
+      "mappings": [
+        {
+          "ocb_id": "Pressure",
+          "opcua_id": "ns=3;s=Pressure",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "Temperature",
+          "opcua_id": "ns=3;s=Temperature",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "Current",
+          "opcua_id": "ns=3;s=Current",
+          "object_id": null,
+          "inputArguments": []
+        }
+      ]
+    }
+  ],
+  "contextSubscriptions": []
 }
