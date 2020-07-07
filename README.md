@@ -1,6 +1,12 @@
-# Um gemêo digital para uma fazenda inteligente
+# Fazenda Inteligente: Desenvolvimento de um gêmeo digital para um sistema de irrigação.
 
-Este repositório contém os arquivos utilizados para a minha dissertação de mestrado. Estão incuidos os arquivos, modelos, dados e descobertas que eu fiz ao longo do processo de criação da dissertação. Também incluirei links importantes para saber mais sobre o projto desenvolvido e teiorias utilizadas. 
+Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento.
+
+As pastas disponíveis são as seguintes:
+
+1. Plataform - Contém or arquivos necessários para subir uma plataforma IoT com base no FIWARE.
+2. DataModel - Contém os arquivos .json utilizados para modelar as entidades nos diversos componentes utilizados na plataforma IoT. 
+3. Data - Dados coletados ao longo do desenvolvimento do mestrado. 
 
 Caso queira entrar em contato utilize o e-mail ralves@fei.edu.br
 Verifique o meu curriculo lattes através do link: http://lattes.cnpq.br/6950937359307635
@@ -13,7 +19,7 @@ Este trabalha faz parte do projeto "Smart Water Management Platform" (SWAMP) des
 Link para o site do projeto SWAMP: http://swamp-project.org/.
 Link para o edital do projeto na comissão européria: https://cordis.europa.eu/project/id/777112
 
-## Artigos do autor
+## Artigos interessantes. 
 
 R. G. Alves et al., "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Avilable at: https://ieeexplore.ieee.org/document/9033075
 
@@ -28,10 +34,10 @@ Para mais informações sobre o FIWARE utilize o link: https://www.fiware.org/.
 Lista de entidades (Todas as entidades estão dentro da pasta Data Model -> Orion Entities):
 1. 10 Sprinklers
 2. 1 Central Pivot
-3. 8 Management zones 
-4. 8 Soil Probes
-5. 8 Fuzzy Needs
-6. 8 Irrigation recomendation
+3. 2 Management zones 
+4. 2 Soil Probes
+5. 1 Fuzzy Needs
+6. 2 Irrigation recomendation
 7. 1 Weather Observed
 8. 1 Weather Forecast
 
@@ -51,23 +57,21 @@ Com toidas as entidades criadas navegue até a pasta data e rode o script upload
 
 A próxima etapa será a de configurar o Grafana para visualizar os dados de cada sensor bem como outras informações relevantes. Para isso utilize abre um navegador qualquer e digite localhost:3000. Coloque como login Admin e senha admin. escolha uma nova senha e salve/ 
 
-## Atividades
+## Atividades desenvolvidas
 1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
 2. Configuração da pasta Git para contribuir para esta branch. 
 3. Pasta Data criada com um csv dos dados do projeto do Gilberto e também um Script Python capaz de ler tais dados e publica-los no Fiware
 4. Configurei o WSL 2 no desktop (Ubuntu 20.04 LTS). A versão 2 tem melhor compatibilidade junto ao docker e também aos módulos do Linux. Também configurei o Visual Studio Code para trabalhar no WSL2. 
 5. Comecei a trabalhar na construção do script python para rodar dentro do docker. Assim sendo é possivel deixar um script python rodando automaticamente dentro da arquitetura da plataforma. 
+6. O componente Cygnus salva no banco de dados o Timestamp de quando ele recebe a notificação e não de quando o dado foi coletado. É necessário, portanto, fazer a query adequada no banco SQL para que seja possível resgatar o Timestamp desejado.Para utilizar o tempo em que o dado é enviado é necessário filtrar a tabela para apresentar o AttrName = TimeInstante como o Timestamp.
 
-Trabalhar ainda:
-1R. A notificação do Cygnus para o MySQL sempre salva as colunas de TImestamp como o tempo em que a notificação é recebida e não o tempo em que o dado é enviado. Para utilizar o tempo em que o dado é enviado é necessário filtrar a tabela para apresentar o AttrName = TimeInstante como o Timestamp. 
+## Etapas a realizar:
 
-2. Desenvolver a planilha do Gilberto para outras zonas de manejo. Para isso será necessário modificar os cálculos realizados na planilha dele de forma a criar zonas de manejo com comportamentos diferentes como por exemplo ambiente mais seco, mais umido, totalmente molhado etc. Também é possivel criar uma irrigação com o modelo Fuzzy e outra apenas com o modelo FAO etc. 
-
-3R. O modelo de dados de entidades foi criado levando em consideração as entidades apresentadas anterioremente. Esse modelo de dados leva em consideração 8 áreas diferentes com recomendações de irrigação diferentes. 
+2. Desenvolver a planilha do Gilberto para 2 zonas de manejo. Para isso será necessário modificar os cálculos realizados na planilha dele de forma a criar 2 zonas de manejo com comportamentos de irrigação diferentes (1 pelo método Fuzzy e outro pelo método FAO).
 
 4. Realizado testes para elementos simples. Possivel ligar e desligar o pivobem como controlar a velocidade de movimentação. Sinais são enviados caso o pivó esteja em 1 dos 2 quadrantes. Pensar em como indicar se o Sprinkler deve ser ligado ou desligado em cada um dos elementos e qual a vazão deles.  
 
-5. Conectar o process simulate e o simulador de PLC com um servidor OPC UA. Essa intergração ainda está nebulosa para min mas acredito ser possivel de realizar. 
+5. Conectar o process simulate e o simulador de PLC com um servidor OPC UA.
 
 5R. Existe uma possibilidade de conectar o Process Simulate a um servidor OPC UA localizado na mesma rede que o software. Isso abre possibilidade para fazer a configuração do servidor num container docker e assim conectar aos Process Simulate. Para verificar tal possibilidade eu teria que estar na rede da FEI. 
 
@@ -75,6 +79,6 @@ Trabalhar ainda:
 
 6R. A conexão do IoT Agent OPC UA com o servidor OPC UA é possível mais ainda é limitada. O IoT Agent ainda está em seus estágios iniciais de desenvolvimento e assim sendo ainda está bastante trabalho. Já a conexão pelo MindConnect até onde eu descobri é feita através de um dispositivo mindconnect seja o IoT 2040 ou outro similar (Talvez seja possivel codificar essa transmissão de dados mas ainda não sei como faze-la)
 
-7. Testar a possibilidade de acionar os sismtemas de irrigação através das plataformas IoT para assim automatizar completamente os sismteas e fazer a integração final criando assim o gêmeo digital do sistema. 
+7. Testar a possibilidade de acionar os sistemas de irrigação através das plataformas IoT para assim automatizar completamente os sistemas e fazer a integração final criando assim o gêmeo digital do sistema. 
 
 7R. Isso é possível através dos métodos do servidor OPC UA, contudo ainda não compreendi direito como eles funcionam e qual é a melhor forma de fazer com que tais comandos sejam executados. 
