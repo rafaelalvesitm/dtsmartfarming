@@ -24,26 +24,127 @@
       "subservice": "/",
       "active": [
         {
-          "name": "Pressure",
+          "name": "pump_closed",
+          "type": "Boolean"
+        },
+        {
+          "name": "pump_q",
           "type": "Number"
         },
         {
-          "name": "Temperature",
+          "name": "c_sp1_open",
+          "type": "Boolean"
+        },
+        {
+          "name": "c_sp1_q",
           "type": "Number"
         },
         {
-          "name": "Current",
+          "name": "c_sp2_open",
+          "type": "Boolean"
+        },
+        {
+          "name": "c_sp2_q",
+          "type": "Number"
+        },
+        {
+          "name": "c_sp3_open",
+          "type": "Boolean"
+        },
+        {
+          "name": "c_sp3_q",
+          "type": "Number"
+        },
+        {
+          "name": "control_q",
+          "type": "Number"
+        },
+        {
+          "name": "control_ir",
+          "type": "Number"
+        },
+        {
+          "name": "f_sp1_open",
+          "type": "Boolean"
+        },
+        {
+          "name": "f_sp1_q",
+          "type": "Number"
+        },
+        {
+          "name": "f_sp2_open",
+          "type": "Boolean"
+        },
+        {
+          "name": "f_sp2_q",
+          "type": "Number"
+        },
+        {
+          "name": "f_sp3_open",
+          "type": "Boolean"
+        },
+        {
+          "name": "f_sp3_q",
+          "type": "Number"
+        },
+        {
+          "name": "fuzzy_q",
+          "type": "Number"
+        },
+        {
+          "name": "fuzzy_ir",
           "type": "Number"
         }
       ],
       "lazy": [],
-      "commands": []
+      "commands": [
+        {
+          "name": "irrigatecontrol",
+          "type": "command"
+        },
+        {
+          "name": "irrigatefuzzy",
+          "type": "command"
+        },
+        {
+          "name": "turnalloff",
+          "type": "command"
+        },
+        {
+          "name": "turnallon",
+          "type": "command"
+        },
+        {
+          "name": "turncontrolon",
+          "type": "command"
+        },
+        {
+          "name": "turncontroloff",
+          "type": "command"
+        },
+        {
+          "name": "turnfuzzyon",
+          "type": "command"
+        },
+        {
+          "name": "turnfuzzyoff",
+          "type": "command"
+        },
+        {
+          "name": "turnpumpon",
+          "type": "command"
+        },
+        {
+          "name": "turnpumpoff",
+          "type": "command"
+        }
+      ]
     }
   },
   "browseServerOptions": null,
   "service": "lab",
   "subservice": "/",
-  "providerUrl": "http://iotage:4003",
+  "providerUrl": "http://iot-agent-opcua:4003",
   "pollingExpiration": "200000",
   "pollingDaemonFrequency": "20000",
   "deviceRegistrationDuration": "P1M",
@@ -57,25 +158,191 @@
       "polling": false,
       "mappings": [
         {
-          "ocb_id": "Pressure",
-          "opcua_id": "ns=3;s=Pressure",
+          "ocb_id": "pump_closed",
+          "opcua_id": "ns=2;i=2",
           "object_id": null,
           "inputArguments": []
         },
         {
-          "ocb_id": "Temperature",
-          "opcua_id": "ns=3;s=Temperature",
+          "ocb_id": "pump_q",
+          "opcua_id": "ns=2;i=3",
           "object_id": null,
           "inputArguments": []
         },
         {
-          "ocb_id": "Current",
-          "opcua_id": "ns=3;s=Current",
+          "ocb_id": "c_sp1_open",
+          "opcua_id": "ns=2;i=5",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_sp1_q",
+          "opcua_id": "ns=2;i=6",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_sp2_open",
+          "opcua_id": "ns=2;i=7",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_sp2_q",
+          "opcua_id": "ns=2;i=8",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_sp3_open",
+          "opcua_id": "ns=2;i=9",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_sp3_q",
+          "opcua_id": "ns=2;i=10",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "control_q",
+          "opcua_id": "ns=2;i=11",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "control_ir",
+          "opcua_id": "ns=2;i=12",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp1_open",
+          "opcua_id": "ns=2;i=14",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp1_q",
+          "opcua_id": "ns=2;i=15",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp2_open",
+          "opcua_id": "ns=2;i=16",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp2_q",
+          "opcua_id": "ns=2;i=17",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp3_open",
+          "opcua_id": "ns=2;i=18",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp3_q",
+          "opcua_id": "ns=2;i=19",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "fuzzy_q",
+          "opcua_id": "ns=2;i=20",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "fuzzy_ir",
+          "opcua_id": "ns=2;i=21",
           "object_id": null,
           "inputArguments": []
         }
       ]
     }
   ],
-  "contextSubscriptions": []
+  "contextSubscriptions": [
+    {
+      "id": "Pivot",
+      "type": "Device",
+      "mappings": [
+        {
+          "ocb_id": "irrigatecontrol",
+          "opcua_id": "ns=2;i=24",
+          "object_id": "ns=2;i=22",
+          "inputArguments": [
+            {
+              "dataType": 10,
+              "type": "mm_control"
+            }
+          ]
+        },
+        {
+          "ocb_id": "irrigatefuzzy",
+          "opcua_id": "ns=2;i=26",
+          "object_id": "ns=2;i=22",
+          "inputArguments": [
+            {
+              "dataType": 10,
+              "type": "mm_fuzzy"
+            }
+          ]
+        },
+        {
+          "ocb_id": "turnalloff",
+          "opcua_id": "ns=2;i=28",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turnallon",
+          "opcua_id": "ns=2;i=29",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turncontrolon",
+          "opcua_id": "ns=2;i=30",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turncontroloff",
+          "opcua_id": "ns=2;i=31",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turnfuzzyon",
+          "opcua_id": "ns=2;i=32",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turnfuzzyoff",
+          "opcua_id": "ns=2;i=33",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turnpumpon",
+          "opcua_id": "ns=2;i=34",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turnpumpoff",
+          "opcua_id": "ns=2;i=35",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        }
+      ]
+    }]
 }

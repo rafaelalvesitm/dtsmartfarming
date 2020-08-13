@@ -154,7 +154,7 @@ services:
         ports:
             - "5001:5001"
             - "4840:4840"
-          
+       
     iot-agent-opcua:
         hostname: iot-agent-opcua
         image: iotagent4fiware/iotagent-opcua:latest
@@ -164,6 +164,7 @@ services:
             - "4003:4003"
             - "4081:8080"
         depends_on:
+            - OpcUAServer
             - mongodb
             - orion
         volumes:

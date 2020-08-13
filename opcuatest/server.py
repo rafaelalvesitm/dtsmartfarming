@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     # setup our own namespace, not really necessary but should as spec
     uri = "rafael"
-    idx = server.register_namespace(uri)
+    idx = server.reg(uri)
 
     # get Objects node, this is where we should put our nodes
     objects = server.get_objects_node()
@@ -19,6 +19,8 @@ if __name__ == "__main__":
     # populating our address space
 
     myobj = objects.add_object(idx, "CenterPivot") # Add Center pivot object
+
+
 
     # Add variables for all sprinklers
     sp1 = myobj.add_variable(idx, "sp1", 1 )
@@ -48,5 +50,4 @@ if __name__ == "__main__":
 
     # starting!
     server.start()
-    print(myobj)
     print(time)
