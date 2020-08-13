@@ -172,20 +172,20 @@ mm_fuzzy.ArrayDemisions = []
 mm_fuzzy.Description = ua.LocalizedText("Irrigation recommendation mm fuzzy")
 
 # Define two folders automatic (to control irrigation by the IoT platform calculations) and manual (to control irrigation based on the farmers need)
-automatic = node.add_object(idx,"automatic")
-manual = node.add_object(idx,"manual")
+automatic = server.nodes.objects.add_folder(idx,"automatic")
+manual = server.nodes.objects.add_folder(idx,"manual")
 
 # Define irrigate Control Zone by mm of rain 
-automatic.add_method(idx, "irrigatecontrol", irrigate_control, [mm_control])
-automatic.add_method(idx, "irrigatefuzzy", irrigate_fuzzy, [mm_fuzzy])
-manual.add_method(idx, "turnalloff", turn_all_off)
-manual.add_method(idx, "turnallon", turn_all_on)
-manual.add_method(idx, "turncontrolon", turn_control_on)
-manual.add_method(idx, "turncontroloff", turn_control_off)
-manual.add_method(idx, "turnfuzzyon", irrigate_fuzzy)
-manual.add_method(idx, "turnfuzzyoff", turn_fuzzy_off)
-manual.add_method(idx, "turnpumpon", turn_pump_on)
-manual.add_method(idx, "turnpumpoff", turn_pump_off)
+automatic.add_method(idx, "irrigate_control", irrigate_control, [mm_control])
+automatic.add_method(idx, "irrigate_fuzzy", irrigate_fuzzy, [mm_fuzzy])
+manual.add_method(idx, "turn_all_off", turn_all_off)
+manual.add_method(idx, "turn_all_on", turn_all_on)
+manual.add_method(idx, "turn_control_on", turn_control_on)
+manual.add_method(idx, "turn_control_off", turn_control_off)
+manual.add_method(idx, "turn_fuzzy_on", irrigate_fuzzy)
+manual.add_method(idx, "turn_fuzzy_off", turn_fuzzy_off)
+manual.add_method(idx, "turn_pump_on", turn_pump_on)
+manual.add_method(idx, "turn_pump_off", turn_pump_off)
 
 # Starting the Server
 server.start()
