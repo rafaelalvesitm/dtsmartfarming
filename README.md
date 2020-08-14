@@ -32,14 +32,13 @@ Para mais informações sobre o FIWARE utilize o link: https://www.fiware.org/.
 ## Lista de entidades do modelo de dados
 
 Lista de entidades (Todas as entidades estão dentro da pasta Data Model -> Orion Entities):
-1. 10 Sprinklers
-2. 1 Central Pivot
-3. 2 Management zones 
-4. 2 Soil Probes
-5. 1 Fuzzy Needs
-6. 2 Irrigation recomendation
-7. 1 Weather Observed
-8. 1 Weather Forecast
+1. 1 Irrigation System
+2. 2 Management zones 
+3. 2 Soil Probes
+4. 1 Fuzzy Needs
+5. 2 Irrigation recomendation
+6. 1 Weather Observed
+7. 1 Weather Forecast
 
 ## Etapas para funcionamento da simulação. 
 
@@ -88,3 +87,8 @@ O servidor OPC UA foi desenvolvido em Python utilizando como base no python-opcu
 
 4. Testar a possibilidade de acionar os sistemas de irrigação através das plataformas IoT para assim automatizar completamente os sistemas e fazer a integração final criando assim o gêmeo digital do sistema. No momento eu consigo subir o FIWARE e fazer o mesmo enviar comandos para para o IoT Agent OPC UA e executá-los na simulação. É uma pena eu não poder construir o sistema real mas até que soluação está ficando bem bacana. 
 
+## Estrutura Final para o ambiente do GitHub
+
+1. Instalação do Docker e Docker-compose. [Windows](https://docs.docker.com/docker-for-windows/install/) or [MAC](https://docs.docker.com/docker-for-mac/install/) or [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+2. Instalação do Docker-compose caso esteja no [Ubuntu ou outra distribuição Linux](https://docs.docker.com/compose/install/)
+3.
