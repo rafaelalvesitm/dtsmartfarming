@@ -168,8 +168,8 @@ services:
             - mongodb
             - orion
         volumes:
-            - .OpcUAServer/AGECONF:/opt/iotagent-opcua/conf
-            - .OpcUAServer/certificates:/opt/iotagent-opcua/certificates
+            - ./iotAgentOpcUa/AGECONF:/opt/iotagent-opcua/conf
+            - ./iotAgentOpcUa/certificates:/opt/iotagent-opcua/certificates
         command: /usr/bin/tail -f /var/log/lastlog
 
 networks:
