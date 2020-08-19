@@ -1,6 +1,7 @@
 from opcua import ua, Server, uamethod
 from opcua.ua.uaerrors import UaStatusCodeError
 import opcua
+from datetime import datetime
 
 # Setup server endpoint
 server = Server()
@@ -12,15 +13,6 @@ idx = server.register_namespace(name)
 
 #Main Node
 node = server.get_objects_node()
-
-#Param = node.add_object('ns=2;i=1000' , "Parameters")
-#temp = Param.add_variable('ns=2;s=Temperature',"Temperature", 0)
-#press = Param.add_variable('ns=2;s=Pressure',"Pressure", 0)
-#current = Param.add_variable('ns=2;s=Current',"Current", 0)
-
-#temp.set_writable()
-#press.set_writable()
-#current.set_writable()
 
 # Define pump parameter
 pump = node.add_object(idx,"Pump")
@@ -88,8 +80,9 @@ def irrigate_control(parent, mm_control): # mm_control is obtained using FAO rec
         pump_q.set_value(1) # This flowrate(l/s) is chosen based on project details. 
         # Set the irrigation recommendation for the day
         control_ir.set_value(mm_control)
+        return ua.StatusCode(0)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 def irrigate_fuzzy(parent, mm_fuzzy): #mm_fuzzy is obtained using fuzzy logic from another master`s degree project
     if manualoperation.get_value() == False:
@@ -102,8 +95,9 @@ def irrigate_fuzzy(parent, mm_fuzzy): #mm_fuzzy is obtained using fuzzy logic fr
         pump_q.set_value(1)
         # Set the irrigation recommendation for the day
         fuzzy_ir.set_value(mm_fuzzy)
+        return ua.StatusCode(0)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 # Define manual control to close all valves and pump
 def turn_all_off(parent):
@@ -116,8 +110,9 @@ def turn_all_off(parent):
         f_sp3_open.set_value(False)
         pump_closed.set_value(True)
         pump_q.set_value(0)
+        return ua.StatusCode(0)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 
 # Define manual control to openall valves and pump
@@ -131,8 +126,9 @@ def turn_all_on(parent):
         f_sp3_open.set_value(True)
         pump_closed.set_value(False)
         pump_q.set_value(1)
+        return ua.StatusCode(0)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
         
 
 # Define manual control to open all sprinklers in Control Área
@@ -142,7 +138,7 @@ def turn_control_on(parent):
         c_sp2_open.set_value(True)
         c_sp3_open.set_value(True)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 # Define manual control to close all sprinklers in Control Área
 def turn_control_off(parent):
@@ -151,7 +147,7 @@ def turn_control_off(parent):
         c_sp2_open.set_value(False)
         c_sp3_open.set_value(False)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 # Define manual control to open all sprinklers in Fuzzy Área
 def turn_fuzzy_on(parent):
@@ -160,7 +156,7 @@ def turn_fuzzy_on(parent):
         f_sp2_open.set_value(True)
         f_sp3_open.set_value(True)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 # Define manual control to close all sprinklers in Fuzzy Área
 def turn_fuzzy_off(paren):
@@ -169,7 +165,7 @@ def turn_fuzzy_off(paren):
         f_sp2_open.set_value(False)
         f_sp3_open.set_value(False)
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 # Define Manual control to turn the pump ON
 def turn_pump_on(parent):
@@ -177,7 +173,7 @@ def turn_pump_on(parent):
         pump_closed.set_value(False)
         pump_q.set_value(1) # Flowrate defined in project implementation
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 # Define Manual control to turn the pump OFF
 def turn_pump_off(parent):
@@ -185,7 +181,7 @@ def turn_pump_off(parent):
         pump_closed.set_value(True)
         pump_q.set_value(0) 
     else:  
-        return ua.StatusCode(0x80990000) # Status code for BadCOnditionDisable error
+        return ua.StatusCode(0x80000000) # Status code for BadCOnditionDisable error
 
 #Define arguments for Irrigate Control and Irrigate Fuzzy Methods
 # Define mm_control as an argument to the Irrigate Control Method
