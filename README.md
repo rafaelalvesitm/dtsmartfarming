@@ -90,5 +90,19 @@ O servidor OPC UA foi desenvolvido em Python utilizando como base no python-opcu
 ## Estrutura Final para o ambiente do GitHub
 
 1. Instalação do Docker e Docker-compose. [Windows](https://docs.docker.com/docker-for-windows/install/) or [MAC](https://docs.docker.com/docker-for-mac/install/) or [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-2. Instalação do Docker-compose caso esteja no [Ubuntu ou outra distribuição Linux](https://docs.docker.com/compose/install/)
-3.
+2. Instalação do Docker-compose caso esteja no [Ubuntu ou outra distribuição Linux](https://docs.docker.com/compose/install/). Usuários do MAC ou Windows já tem o docker-compose instalado ao instalar o Docker Desktop na etapa anterior.
+3. Descrição de cada componente da plataform de acordo com o Docker-Compose
++ Mongo DB
++ MySQL DB
++ Cygnus
++ Grafana
++ Orion
++ IoT Agent Ultralight
++ IoT Agent Json
++ OPC UA Server
++ IoT Agent OPC UA
+4. Utilizar o Docker-compose para subir os serviços necessários através da linha de comando ou afins. 
+5. Utilizar o Script Python localizado em Data Model para construir as entidades nos respectivos componentes. 
+6. Utilizar o Script Python localizado na pasta Data para colocar os dados do probe dentro da plataforma. 
+7. 
+
