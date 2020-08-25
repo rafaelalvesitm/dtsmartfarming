@@ -14,7 +14,4 @@ FROM `urn_ngsi-ld_SoilProbe_001_SoilProbe`
 GROUP BY recvTime, "time"
 ORDER BY "time"
 
-
-
-
 docker exec -it  db-mysql mysql -h mysql-db -P 3306  -u root -p123

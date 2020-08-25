@@ -40,11 +40,19 @@
           "type": "Number"
         },
         {
+          "name": "c_sp1_v",
+          "type": "Number"
+        },
+        {
           "name": "c_sp2_open",
           "type": "Boolean"
         },
         {
           "name": "c_sp2_q",
+          "type": "Number"
+        },
+        {
+          "name": "c_sp2_v",
           "type": "Number"
         },
         {
@@ -56,7 +64,15 @@
           "type": "Number"
         },
         {
+          "name": "c_sp3_b",
+          "type": "Number"
+        },
+        {
           "name": "control_q",
+          "type": "Number"
+        },
+        {
+          "name": "c_v",
           "type": "Number"
         },
         {
@@ -72,11 +88,19 @@
           "type": "Number"
         },
         {
+          "name": "f_sp1_v",
+          "type": "Number"
+        },
+        {
           "name": "f_sp2_open",
           "type": "Boolean"
         },
         {
           "name": "f_sp2_q",
+          "type": "Number"
+        },
+        {
+          "name": "f_sp2_v",
           "type": "Number"
         },
         {
@@ -88,12 +112,24 @@
           "type": "Number"
         },
         {
+          "name": "f_sp3_v",
+          "type": "Number"
+        },
+        {
           "name": "fuzzy_q",
           "type": "Number"
         },
         {
           "name": "fuzzy_ir",
           "type": "Number"
+        },
+        {
+          "name": "f_v",
+          "type": "Number"
+        },
+        {
+          "name": "manualoperation",
+          "type": "Boolean"
         }
       ],
       "lazy": [],
@@ -136,6 +172,10 @@
         },
         {
           "name": "turnpumpoff",
+          "type": "command"
+        },
+        {
+          "name": "togglemanual",
           "type": "command"
         }
       ]
@@ -182,6 +222,12 @@
           "inputArguments": []
         },
         {
+          "ocb_id": "c_sp1_v",
+          "opcua_id": "ns=2;i=38",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
           "ocb_id": "c_sp2_open",
           "opcua_id": "ns=2;i=7",
           "object_id": null,
@@ -190,6 +236,12 @@
         {
           "ocb_id": "c_sp2_q",
           "opcua_id": "ns=2;i=8",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_sp2_v",
+          "opcua_id": "ns=2;i=39",
           "object_id": null,
           "inputArguments": []
         },
@@ -206,6 +258,12 @@
           "inputArguments": []
         },
         {
+          "ocb_id": "c_sp3_v",
+          "opcua_id": "ns=2;i=40",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
           "ocb_id": "control_q",
           "opcua_id": "ns=2;i=11",
           "object_id": null,
@@ -214,6 +272,12 @@
         {
           "ocb_id": "control_ir",
           "opcua_id": "ns=2;i=12",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "c_v",
+          "opcua_id": "ns=2;i=44",
           "object_id": null,
           "inputArguments": []
         },
@@ -230,6 +294,12 @@
           "inputArguments": []
         },
         {
+          "ocb_id": "f_sp1_v",
+          "opcua_id": "ns=2;i=41",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
           "ocb_id": "f_sp2_open",
           "opcua_id": "ns=2;i=16",
           "object_id": null,
@@ -238,6 +308,12 @@
         {
           "ocb_id": "f_sp2_q",
           "opcua_id": "ns=2;i=17",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_sp2_v",
+          "opcua_id": "ns=2;i=42",
           "object_id": null,
           "inputArguments": []
         },
@@ -254,6 +330,12 @@
           "inputArguments": []
         },
         {
+          "ocb_id": "f_sp3_v",
+          "opcua_id": "ns=2;i=43",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
           "ocb_id": "fuzzy_q",
           "opcua_id": "ns=2;i=20",
           "object_id": null,
@@ -262,6 +344,18 @@
         {
           "ocb_id": "fuzzy_ir",
           "opcua_id": "ns=2;i=21",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "f_v",
+          "opcua_id": "ns=2;i=45",
+          "object_id": null,
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "manualoperation",
+          "opcua_id": "ns=2;i=28",
           "object_id": null,
           "inputArguments": []
         }
@@ -297,49 +391,55 @@
         },
         {
           "ocb_id": "turnalloff",
-          "opcua_id": "ns=2;i=28",
-          "object_id": "ns=2;i=23",
-          "inputArguments": []
-        },
-        {
-          "ocb_id": "turnallon",
           "opcua_id": "ns=2;i=29",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         },
         {
-          "ocb_id": "turncontrolon",
+          "ocb_id": "turnallon",
           "opcua_id": "ns=2;i=30",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         },
         {
-          "ocb_id": "turncontroloff",
+          "ocb_id": "turncontrolon",
           "opcua_id": "ns=2;i=31",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         },
         {
-          "ocb_id": "turnfuzzyon",
+          "ocb_id": "turncontroloff",
           "opcua_id": "ns=2;i=32",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         },
         {
-          "ocb_id": "turnfuzzyoff",
+          "ocb_id": "turnfuzzyon",
           "opcua_id": "ns=2;i=33",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         },
         {
-          "ocb_id": "turnpumpon",
+          "ocb_id": "turnfuzzyoff",
           "opcua_id": "ns=2;i=34",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         },
         {
-          "ocb_id": "turnpumpoff",
+          "ocb_id": "turnpumpon",
           "opcua_id": "ns=2;i=35",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "turnpumpoff",
+          "opcua_id": "ns=2;i=36",
+          "object_id": "ns=2;i=23",
+          "inputArguments": []
+        },
+        {
+          "ocb_id": "togglemanual",
+          "opcua_id": "ns=2;i=37",
           "object_id": "ns=2;i=23",
           "inputArguments": []
         }
