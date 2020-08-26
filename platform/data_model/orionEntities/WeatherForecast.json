@@ -1,0 +1,60 @@
+{
+    "id": "WeatherForecast",
+    "type": "WeatherCurrent",
+    "dateForecast": {
+        "type": "Datetime",
+        "value": "",
+        "metadata": {}
+    },
+    "humidity": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                -23.73,
+                -46.58
+            ]
+        },
+        "metadata": {}
+    },
+    "pressure": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "probability": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "stationName": {
+        "type": "Text",
+        "value": "Fazendinha",
+        "metadata": {}
+    },
+    "temperatureMax": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "temperatureMin": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "windDeg": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "windSpeed": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    }
+}

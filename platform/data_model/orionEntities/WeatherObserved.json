@@ -1,0 +1,42 @@
+{
+    "id": "WeatherCurrent",
+    "type": "WeatherCurrent",
+    "dateObserved": {
+        "type": "DateTime",
+        "value": "2016-11-30T07:00:00.00Z"
+    },
+    "temperature": {
+        "value": "",
+        "type" : "Number"
+    },
+    "pressure": {
+        "value": "",
+        "type" : "Number"
+    },
+    "windSpeed": {
+        "value": "",
+        "type" : "Number"
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                -23.73,
+                -46.58
+            ]
+        }
+    },
+    "stationName": {
+        "value": "Fazendinha",
+        "type" : "Text"
+    },
+    "windDeg": {
+        "value": "",
+        "type" : "Number"
+    },
+    "humidity": {
+        "value": "",
+        "type" : "Number"
+    }
+}

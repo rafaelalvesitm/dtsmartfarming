@@ -1,10 +1,13 @@
 import requests
 import json
 import os
+import time
+ 
+time.sleep(30)
 
 #Setup all orion entities iside orionEntities Folder
 
-url = "http://localhost:1026/v2/entities/"
+url = "http://orion:1026/v2/entities/"
 
 files = os.listdir("orionEntities")
 
@@ -25,7 +28,7 @@ for (dirpath, dirnames, filenames) in os.walk("orionEntities"):
 
 # Setup fiware service
 
-url = "http://localhost:4041/iot/services"
+url = "http://iot-agent-json:4041/iot/services"
 
 with open("iotAgentJson/service.json") as json_file:
   data = json.load(json_file)
@@ -43,7 +46,7 @@ print(response.text.encode('utf8'))
 
 # Setup all soil probe devices
 
-url = "http://localhost:4041/iot/devices"
+url = "http://iot-agent-json:4041/iot/devices"
 
 with open("iotAgentJson/devices.json") as json_file:
   data = json.load(json_file)
@@ -61,7 +64,7 @@ print(response.text.encode('utf8'))
 
 # Create a subscription for all orion entities
 
-url = "http://localhost:1026/v2/subscriptions/"
+url = "http://orion:1026/v2/subscriptions/"
 
 with open("subscription/subscription.json") as json_file:
   data = json.load(json_file)

@@ -166,6 +166,16 @@ services:
         ports:
             - "5001:5001"
             - "4840:4840"
+        
+    data_model:
+        build:
+            context: ./data_model
+        image: data_model:test
+        container_name: data_model
+        networks:
+            - default
+        depends_on:
+            - orion
        
     iot-agent-opcua:
         hostname: iot-agent-opcua
