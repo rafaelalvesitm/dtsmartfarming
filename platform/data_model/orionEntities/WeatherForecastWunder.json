@@ -1,0 +1,40 @@
+{
+    "id": "WeatherForecastWunder",
+    "type": "WeatherForecastWunder",
+    "dateForecast": {
+        "type": "Datetime",
+        "value": "",
+        "metadata": {}
+    },
+    "location": {
+        "type": "geo:json",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                -23.73,
+                -46.58
+            ]
+        },
+        "metadata": {}
+    },
+    "stationName": {
+        "type": "Text",
+        "value": "Fazendinha",
+        "metadata": {}
+    },
+    "temperatureMax": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "temperatureMin": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
+    "precipitation": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    }
+}

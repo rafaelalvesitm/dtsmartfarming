@@ -9,7 +9,7 @@ import config
 #Create a function with what should be executed in the scheduler at the end
 def get_data():
     # Get Weather Data from Open Weather map API
-    url = f"https://api.openweathermap.org/data/2.5/onecall?lat=-23.73&lon=-46.58&exclude=minutely,hourly&appid={api_key}&units=metric"
+    url = f"https://api.openweathermap.org/data/2.5/onecall?lat=-23.73&lon=-46.58&exclude=minutely,hourly&appid={config.api_key}&units=metric"
     payload = {}
     headers= {}
     response = requests.request("GET", url, headers=headers, data = payload)
