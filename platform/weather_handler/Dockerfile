@@ -1,6 +1,6 @@
 FROM python:3
 
-ADD weather.py /
+ADD / /
 
 RUN pip install requests && \
 pip install opcua && \

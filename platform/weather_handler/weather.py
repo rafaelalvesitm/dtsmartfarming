@@ -3,11 +3,13 @@ import json
 from datetime import datetime
 import pytz
 from apscheduler.schedulers.blocking import BlockingScheduler
+import time
+import config
 
 #Create a function with what should be executed in the scheduler at the end
 def get_data():
     # Get Weather Data from Open Weather map API
-    url = "https://api.openweathermap.org/data/2.5/onecall?lat=-23.73&lon=-46.58&exclude=minutely,hourly&appid=1b43995d45e76484eac79c54b28ad885&units=metric"
+    url = f"https://api.openweathermap.org/data/2.5/onecall?lat=-23.73&lon=-46.58&exclude=minutely,hourly&appid={api_key}&units=metric"
     payload = {}
     headers= {}
     response = requests.request("GET", url, headers=headers, data = payload)
@@ -49,8 +51,8 @@ def get_data():
 
     # Loop Thought each daily forecast for the next seven days
     for daily in r["daily"]:
-        #print(datetime.fromtimestamp(daily["dt"]).isoformat(), daily["temp"]["max"], daily["temp"]["min"], daily["pressure"], daily["humidity"], daily["wind_speed"], daily["wind_deg"], daily["pop"])
-        
+        print(datetime.fromtimestamp(daily["dt"]).isoformat(), daily["temp"]["max"], daily["temp"]["min"], daily["pressure"], daily["humidity"], daily["wind_speed"], daily["wind_deg"], daily["pop"])
+        time.sleep(2)
         # Send Data to the entity "WeatherCurrent"
         url = "http://orion:1026/v2/entities/WeatherForecast/attrs"
 

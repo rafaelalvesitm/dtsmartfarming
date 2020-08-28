@@ -14,7 +14,7 @@ services:
 
     mysql-db:
         restart: always
-        image: mysql:5.7
+        image: mysql
         hostname: mysql-db
         container_name: db-mysql
         expose:
@@ -63,6 +63,7 @@ services:
             - "3000:3000"
         environment:
             - "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-worldmap-panel"
+            - "GF_INSTALL_PLUGINS=https://github.com/cloudspout/cloudspout-button-panel/releases/download/7.0.2/cloudspout-button-panel.zip;cloudspout-button-panel"
         volumes:
             - grafana:/var/lib/grafana
         networks:

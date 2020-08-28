@@ -1,0 +1,162 @@
+{
+    "type": "table",
+    "title": "Weather Forecast",
+    "gridPos": {
+      "x": 10,
+      "y": 0,
+      "w": 13,
+      "h": 10
+    },
+    "id": 6,
+    "targets": [
+      {
+        "refId": "A",
+        "format": "table",
+        "timeColumn": "time",
+        "metricColumn": "none",
+        "group": [],
+        "where": [
+          {
+            "type": "macro",
+            "name": "$__timeFilter",
+            "params": []
+          }
+        ],
+        "select": [
+          [
+            {
+              "type": "column",
+              "params": [
+                "value"
+              ]
+            }
+          ]
+        ],
+        "rawQuery": true,
+        "rawSql": "SELECT\r\n  CAST(MAX(CASE attrName WHEN 'dateForecast' THEN attrValue END) as date) as \"time\",   \r\n  CAST(MAX(CASE attrName WHEN \"probability\" THEN attrValue END)as decimal(5,2)) as \"Precipitation Probability\",\r\n  CAST(MAX(CASE attrName WHEN \"temperatureMax\" THEN attrValue END) as decimal(5,2)) as \"Temperature Max\",\r\n  CAST(MAX(CASE attrName WHEN \"temperatureMin\" THEN attrValue END) as decimal(5,2)) as \"Temperature Min\",\r\n  CAST(MAX(CASE attrName WHEN \"humidity\" THEN attrValue END)as decimal(5,2)) as \"Humidity\",\r\n  CAST(MAX(CASE attrName WHEN \"pressure\" THEN attrValue END)as decimal(5,2)) as \"Pressure\", \r\n  CAST(MAX(CASE attrName WHEN \"windDeg\" THEN attrValue END) as decimal(5,2)) as \"Wind Degree\",   \r\n  CAST(MAX(CASE attrName WHEN \"windSpeed\" THEN attrValue END) as decimal(5,2)) as \"Wind Speed\" \r\n  FROM lab.WeatherForecast_WeatherForecast \r\n  GROUP BY recvTime \r\n  ORDER BY recvTime desc\r\n  limit 8;"
+      }
+    ],
+    "options": {
+      "showHeader": true,
+      "sortBy": [
+        {
+          "displayName": "time",
+          "desc": false
+        }
+      ]
+    },
+    "fieldConfig": {
+      "defaults": {
+        "custom": {
+          "align": "center"
+        },
+        "unit": "none",
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "color": "red",
+              "value": null
+            }
+          ]
+        },
+        "mappings": []
+      },
+      "overrides": [
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Precipitation Probability"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "percentunit"
+            },
+            {
+              "id": "decimals",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Temperature Max"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "celsius"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Temperature Min"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "celsius"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Humidity"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "percent"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Pressure"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "pressurehpa"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Wind Degree"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "degree"
+            }
+          ]
+        },
+        {
+          "matcher": {
+            "id": "byName",
+            "options": "Wind Speed"
+          },
+          "properties": [
+            {
+              "id": "unit",
+              "value": "velocityms"
+            }
+          ]
+        }
+      ]
+    },
+    "pluginVersion": "7.1.5",
+    "transformations": [],
+    "description": "Show Weather forecast for the next 7 Days",
+    "timeFrom": null,
+    "timeShift": null,
+    "datasource": null
+  }

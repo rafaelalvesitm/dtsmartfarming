@@ -1,6 +1,6 @@
 {
     "id": "WeatherForecast",
-    "type": "WeatherCurrent",
+    "type": "WeatherForecast",
     "dateForecast": {
         "type": "Datetime",
         "value": "",

@@ -20,3 +20,39 @@ SELECT UNIX_TIMESTAMP(recvTime) as "time", attrValue as "temperaure"
 FROM lab.WeatherCurrent_WeatherCurrent
 WHERE attrName = "temperature"
 ORDER BY "time"
+
+SELECT Distinct UNIX_TIMESTAMP(recvTime) as "time", 
+CAST((case when attrName = "temperature" then attrValue end) as decimal) as temperature,
+CAST((case when attrName = "windspeed" then attrValue end) as decimal) as windspeed
+FROM lab.WeatherCurrent_WeatherCurrent
+ORDER BY "time"
+
+SELECT UNIX_TIMESTAMP(recvTime) as "time", attrName,  
+  CAST(attrValue as decimal(5,2))
+FROM lab.WeatherCurrent_WeatherCurrent
+Where attrName = "temperature"
+ORDER BY "time"
+
+Timeseries or Table for all values. 
+SELECT UNIX_TIMESTAMP(recvTime) as "time", attrName,  
+  CAST(attrValue as decimal(5,2))
+FROM lab.WeatherCurrent_WeatherCurrent
+ORDER BY "time"
+
+For Weather Forecast;
+
+select * from lab.WeatherForecast_WeatherForecast;
+
+SELECT
+  CAST(MAX(CASE attrName WHEN 'dateForecast' THEN attrValue END) as date) as "time",   
+  CAST(MAX(CASE attrName WHEN "probability" THEN attrValue END)as decimal(5,2)) as "Precipitation Probability",
+  CAST(MAX(CASE attrName WHEN "temperatureMax" THEN attrValue END) as decimal(5,2)) as "Temperature Max",
+  CAST(MAX(CASE attrName WHEN "temperatureMin" THEN attrValue END) as decimal(5,2)) as "Temperature Min",
+  CAST(MAX(CASE attrName WHEN "humidity" THEN attrValue END)as decimal(5,2)) as "Humidity",
+  CAST(MAX(CASE attrName WHEN "pressure" THEN attrValue END)as decimal(5,2)) as "Pressure", 
+  CAST(MAX(CASE attrName WHEN "windDeg" THEN attrValue END) as decimal(5,2)) as "Wind Degree",   
+  CAST(MAX(CASE attrName WHEN "windSpeed" THEN attrValue END) as decimal(5,2)) as "Wind Speed" 
+  FROM lab.WeatherForecast_WeatherForecast 
+  GROUP BY recvTime 
+  ORDER BY recvTime desc
+  limit 8;
