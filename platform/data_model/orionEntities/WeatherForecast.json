@@ -32,6 +32,11 @@
         "value": "",
         "metadata": {}
     },
+    "rain": {
+        "type": "Number",
+        "value": "",
+        "metadata": {}
+    },
     "stationName": {
         "type": "Text",
         "value": "Fazendinha",

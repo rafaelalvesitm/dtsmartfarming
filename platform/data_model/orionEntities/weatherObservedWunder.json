@@ -1,6 +1,11 @@
 {
-    "id": "WeatherForecastWunder",
-    "type": "WeatherForecastWunder",
+    "id": "WeatherCurrentWunder",
+    "type": "WeatherCurrentWunder",
+    "dateObserved": {
+        "type": "Datetime",
+        "value": "",
+        "metadata": {}
+    },
     "location": {
         "type": "geo:json",
         "value": {
@@ -17,20 +22,28 @@
         "value": "Fazendinha",
         "metadata": {}
     },
-    "dateForecast": {
-        "type" : "Date",
-        "value": ""
-    },
-    "temperatureMax": {
+    "temperature": {
         "type" : "Number",
         "value": ""
     },
-    "temperatureMin": {
+    "pressure": {
         "type" : "Number",
         "value": ""
     },
-    "precipitation": {
+    "windSpeed": {
         "type" : "Number",
-        "value": "" 
+        "value": ""
+    },
+    "windDeg": {
+        "type" : "Number",
+        "value": ""
+    },
+    "humidity": {
+        "type" : "Number",
+        "value": ""
+    },
+    "precipTotal": {
+        "type" : "Number",
+        "value": ""
     }
 }

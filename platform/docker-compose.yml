@@ -177,6 +177,17 @@ services:
             - default
         depends_on:
             - orion
+
+    probe:
+        build:
+            context: ./probe
+        image: probe:test
+        container_name: probe
+        networks:
+            - default
+        depends_on:
+            - orion
+            - iot-agent-json
        
     iot-agent-opcua:
         hostname: iot-agent-opcua

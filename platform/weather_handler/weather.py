@@ -51,7 +51,12 @@ def get_openweather():
 
     # Loop Thought each daily forecast for the next seven days
     for daily in r["daily"]:
-        print(datetime.fromtimestamp(daily["dt"]).isoformat(), daily["temp"]["max"], daily["temp"]["min"], daily["pressure"], daily["humidity"], daily["wind_speed"], daily["wind_deg"], daily["pop"])
+        rain = 0
+        if "rain" in daily.keys():
+            rain= daily["rain"]
+        else:
+            rain = 0
+
         time.sleep(2)
         # Send Data to the entity "WeatherCurrent"
         url = "http://orion:1026/v2/entities/WeatherForecast/attrs"
@@ -63,6 +68,9 @@ def get_openweather():
             },
             "probability": {
                 "value":  daily["pop"]
+            },
+            "rain": {
+                "value":  rain
             },
             "temperatureMax": {
                 "value": daily["temp"]["max"]
@@ -97,7 +105,7 @@ def get_openweather():
 #Create a function with what should be executed in the scheduler at the end
 def get_wunder():
     # Get Weather Data from Open Weather map API
-    url = f"https://api.weather.com/v2/pws/observations/current?stationId=ISOBERNA3&format=json&units=m&apiKey={api_key_wunder}"
+    url = f"https://api.weather.com/v2/pws/observations/current?stationId=ISOBERNA3&format=json&units=m&apiKey={config.api_key_wunder}"
     payload = {}
     headers= {}
     response = requests.request("GET", url, headers=headers, data = payload).json()
@@ -139,7 +147,7 @@ def get_wunder():
     response = requests.request("PATCH", url, headers=headers, data = payload)
 
     # Get Weather Forecast for the next 5 days
-    url = f"https://api.weather.com/v3/wx/forecast/daily/5day?geocode=-23.73,-46.58&format=json&units=m&language=en-US&apiKey={api_key_wunder}"
+    url = f"https://api.weather.com/v3/wx/forecast/daily/5day?geocode=-23.73,-46.58&format=json&units=m&language=en-US&apiKey={config.api_key_wunder}"
     payload = {}
     headers= {}
     response = requests.request("GET", url, headers=headers, data = payload).json()
