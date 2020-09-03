@@ -2,43 +2,40 @@
 
 Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento.
 
-As pastas disponíveis são as seguintes:
+Este trabalho faz parte do projeto ["Smart Water Management Platform"](http://swamp-project.org/) (SWAMP) desenvolvindo em parceria com universidades no Brasil, Espanha, Itália e Finlândia. O projeto é financiado pela [Comissão Europeia dentro do H2020-EU.2.1.1](https://cordis.europa.eu/project/id/777112)
 
-1. Plataform - Contém or arquivos necessários para subir uma plataforma IoT com base no FIWARE.
-2. DataModel - Contém os arquivos .json utilizados para modelar as entidades nos diversos componentes utilizados na plataforma IoT. 
-3. Data - Dados coletados ao longo do desenvolvimento do mestrado. 
-
-Caso queira entrar em contato utilize o e-mail ralves@fei.edu.br
-Verifique o meu curriculo lattes através do link: http://lattes.cnpq.br/6950937359307635
-Para visualizar o meu perfil no Google Schoolar utilize o link: https://scholar.google.com.br/citations?user=swKME70AAAAJ&hl=pt-BR
-
-## Projeto SWAMP
-
-Este trabalha faz parte do projeto "Smart Water Management Platform" (SWAMP) desenvolvindo em parceria com universidades no Braisl, Espanha, Itália e Finlândia. 
-
-Link para o site do projeto SWAMP: http://swamp-project.org/.
-Link para o edital do projeto na comissão européria: https://cordis.europa.eu/project/id/777112
+Caso queira entrar em contato utilize o e-mail ralves@fei.edu.br ou rgomesal@hotmail.com
+Verifique o meu [curriculo lattes](http://lattes.cnpq.br/6950937359307635)
+Verifique o meu perfil no [Google Schoolar](https://scholar.google.com.br/citations?user=swKME70AAAAJ&hl=pt-BR)
 
 ## Artigos interessantes. 
 
-R. G. Alves et al., "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Avilable at: https://ieeexplore.ieee.org/document/9033075
+Aqui você encontra artigos sobre o desenvolvimento deste trabalho, artigos sobre autores parceiros ou então artigos importantes sobre a aplicação de tecnologia na agricultura. 
+
+## Artigos do autor ou de seus colegas de trabalho
+
+R. G. Alves et al., "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Available at: https://ieeexplore.ieee.org/document/9033075
+
+Kamienski, C.; Soininen, J.-P.; Taumberger, M.; Dantas, R.; Toscano, A.; Salmon Cinotti, T.; Filev Maia, R.; Torre Neto, A. Smart Water Management Platform: IoT-Based Precision Irrigation for Agriculture. Sensors 2019, 19, 276. Available at: http://www.mdpi.com/1424-8220/19/2/276.
+
+S. Monteleone, E. A. de Moraes and R. F. Maia, "Analysis of the variables that affect the intention to adopt Precision Agriculture for smart water management in Agriculture 4.0 context," 2019 Global IoT Summit (GIoTS), Aarhus, Denmark, 2019, pp. 1-6, Available at: https://ieeexplore.ieee.org/document/8766384.
 
 ## Ferramentas utilizadas
 
-Este trabalho utiliza o FIWARE para criar os serviços e compoentes a serem utilizados em nuvem para coletar dados dos sensores e enviar comandos para os atuadores. 
+Este trabalho utiliza as seguintes ferramentas:
 
-Para mais informações sobre o FIWARE utilize o link: https://www.fiware.org/.
-
-## Lista de entidades do modelo de dados
-
-Lista de entidades (Todas as entidades estão dentro da pasta Data Model -> Orion Entities):
-1. 1 Irrigation System
-2. 2 Management zones 
-3. 2 Soil Probes
-4. 1 Fuzzy Needs
-5. 2 Irrigation recomendation
-6. 1 Weather Observed
-7. 1 Weather Forecast
+- Para as funcionaldiades da plataforma
+    -  Componentes da plataforma FIWARE 
+    - Banco de dados MySQL e MongoDB
+- Para montar a plataforma em ambeinte local
+    - Docker e docker-compose
+- Para realizar a simulação do sistema de irrigação
+    - Plant Simulation
+    - Servidor OPC UA
+- Para o desenvolvimento do código e outros serviços
+    - Visual Studio Code 
+    - Open Weather API
+    - Wunderground API
 
 ## Etapas para funcionamento da simulação. 
 
@@ -63,31 +60,4 @@ O servidor OPC UA foi desenvolvido em Python utilizando como base no python-opcu
 ![Componentes do servidor OPC UA](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/serverItens.png)
 
 
-## Etapas a realizar:
-
-1. Desenvolver a planilha do Gilberto para 2 zonas de manejo. Para isso será necessário modificar os cálculos realizados na planilha dele de forma a criar 2 zonas de manejo com comportamentos de irrigação diferentes (1 pelo método Fuzzy e outro pelo método FAO, que será a área de controle). 
-
-2. Conectar o process simulate e o simulador de PLC com um servidor OPC UA. Até o momento eu não consegui fazer a conexão do Process com um servidor OPC UA. Possiveis problemas são a versão do mesmo que no laboratório é a 14 e também algo que falta ser codificado no servidr Python para funcionar. Contudo mesmo em um servidor de exemplos que existe disponível gratuitamente na internet não foi possível fazer tal conexão. 
-
-3. Ingluir o odelo Fuzzy feito pelo Gilberto para dentro da Plataforma IoT de modo que seja possivel deixar o script rodando e assim que uma recomendação de irrigaçõa for possível ele envie uma recomendação de irrigação para o IoT Agent OPC UA executar. Se eu conseguir fazer essa roda toda vai ser bem interessante. 
-
-4. Testar a possibilidade de acionar os sistemas de irrigação através das plataformas IoT para assim automatizar completamente os sistemas e fazer a integração final criando assim o gêmeo digital do sistema. No momento eu consigo subir o FIWARE e fazer o mesmo enviar comandos para para o IoT Agent OPC UA e executá-los na simulação. É uma pena eu não poder construir o sistema real mas até que soluação está ficando bem bacana. 
-
-## Estrutura Final para o ambiente do GitHub
-
-1. Instalação do Docker e Docker-compose. [Windows](https://docs.docker.com/docker-for-windows/install/) or [MAC](https://docs.docker.com/docker-for-mac/install/) or [Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-2. Instalação do Docker-compose caso esteja no [Ubuntu ou outra distribuição Linux](https://docs.docker.com/compose/install/). Usuários do MAC ou Windows já tem o docker-compose instalado ao instalar o Docker Desktop na etapa anterior.
-3. Descrição de cada componente da plataform de acordo com o Docker-Compose
-+ Mongo DB
-+ MySQL DB
-+ Cygnus
-+ Grafana
-+ Orion
-+ IoT Agent Ultralight
-+ IoT Agent Json
-+ OPC UA Server
-+ IoT Agent OPC UA
-4. Utilizar o Docker-compose para subir os serviços necessários através da linha de comando ou afins.
-+ O docker-compose já montar os containers dos elementos do Fiware e também os componentes que eu desenvolvi como o Weather Handler, o DataModel, Probe e Fuzzy Needs.
-5. Configurar o grafana utilizando o arquivo indicado na pasta "incluir pasta" para montar a Dashboard Personalizada como eu fiz. 
 
