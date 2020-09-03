@@ -101,8 +101,7 @@ O servidor OPC UA foi desenvolvido em Python utilizando como base no python-opcu
 + IoT Agent Json
 + OPC UA Server
 + IoT Agent OPC UA
-4. Utilizar o Docker-compose para subir os serviços necessários através da linha de comando ou afins. 
-5. Utilizar o Script Python localizado em Data Model para construir as entidades nos respectivos componentes. 
-6. Utilizar o Script Python localizado na pasta Data para colocar os dados do probe dentro da plataforma. 
-7. 
+4. Utilizar o Docker-compose para subir os serviços necessários através da linha de comando ou afins.
++ O docker-compose já montar os containers dos elementos do Fiware e também os componentes que eu desenvolvi como o Weather Handler, o DataModel, Probe e Fuzzy Needs.
+5. Configurar o grafana utilizando o arquivo indicado na pasta "incluir pasta" para montar a Dashboard Personalizada como eu fiz. 
 

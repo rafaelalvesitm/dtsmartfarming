@@ -60,3 +60,10 @@ SELECT
   limit 8;
   
   select * from lab.WeatherCurrentWunder_WeatherCurrentWunder;
+
+SELECT
+  MAX(CASE attrName WHEN "c_sp1_open" THEN attrValue END) as "SP1",
+  MAX(CASE attrName WHEN "c_sp1_open" THEN attrValue END) as "SP2",
+  MAX(CASE attrName WHEN "c_sp1_open" THEN attrValue END) as "SP3"
+FROM Pivot_Device
+GROUP By recvTime
