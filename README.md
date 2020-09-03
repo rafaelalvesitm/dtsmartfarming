@@ -39,7 +39,7 @@ Este trabalho utiliza as seguintes ferramentas:
 
 Primeiramente é necessário instalar o Docker e o docker-compose. Siga os passos no link https://www.docker.com/ para o seu sistema operacional. Para usuários do Windows é recomendado utilizar o WSL2 com uma versão do Ubuntu, para isso siga o tutorial do link https://docs.docker.com/docker-for-windows/wsl/.
 
-Após a instalção do docker e do docker-compose acesse a pasta [platform](/platform)
+Após a instalção do docker e do docker-compose acesse a pasta [platform](/platform). Utilize o comando `docker-compose build` para construir as imagens dos containers de cada um dos serviços utilizados na plataforma. Depois utilize o comando `docker-compose up -d` para subir os containers para o ambiente de desenvolvimento local.
 
 A conexão entre os diversos componentes da plataforma é feita da seguinte forma:
 
