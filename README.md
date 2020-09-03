@@ -63,20 +63,6 @@ O servidor OPC UA foi desenvolvido em Python utilizando como base no python-opcu
 ![Componentes do servidor OPC UA](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/serverItens.png)
 
 
-## Atividades desenvolvidas
-1. Configurei o WSL versão 1 no laptop (Ubuntu 18.04 LTS). A versão 2 do WSL só está disponível após atualizar o windows para a Build 2004. 
-2. Configuração da pasta Git para contribuir para esta branch. 
-3. Pasta Data criada com um csv dos dados do projeto do Gilberto e também um Script Python capaz de ler tais dados e publica-los no Fiware
-4. Configurei o WSL 2 no desktop (Ubuntu 20.04 LTS). A versão 2 tem melhor compatibilidade junto ao docker e também aos módulos do Linux. Também configurei o Visual Studio Code para trabalhar no WSL2. 
-5. Comecei a trabalhar na construção do script python para rodar dentro do docker. Assim sendo é possivel deixar um script python rodando automaticamente dentro da arquitetura da plataforma. 
-6. O componente Cygnus salva no banco de dados o Timestamp de quando ele recebe a notificação e não de quando o dado foi coletado. É necessário, portanto, fazer a query adequada no banco SQL para que seja possível resgatar o Timestamp desejado.Para utilizar o tempo em que o dado é enviado é necessário filtrar a tabela para apresentar o AttrName = TimeInstante como o Timestamp.
-7. Realizado testes para elementos simples. Possivel ligar e desligar as áreas de irrigação de acordo com a simulação do Plant Simulation. 
-8. É possivel conectar o Fiware e o servidor OPC UA através do IoT Agent OPC UA. Eu consegui fazer a conexão do IoT Agent OPC UA com um servidor OPC UA escrito em Python. Alteraçõa de variáveis e o envio de comandos (métodos) está funcionando. 
-9. Realizada a conexão do Plant Simulation com o servidor OPC UA escrito em Python. É possivel alterar as variáveis do servidor e ver tal alteração refletida no Plant Simulation bem como realizar alterações no Plant SImulation e ver tal modificação refletida no servidor OPC UA. 
-10. A modelagem de uma duas pequenas áreas de irrigação foi feita com 3 sprinklers para cada uma. Uma mesma bomba alimenta os dois sistemas e é possivel ligar e desligar cada área individualmente. 
-11. Para a simulação foi necessário adaptar a mesma para ser capaz de assim que a recomendação de irrigação fosse feita a simulaçao desligaria o sistema. Isso foi feito através do compomente "Tanque" do Plant Simulation em que a recomendação de irrigação é convertida de mm para litros. Asism quando o tanque está cheio um comendo é enviado para fechar o sistema de irrigação e depois é feito o esvaziamento do tanque. 
-
-
 ## Etapas a realizar:
 
 1. Desenvolver a planilha do Gilberto para 2 zonas de manejo. Para isso será necessário modificar os cálculos realizados na planilha dele de forma a criar 2 zonas de manejo com comportamentos de irrigação diferentes (1 pelo método Fuzzy e outro pelo método FAO, que será a área de controle). 

@@ -1,4 +1,6 @@
 import mysql.connector
+import csv
+from mysql.connector import Error
 
 mydb = mysql.connector.connect(
   host = "localhost",
@@ -6,8 +8,14 @@ mydb = mysql.connector.connect(
   password = "123"
 )
 
-mycursor.execute("USE mysql;")
-mycursor.execute("SHOW TABLES")
+# Get Daily Average Value for she SOil Moisture at Depth 1
+mycursor =mydb.cursor()
+mycursor.execute("USE lab;")
 
-for x in mycursor:
-  print(x)
+mycursor.execute('SELECT AVG(CASE attrName WHEN "soilMoistureCalibratedDepth1" THEN attrValue END)'
+ 'FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` WHERE DATE(recvTime) = CURDATE()'
+ )
+
+x = mycursor.fetchone() # Fetch the resulting value
+print(x[0]+2, x[0]) # Example to extract this data to python
+mycursor.close()

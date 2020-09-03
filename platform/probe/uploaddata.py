@@ -35,6 +35,6 @@ with open('SoilProbeData.csv') as csv_file:
             except:
                 print("an error has ocurred when trying to send data")
             line_count += 1
-            time.sleep(1800)
+            time.sleep(5)
 
     print(f"Processed {line_count} lines")
