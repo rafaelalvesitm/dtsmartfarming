@@ -44,7 +44,7 @@ Após a instalção do docker e do docker-compose acesse a pasta [Weather Handle
 
 Para montar as imagens dos containers utilizados acesse a pasta [platform](/platform) pelo terminal e utilize o comando `docker-compose build`. Por fim, utilize o comando `docker-compose up -d` para subir os containers para o ambiente de desenvolvimento local. 
 
-Após tal configuração é necessário configurar o grafana para se conectar a base de dados e também para mostrar a dashboard que foi criada, para isso siga o tutorial na [Seção Grafana](###Grafana)
+Após tal configuração é necessário configurar o grafana para se conectar a base de dados e também para mostrar a dashboard que foi criada, para isso siga o tutorial na [Seção Grafana](#Grafana)
 
 Os containers utilizados neste ambiente são os seguintes:
 
