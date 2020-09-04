@@ -32,6 +32,7 @@ Este trabalho utiliza as seguintes ferramentas:
     - Servidor OPC UA
 - Para o desenvolvimento do código e outros serviços
     - Visual Studio Code 
+    - Postman
     - Open Weather API
     - Wunderground API
 
@@ -90,17 +91,55 @@ O [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) é um c
 }
 ```
 
+Neste exemplo temos uma entidade que representa um sensor de temperatura e pressão instalados em um quarto qualquer. Nota-se que é importante que todas as entidades do Orion tenham os atributos `id` e `type` e que outros atributos devem conter as propriedades `value` e `type`. Para maiores descrições de como criar um modelo de dados podem ser conferidas na [página de modelos de dados do FIWARE](https://fiware-datamodels.readthedocs.io/en/latest/index.html)
+
+As entidades criadas no Orion para este projeto estão definidads na pasta [orionEntities](/platform/data_model/orionEntities) e são automaticamente enviadas ao Orion quando o comando `docker-compose up -d` é utilizado. Caso queira fazer qualquer modificação nesse modelo de dados você pode criar arquivos JSON personalizados dentro da pasta indicada ou então utilizar algum cliente REST como o [RESTCLient](http://restclient.net/) ou [Postman](https://www.postman.com/).
+
 ### Mongo DB
+
+O MongoDB é um banco de dados distribuído de propósito geral e orientado a documentos, ou seja, ele armazena os dados em forma de arquivos. O Mongo DB é utilizado na plataforma para armazenar a estrutura das entidades do Orion Context Broker e do IoT Agent JSON. Para a plataforma não é necessário configurar nada diretamente no Mongo DB, a configuração é feita no arquivo `docker-compose` localizado na pasta [plataform](/platform).
 
 ### MySQL Database
 
+O MySQL database é um banco de dados SQL e é utilizado na plataforma para armazenar as alterações que ocorrem nos dados das entidades do Orion. Para que tal armazenamento ocorra é necessário ter o Cygnus na plataforma para enviar os dados do Orion Context Broker para serem armazenados no MySQL. 
+
+Não é necessário realizar nenhuma configuração no MySQL diretamente, a configuração é feita no arquivo `docker-compose` localizado na pasta [plataform](/platform). É importante notar que o usuário padrão é o `root` com senha `123`. Para acessar o banco SQL através da linha de comando utilize o seguinte comando `docker exec -it  db-mysql mysql -h mysql-db -P 3306  -u root -p123`.
+
+Para aprender como fazer requisições no banco SQL você pode acessar os [tutoriais da W3 Schools](https://www.w3schools.com/sql/). Para algumas requisições é possivel conferir o arquivo `query.txt` localizado na pasta [platform](/platform). 
+
 ### IoT Agent Json
+
+O ioT Agent Json é um agente que faz a ponte entre um dispositivo que utiliza o protocolo JSON com brokers que utilizam o protocolo NGSI como o Orion Contex Broker. As configurações o IoT Agent JSON são escritas no arquivo `docker-compose` localizado na pasta [plataform](/platform). Essas configurações são feitas para fazer a união entre o IoT Agent Json e o Orion Context Broker para que quando uma dado seja enviado ao IoT Agent JSON ele seja encaminhado ao Orion e também para que os comandos enviados ao Orion sejam encaminhados ao IoT Agent JSON. Para maiores informações sobre as funcionalidades do IoT Agent JSON acesse a [documentação do FIWARE sobre o componente](https://fiware-iotagent-json.readthedocs.io/en/latest/stepbystep/index.html).
+
+Para este ambiente de simulação os dispositivos cadastranos no IoT Agent JSON estão localizadas na pasta [iotAgentJson](/platform/data_model/iotAgentJson) para que o container data_model faça a envio dessas entidades para o IoT Agent Json. Nota-se também que caso você crie uma entidade no IoT Agent JSON que não existe inicialmente no Orion o próprio componente é capaz de criar uma entidade no Orion também. Caso queira fazer qualquer alteração nas entidades do IoT Agent pode ser feita diretamente na pasta [platform/data_model/iotAgentJson](/platform/data_model/iotAgentJson) ou então utilizando um cliente REST como o [RESTCLient](http://restclient.net/) ou [Postman](https://www.postman.com/).
 
 ### IoT Agent OPC UA
 
+O componente IoT Agent OPC UA faz a comunicação entre um servidor OPC UA e a Orion Context Broker. Este componente tem como base o [código disponivel aqui](https://github.com/Engineering-Research-and-Development/iotagent-opcua). Para a configuração do IoT Agent OPC UA é necessário modificar os arquivos localizados na pasta [/platform/iotAgentOpcUa/AGECONF](/platform/iotAgentOpcUa/AGECONF). O arquivo `config.properties` contém as informações relativas ao parametros do IoT Agent OPC UA e o arquivo `config.json` contém a configuração das entidades dos dispositivos que serão criados no IoT Agent OPC UA assim que ele for montado. 
+
+Os dois aquivos podem ser modificados de acordo com as necessidades do ambiente de desenvolvimento que esteja sendo utilizado, mas não é necessário fazer nenhuma alteração para que esta simulação funcione. É importante destacar que o mapeamento entre os nós do servidor OPC UA e as propriedades dos dispositivos no IoT Agent OPC UA deve ser feita com cautela para que os dados sejam comunicados de forma correta. Também é importante destacar que este componente ainda está em fase de desenvolvimento mas já é possivel fazer a comunicação de dados e o acionamento de comandos através do agente. 
+
 ### Cygnus
 
+O Cygnus é um conector encarregado de persistir certas fontes de dados em certos armazenamentos de terceiros (MySQL, PosgreSQL, Kafka, CKAN, Carto etc), criando uma visão histórica de tais dados. As configurações deste componente são feitas no arquivo `docker-compose` localizado na pasta [/platform](/platform). Não é necessário fazer nenhuma alteração no documento para que essa simulação funcione mas caso seja necessário adicionar outros banco de dados ao Cygnus utilize o [manual de referência disponibilizado pelo FIWARE](https://fiware-cygnus.readthedocs.io/en/latest/cygnus-ngsi/installation_and_administration_guide/install_with_docker/index.html). 
+
+Nesta simulação utiliza-se apenas o banco MySQL para fazer a persistencia dos dados contudo é possivel fazer o Cygnus persistir os dados em mais de um banco ao mesmo tempo utilizando a variável `CYGNUS_MULTIAGENT`.
+
 ### Grafana
+
+Grafana é uma aplicação web de análise de código aberto multiplataforma e visualização interativa da web. Ele fornece tabelas, gráficos e alertas para a Web quando conectado a fontes de dados suportadas como o MySQL desta simulação. Com o Grafana é possivel criar painéis interativos para visualizar os dados obtidos pela plataforma. Tais painéis são configurados no próprio componente acessando, via browser, o link `localhost:3000` caso esta simulação esteja sendo criada em ambeinte local de desenvolvimento. 
+
+Inicialmente o Grafana irá pedir um login e senha sendo eles `admin` e `admin`. Logo após será necessário alterar a senha que fica a critério do usuário. O próximo passo é fazer o cadastro do banco de dados como mostra as figuras a seguir:
+
+![Selecione Data Sourcer para conectar um banco de dados ao Grafana ](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/grafana.png)
+
+![Configure os parametros de acordo com o banco de dados](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/grafana2.png)
+
+Após estes passos é possivel criar o painél interativo de acordo com as necessidades ou então utilizar o painel previamente condificado, para isso click em `import` como indicado na figura abixo e depois em `Upload JSON File` e adicione o arquivo `panel.json` disponível na pasta [/platform](/platform). 
+
+![Importe o arquivo panel.json para o grafana](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/grafana3.png)
+
+Após acessar a Dashboard e possivel, no menu superior direito da Dashboard, configurar o painel para mostrar os dados relativos a um determinado periodo bem como alterar a taxa de atualização do painel. 
 
 ### Servidor OPC UA
 
