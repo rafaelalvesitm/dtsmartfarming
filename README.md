@@ -69,7 +69,26 @@ A conexão entre os diversos componentes da plataforma é feita da seguinte form
 
 ## Descrição da atuação de cada componente na plataforma, sua configuração e outras informações importantes. 
 
+É importante destacar as funcionalidades de cada container utilizado na plataforma bem como os parâmetros que devem ser configurados nesses elementos para garantir que cada componente funcione de maneira adequada. A seguir tem-se as explicações de cada um dos componenetes utilizados.  
+
 ### Orion Context Broker
+
+O [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) é um componente oferecido pelo [FIWARE](https://www.fiware.org/). Este componente faz a gestão do ciclo de vida das informações de contexto incluindo atualizações, consultas, registros e assinaturas. Para realizar a gestão de contexto o Orion trabalha com o conceito de entidades. As entidades são escritas no formato JSON e devem conter os atributos e propriedades que descrevem estas entidades como por exemplo a entidade abaixo:
+
+```
+{
+  "id": "Room1",
+  "type": "Room",
+  "temperature": {
+    "value": 23,
+    "type": "Float"
+  },
+  "pressure": {
+    "value": 720,
+    "type": "Integer"
+  }
+}
+```
 
 ### Mongo DB
 
