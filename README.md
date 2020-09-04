@@ -75,7 +75,7 @@ A conexão entre os diversos componentes da plataforma é feita da seguinte form
 
 O [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) é um componente oferecido pelo [FIWARE](https://www.fiware.org/). Este componente faz a gestão do ciclo de vida das informações de contexto incluindo atualizações, consultas, registros e assinaturas. Para realizar a gestão de contexto o Orion trabalha com o conceito de entidades. As entidades são escritas no formato JSON e devem conter os atributos e propriedades que descrevem estas entidades como por exemplo a entidade abaixo:
 
-```
+```JSON
 {
   "id": "Room1",
   "type": "Room",
