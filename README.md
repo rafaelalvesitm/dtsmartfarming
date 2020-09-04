@@ -23,24 +23,26 @@ Aqui você encontra artigos sobre o desenvolvimento deste trabalho, artigos sobr
 Este trabalho utiliza as seguintes ferramentas:
 
 - Para as funcionaldiades da plataforma
-    -  Componentes da plataforma FIWARE 
-    - Banco de dados MySQL e MongoDB
+    - Componentes da [plataforma FIWARE ](https://www.fiware.org/)
+    - Banco de dados [MySQL DB:](https://www.mysql.com/) e [Mongo DB:](https://www.mongodb.com/)
+    - [Grafana:](https://grafana.com/)
+    - Componentes personalizados desenvolvidos pelo autor
 - Para montar a plataforma em ambiente local
-    - Docker e docker-compose
+    - [Docker](https://docs.docker.com/get-docker/) e [docker-compose](https://docs.docker.com/compose/)
 - Para realizar a simulação do sistema de irrigação
-    - Plant Simulation
-    - Servidor OPC UA
+    - [Plant Simulation](https://www.plm.automation.siemens.com/global/pt/products/manufacturing-planning/plant-simulation-throughput-optimization.html)
+    - Servidor OPC UA desenvolvido em Python pelo autor
 - Para o desenvolvimento do código e outros serviços
-    - Visual Studio Code 
-    - Postman
-    - Open Weather API
-    - Wunderground API
+    - [Visual Studio Code](https://code.visualstudio.com/) 
+    - [Postman](https://www.postman.com/)
+    - [Open Weather OneCall API](/platform/weather_handler) 
+    - [Wunderground API](https://www.wunderground.com/)
 
 ## Etapas para montar a plataforma de Internet das Coisas
 
-Primeiramente é necessário instalar o Docker e o docker-compose. Siga os passos no link https://www.docker.com/ para o seu sistema operacional. Para usuários do Windows é recomendado utilizar o WSL2 com uma versão do Ubuntu, para isso siga o tutorial do link https://docs.docker.com/docker-for-windows/wsl/.
+Primeiramente é necessário [instalar o Docker](https://docs.docker.com/get-docker/) e o [docker-compose](https://docs.docker.com/compose/). Para usuários do Windows é recomendado utilizar o WSL2 com uma versão do Ubuntu, para isso siga o [tutorial do link](https://docs.docker.com/docker-for-windows/wsl/).
 
-Após a instalção do docker e do docker-compose acesse a pasta [Weather Handler](/platform/weather_handler) e crir um arquivo `config.py` com a com a delcaração das variáveis `api_key` e `api_key_wunder` com as cahves para as APIs do [OpenWeather](https://openweathermap.org/) (OneCall API) e [Wunderground](https://www.wunderground.com/). 
+Após a instalção do docker e do docker-compose acesse a pasta [Weather Handler](/platform/weather_handler) e crir um arquivo `config.py` com a com a delcaração das variáveis `api_key` e `api_key_wunder` com as chavees para as APIs do [OpenWeather](https://openweathermap.org/) (OneCall API) e [Wunderground](https://www.wunderground.com/). A API do OpenWeather é aberta para qualquer um sendo necessário apenas fazer uma conta no site e solicitar a chave da API já para a API do Wunderground é necessário ter uma estação meterológica para fazer o cadastro no site.  
 
 Para montar as imagens dos containers utilizados acesse a pasta [platform](/platform) pelo terminal e utilize o comando `docker-compose build`. Por fim, utilize o comando `docker-compose up -d` para subir os containers para o ambiente de desenvolvimento local. 
 
@@ -196,4 +198,17 @@ Este container foi desenvolvido apenas para criar as entidades no Orion Context 
 
 Este container foi desenvolvido para simular o comportamento de uma sonda de solo. O script python `uploaddata.py` disponível na pasta [/platform/probe](/platform/probe) faz o envio dos dados contidos no arquivo `SoilProbeData.csv` localizado na mesma pasta. O Envio dos dados é feito a cada 30 minutos pelo contianer pois foi essa a taxa de coleta utilizada em um experimento realizado com uma sonda de solo real. 
 
-É importante destacar que apesar de uma sonda de solo real ter coletado os dados que estão disponíveis no arquivo `SoilProbeData.csv`, tais dados não devem ser usados para validar recomendações de irrigação pois eles apresentam incosistencias devido a problemas no sensor e também levam em conta a chuva que ocorreu durante o periodo em que tais dados foram coletados. Esses dados server para validar a comunicação que aconteceria entre uma sonda de solo e toda a plataforma IoT montada nesta simulação. 
+É importante destacar que apesar de uma sonda de solo real ter coletado os dados que estão disponíveis no arquivo `SoilProbeData.csv`, tais dados não devem ser usados para validar recomendações de irrigação pois eles apresentam incosistencias devido a problemas no sensor e também levam em conta a chuva que ocorreu durante o periodo em que tais dados foram coletados. Esses dados server para validar a comunicação que aconteceria entre uma sonda de solo e toda a plataforma IoT montada nesta simulação.
+
+## Simulação do sistema de irrigação
+
+Para a simulação do sistema de irrigação foi desenvolvido um modelo utilizando o software [Plant Simulation](https://www.plm.automation.siemens.com/global/pt/products/manufacturing-planning/plant-simulation-throughput-optimization.html). A visualização da simulação é indicada na figura abaixo:
+
+![Visualização da simulação no Plant Simulation](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/plantsimulation1.png)
+
+A simulação é conectada a um servidor OPC UA através de um módulo OPC UA do Plant Simulation que requer uma licença especifica. O Plant Simulation tem uma [versão de estudante](https://www.plm.automation.siemens.com/plmapp/education/plant-simulation/en_us/free-software/student/) que permite visualizar o modelo mas não é possivel conectar o modelo a um servidor OPC UA. Com este modelo é possivel simular o comportamento do sistema de irrigação de acordo com os métodos que foram descritos na [seção Servidor OPC UA](#Servidor-OPC-UA).
+
+O sistema de irrigação é composto por uma bomba de água que alimenta duas regiões: uma de denominada região Controle na qual a prescrição de irrigação é feita com base no modelo de evapotranspiração da Organização Das Nações Unidas para a Alimentação e Agricultura; e outra denominada região Fuzzy na qual a prescrição de irrigação é feita por um algoritmo de Inteligêncial Artifical chamado de lógica Fuzzy. O algortimo de lógica Fuzzy para a prescrição de irrigação foi desenvolvido por Gilberto de Souza, um dos meus colegas de trabalho.
+
+
+Uma demonstração das funcionalidades da simulação pode ser visualizada no video localizado no link do Youtube
