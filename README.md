@@ -210,5 +210,25 @@ A simulação é conectada a um servidor OPC UA através de um módulo OPC UA do
 
 O sistema de irrigação é composto por uma bomba de água que alimenta duas regiões: uma de denominada região Controle na qual a prescrição de irrigação é feita com base no modelo de evapotranspiração da Organização Das Nações Unidas para a Alimentação e Agricultura; e outra denominada região Fuzzy na qual a prescrição de irrigação é feita por um algoritmo de Inteligêncial Artifical chamado de lógica Fuzzy. O algortimo de lógica Fuzzy para a prescrição de irrigação foi desenvolvido por Gilberto de Souza, um dos meus colegas de trabalho.
 
-
 Uma demonstração das funcionalidades da simulação pode ser visualizada no video localizado no link do Youtube
+
+As duas áreas tem 3 sprinklers cada uma sendo eles denominados SP1,SP2 e SP3. É possivel acionar cada área de maneira independente mas os 3 sprinklers de cada área funcionam como um conjunto. É possivel operar cada sprinkler separadamente alterando o servidor OPC UA e também o IoT Agent OPC UA, essa decisão depende sismtea de irrigação a ser modelado. 
+
+Na simulação caso a variável `manualoperation` do servidor OPC UA esteja falsa a simulação aguarda um dos métodos `irrigate_control` ou `irrigate_fuzzy` ser acionado para executar a irrigação da área de controle ou fuzzy respectivamente. O comando pode ser enviado para a simulação através do Orion (seja pelo cliente REST seja por um serviço da plataforma IoT) sendo então o caminho do comando através dos componentes o indicado na figura a seguir:
+
+![Fluxo de comunicação entre os componetes e o Plant Simulation](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/fluxo1.png)
+
+Assim que o comando chega na simulação, a necessidade de água em litros é calculada e a capacidade do tanque respectivo é ajustada para tal necessidade. Como exemplo se um comando `irrigate_control` é enviado paara irrigar 4mm asimulação calcula que a necessidade de irrigação da área de controle seria de 704 litros e então o tanque denominado `control_t` teria esse volume máximo. Assim as válvulas SP1,SP2 e SP3 da área de controle são abertas bem como a bomba de água é ligada com vazão de 1 l/s (definida na simulação e no servidor OPC UA de acordo com o projeto). 
+
+Quando o tanque `control_t` atinge a capacidade máxima a simulação fecha os sprinklers da área de controle e também desliga a bomba de água caso ela não esteja irrigando a área fuzzy também. O tanque,então , libera todo o seu volume para a saida da simulação que indica quantos litros foram irrigados no total. Por fim, uma resposta dizendo que a irrigação da área de controle é enviada no sentido contrário ao expressado anteriormente, ou seja, um comando é enviado da simulação para o Orion Context Broker. 
+
+Existe também a possibilidade da variável `manualoperation` estar ligada o que permitiria ao fazendeiro controle as áreas de irrigação e a bomba de água de maneira idependente como indicado nos métodos disponíveis na [seção Servidor OPC UA](#Servidor-OPC-UA). Neste caso cada sprinkler teria o seu próprio tanque que indicaria ao fazendeiro o volume de água que já foi irrigado durante o periodo de irrigação manual. Ao mudar novamente a variável `manualoperation` para falsa todo o volume de água é enviado para a saida da simulação e contabilizado como o volume total de água irrigado. 
+
+No momento atual o IoT Agent OPC UA não é a capaz de dizer se um comando eviado dele para o servidor OPC UA foi executado de maneira adequada ou se ocorreu algum problema. Essa á uma função que deve ser implementada no futuro. Isso significa que caso o sistema de irrigação simulado, ou até mesmo um sistema real, não consiga executar o comando solicitado o IoT Agent OPC UA não conseguir informar ao Orion Context Broker que eu erro ocorreu e assim um possivel aplicativo não indicaria tal problema para o fazendeiro. 
+
+Esta simulação utilizando o Plant Simulation e a uma plataforma de Internet das Coisas permite testar a comunicação de dispositivos reais e a funcionalidade dos mesmos antes de eles serem devidamente implantados nas fazendas. Isso permite que a plataforma seja previamente configurada antes de ser implanta e também permite verificar junto ao fazendeiro as funcionalidades que ele deseja que sejam implantadas. Além disso é possivel, dada a capacidade do Plant Simulation, simular um sistema de irrigação mais complexo, ou seja, tendo mais áreas de irrigação, mais sprinklers, mais bombas e mais bifurcações nas tubulações do sistema de irrigação. 
+
+Vale ressaltar ainda que devido a possibilidade do Orion Contex Broker de se comunicar com diversos dispositivos e softwares através dos IoT Agents essa se torna uma solução capaz de integrar diversos componentes e soluções diferentes criando assim um sistema cyber-fisico de toda a fazenda. É possivel, por exemplo, conectar a plataforma a um sismtema de monitoramento de maquinário e operações permitindo que os agricultures saibam exatamente como está o comportamento de suas fazendas, garantindo assim que um gêmeo digital das fazendas possas ser criado. 
+
+
+
