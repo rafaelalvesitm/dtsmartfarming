@@ -44,6 +44,8 @@ Após a instalção do docker e do docker-compose acesse a pasta [Weather Handle
 
 Para montar as imagens dos containers utilizados acesse a pasta [platform](/platform) pelo terminal e utilize o comando `docker-compose build`. Por fim, utilize o comando `docker-compose up -d` para subir os containers para o ambiente de desenvolvimento local. 
 
+Após tal configuração é necessário configurar o grafana para se conectar a base de dados e também para mostrar a dashboard que foi criada, para isso siga o tutorial na [Seção Grafana](###Grafana)
+
 Os containers utilizados neste ambiente são os seguintes:
 
 Elementos desenvolvidos por terceiros e apenas configurados para utilização neste projeto. 
@@ -125,6 +127,29 @@ O Cygnus é um conector encarregado de persistir certas fontes de dados em certo
 
 Nesta simulação utiliza-se apenas o banco MySQL para fazer a persistencia dos dados contudo é possivel fazer o Cygnus persistir os dados em mais de um banco ao mesmo tempo utilizando a variável `CYGNUS_MULTIAGENT`.
 
+É necessário que o Cygnus esteja subscrito em uma entidade do Orion para que o Cygnus seja capaz de armazenar os dadso no banco MySQL. A subscrição é feita criando uma notificação no Orion como indicada no código JSON abaixo e que deve ser enviado através de um client REST ou código usando uma requisição HTTP do tipo POST. O Código dispoível no container data-model faz a subscrição com o código apresentado abaixo. 
+
+```JSON
+{
+    "description": "Notify Cygnus of all context changes",
+    "subject": {
+        "entities": [
+            {
+                "idPattern": ".*"
+            }
+        ]
+    },
+    "notification": {
+        "http": {
+            "url": "http://cygnus:5050/notify"
+        }
+    },
+    "throttling": 1
+}
+```
+
+Isso significa que todas as entidades do Orion estão sobrescritas pelo Cygnus, ou seja, o Cygnus é capaz de monitorar todas as entidades do Orion e se alguma delas sofrer alguma alteração em um de seus parâmetros o Cygnus ira fazer a persistencia dos dados da entidade toda no banco MySQL.
+
 ### Grafana
 
 Grafana é uma aplicação web de análise de código aberto multiplataforma e visualização interativa da web. Ele fornece tabelas, gráficos e alertas para a Web quando conectado a fontes de dados suportadas como o MySQL desta simulação. Com o Grafana é possivel criar painéis interativos para visualizar os dados obtidos pela plataforma. Tais painéis são configurados no próprio componente acessando, via browser, o link `localhost:3000` caso esta simulação esteja sendo criada em ambeinte local de desenvolvimento. 
@@ -165,4 +190,10 @@ o Weather handler coleta os seguintes parâmetros:
 
 ### Data Model
 
+Este container foi desenvolvido apenas para criar as entidades no Orion Context broker, criar as entidades  no IoT Agent JSON, e criar a subscrição do Cygnus no Orion Context Broker. Cada um dos elementos criados está dentro de suas respectivas pastas dentro da pasta [/platform/data_model](/platform/data_model). Note que da forma que o script `setup.py` está escrito qualquer arquivo .json que esteja dentro da pasta `orionEntities` tentará ser enviado para o Orion, os arquivos dentro da pasta `iotAgentJson` será enviado para o IoT Agent JSON e por fim uma subscrição para todas as entidades do Orion é feita no Cygnus. 
+
 ### Probe
+
+Este container foi desenvolvido para simular o comportamento de uma sonda de solo. O script python `uploaddata.py` disponível na pasta [/platform/probe](/platform/probe) faz o envio dos dados contidos no arquivo `SoilProbeData.csv` localizado na mesma pasta. O Envio dos dados é feito a cada 30 minutos pelo contianer pois foi essa a taxa de coleta utilizada em um experimento realizado com uma sonda de solo real. 
+
+É importante destacar que apesar de uma sonda de solo real ter coletado os dados que estão disponíveis no arquivo `SoilProbeData.csv`, tais dados não devem ser usados para validar recomendações de irrigação pois eles apresentam incosistencias devido a problemas no sensor e também levam em conta a chuva que ocorreu durante o periodo em que tais dados foram coletados. Esses dados server para validar a comunicação que aconteceria entre uma sonda de solo e toda a plataforma IoT montada nesta simulação. 
