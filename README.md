@@ -1,6 +1,6 @@
 # Fazenda Inteligente: Desenvolvimento de um gêmeo digital para um sistema de irrigação.
 
-Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento.
+Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento. O projeto visa desenvolver uma simulação computacional de um sistema de irrigação utilizando o software Plant Simulation e realizar a conexão da simulação com uma plataforma de itnernet das coisas para validar, digitalmnete, um processo de irrigação dado uma prescrição de irrigação obtida pela plataforma de internet das coisas.
 
 Este trabalho faz parte do projeto ["Smart Water Management Platform"](http://swamp-project.org/) (SWAMP) desenvolvindo em parceria com universidades no Brasil, Espanha, Itália e Finlândia. O projeto é financiado pela [Comissão Europeia dentro do H2020-EU.2.1.1](https://cordis.europa.eu/project/id/777112)
 
@@ -38,6 +38,13 @@ Este trabalho utiliza as seguintes ferramentas:
     - [Open Weather OneCall API](/platform/weather_handler) 
     - [Wunderground API](https://www.wunderground.com/)
 
+
+## Representação geral da fazenda a ser simulada
+
+A figura a seguir indica o modelo que foi adotado para realizar a simulação. O modelo leva em consideração uma bomba de água com vazão de 1 litro por segundo que deve irrigar duas áreas: uma denominada área de controle e a outra denominada área fuzzy. Em cada área existe um aspersor (sprinkler) que fará a dispersão da água em circulo garantindo uma melhor cobertura da irrigação. Cada área tem 8 x 22 metros sendo portanto uma área total de 176 m² por região. Em cada área, uma sonda de solo será simulada simulando assim diversos parametros como a temperatura do solo, umidade do solo em 2 níveis, temperatura do ar, umidade do ar e iluminância. 
+
+![Modelo de sistema de irrigação adotado](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/sistemairrigacao.png)
+
 ## Etapas para montar a plataforma de Internet das Coisas
 
 Primeiramente é necessário [instalar o Docker](https://docs.docker.com/get-docker/) e o [docker-compose](https://docs.docker.com/compose/). Para usuários do Windows é recomendado utilizar o WSL2 com uma versão do Ubuntu, para isso siga o [tutorial do link](https://docs.docker.com/docker-for-windows/wsl/).
@@ -72,11 +79,11 @@ A conexão entre os diversos componentes da plataforma é feita da seguinte form
 
 ![Arquitetura da plataforma](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/platform.png)
 
-## Descrição da atuação de cada componente na plataforma, sua configuração e outras informações importantes. 
+### Descrição da atuação de cada componente na plataforma, sua configuração e outras informações importantes. 
 
 É importante destacar as funcionalidades de cada container utilizado na plataforma bem como os parâmetros que devem ser configurados nesses elementos para garantir que cada componente funcione de maneira adequada. A seguir tem-se as explicações de cada um dos componenetes utilizados.  
 
-### Orion Context Broker
+#### Orion Context Broker
 
 O [Orion Context Broker](https://fiware-orion.readthedocs.io/en/master/) é um componente oferecido pelo [FIWARE](https://www.fiware.org/). Este componente faz a gestão do ciclo de vida das informações de contexto incluindo atualizações, consultas, registros e assinaturas. Para realizar a gestão de contexto o Orion trabalha com o conceito de entidades. As entidades são escritas no formato JSON e devem conter os atributos e propriedades que descrevem estas entidades como por exemplo a entidade abaixo:
 
@@ -99,11 +106,22 @@ Neste exemplo temos uma entidade que representa um sensor de temperatura e press
 
 As entidades criadas no Orion para este projeto estão definidads na pasta [orionEntities](/platform/data_model/orionEntities) e são automaticamente enviadas ao Orion quando o comando `docker-compose up -d` é utilizado. Caso queira fazer qualquer modificação nesse modelo de dados você pode criar arquivos JSON personalizados dentro da pasta indicada ou então utilizar algum cliente REST como o [RESTCLient](http://restclient.net/) ou [Postman](https://www.postman.com/).
 
-### Mongo DB
+As entidades criadas são as seguintes:
+
+1. 2 - Soil Probe
+2. 2 - Management Zone
+3. 2 - irrigation recommendation
+4. 1 - Fuzzy Needs
+5. 1 - Irrigation System 
+6. 2 - Weather Observed
+7. 2 - Weather Forecast
+
+
+#### Mongo DB
 
 O MongoDB é um banco de dados distribuído de propósito geral e orientado a documentos, ou seja, ele armazena os dados em forma de arquivos. O Mongo DB é utilizado na plataforma para armazenar a estrutura das entidades do Orion Context Broker e do IoT Agent JSON. Para a plataforma não é necessário configurar nada diretamente no Mongo DB, a configuração é feita no arquivo `docker-compose` localizado na pasta [plataform](/platform).
 
-### MySQL Database
+#### MySQL Database
 
 O MySQL database é um banco de dados SQL e é utilizado na plataforma para armazenar as alterações que ocorrem nos dados das entidades do Orion. Para que tal armazenamento ocorra é necessário ter o Cygnus na plataforma para enviar os dados do Orion Context Broker para serem armazenados no MySQL. 
 
@@ -111,19 +129,19 @@ Não é necessário realizar nenhuma configuração no MySQL diretamente, a conf
 
 Para aprender como fazer requisições no banco SQL você pode acessar os [tutoriais da W3 Schools](https://www.w3schools.com/sql/). Para algumas requisições é possivel conferir o arquivo `query.txt` localizado na pasta [platform](/platform). 
 
-### IoT Agent Json
+#### IoT Agent Json
 
 O ioT Agent Json é um agente que faz a ponte entre um dispositivo que utiliza o protocolo JSON com brokers que utilizam o protocolo NGSI como o Orion Contex Broker. As configurações o IoT Agent JSON são escritas no arquivo `docker-compose` localizado na pasta [plataform](/platform). Essas configurações são feitas para fazer a união entre o IoT Agent Json e o Orion Context Broker para que quando uma dado seja enviado ao IoT Agent JSON ele seja encaminhado ao Orion e também para que os comandos enviados ao Orion sejam encaminhados ao IoT Agent JSON. Para maiores informações sobre as funcionalidades do IoT Agent JSON acesse a [documentação do FIWARE sobre o componente](https://fiware-iotagent-json.readthedocs.io/en/latest/stepbystep/index.html).
 
 Para este ambiente de simulação os dispositivos cadastranos no IoT Agent JSON estão localizadas na pasta [iotAgentJson](/platform/data_model/iotAgentJson) para que o container data_model faça a envio dessas entidades para o IoT Agent Json. Nota-se também que caso você crie uma entidade no IoT Agent JSON que não existe inicialmente no Orion o próprio componente é capaz de criar uma entidade no Orion também. Caso queira fazer qualquer alteração nas entidades do IoT Agent pode ser feita diretamente na pasta [platform/data_model/iotAgentJson](/platform/data_model/iotAgentJson) ou então utilizando um cliente REST como o [RESTCLient](http://restclient.net/) ou [Postman](https://www.postman.com/).
 
-### IoT Agent OPC UA
+#### IoT Agent OPC UA
 
 O componente IoT Agent OPC UA faz a comunicação entre um servidor OPC UA e a Orion Context Broker. Este componente tem como base o [código disponivel aqui](https://github.com/Engineering-Research-and-Development/iotagent-opcua). Para a configuração do IoT Agent OPC UA é necessário modificar os arquivos localizados na pasta [/platform/iotAgentOpcUa/AGECONF](/platform/iotAgentOpcUa/AGECONF). O arquivo `config.properties` contém as informações relativas ao parametros do IoT Agent OPC UA e o arquivo `config.json` contém a configuração das entidades dos dispositivos que serão criados no IoT Agent OPC UA assim que ele for montado. 
 
 Os dois aquivos podem ser modificados de acordo com as necessidades do ambiente de desenvolvimento que esteja sendo utilizado, mas não é necessário fazer nenhuma alteração para que esta simulação funcione. É importante destacar que o mapeamento entre os nós do servidor OPC UA e as propriedades dos dispositivos no IoT Agent OPC UA deve ser feita com cautela para que os dados sejam comunicados de forma correta. Também é importante destacar que este componente ainda está em fase de desenvolvimento mas já é possivel fazer a comunicação de dados e o acionamento de comandos através do agente. 
 
-### Cygnus
+#### Cygnus
 
 O Cygnus é um conector encarregado de persistir certas fontes de dados em certos armazenamentos de terceiros (MySQL, PosgreSQL, Kafka, CKAN, Carto etc), criando uma visão histórica de tais dados. As configurações deste componente são feitas no arquivo `docker-compose` localizado na pasta [/platform](/platform). Não é necessário fazer nenhuma alteração no documento para que essa simulação funcione mas caso seja necessário adicionar outros banco de dados ao Cygnus utilize o [manual de referência disponibilizado pelo FIWARE](https://fiware-cygnus.readthedocs.io/en/latest/cygnus-ngsi/installation_and_administration_guide/install_with_docker/index.html). 
 
@@ -152,7 +170,7 @@ Nesta simulação utiliza-se apenas o banco MySQL para fazer a persistencia dos 
 
 Isso significa que todas as entidades do Orion estão sobrescritas pelo Cygnus, ou seja, o Cygnus é capaz de monitorar todas as entidades do Orion e se alguma delas sofrer alguma alteração em um de seus parâmetros o Cygnus ira fazer a persistencia dos dados da entidade toda no banco MySQL.
 
-### Grafana
+#### Grafana
 
 Grafana é uma aplicação web de análise de código aberto multiplataforma e visualização interativa da web. Ele fornece tabelas, gráficos e alertas para a Web quando conectado a fontes de dados suportadas como o MySQL desta simulação. Com o Grafana é possivel criar painéis interativos para visualizar os dados obtidos pela plataforma. Tais painéis são configurados no próprio componente acessando, via browser, o link `localhost:3000` caso esta simulação esteja sendo criada em ambeinte local de desenvolvimento. 
 
@@ -168,7 +186,7 @@ Após estes passos é possivel criar o painél interativo de acordo com as neces
 
 Após acessar a Dashboard e possivel, no menu superior direito da Dashboard, configurar o painel para mostrar os dados relativos a um determinado periodo bem como alterar a taxa de atualização do painel. 
 
-### Servidor OPC UA
+#### Servidor OPC UA
 
 O servidor OPC UA foi desenvolvido em Python utilizando como base no [python-opcua](https://github.com/FreeOpcUa/python-opcua). Os arquivos relativos ao servidor OPC UA estão dentro da pasta [/platform/OpcUAServer](/platform/OpcUAServer). Os componentes do servidor seguem a indicação da figura abaixo.  
 
@@ -180,7 +198,7 @@ Existe também duas pastas: uma para os comandos da operação manual e uma para
 
 É possivel adicionar outras variáveis e métodos de acordo com as necessidades de projeto alterando o script [server.py](/platform/OpcUAServer/server.py)
 
-### Weather Handler
+#### Weather Handler
 
 O [Weather Handler](/platform/weather_handler) é responsável por coletar as variáveis climáticas das APIs [OpenWeather](https://openweathermap.org/) (OneCall API)  e [Wunderground](https://www.wunderground.com/) e posta-las no Orion Context Broker nas entidades Weather Current e Weather Forecast relativas a cada API. Nota-se que na pasta falta um arquivo config.py com a delcaração das variáveis `api_key` e `api_key_wunder` que devem ser incluidas na pasta antes de montar e subir os containers localmente. 
 
@@ -190,11 +208,11 @@ o Weather handler coleta os seguintes parâmetros:
 
 ![Parametros coletados pelo Weather Handler](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/weatherHandler.png)
 
-### Data Model
+#### Data Model
 
 Este container foi desenvolvido apenas para criar as entidades no Orion Context broker, criar as entidades  no IoT Agent JSON, e criar a subscrição do Cygnus no Orion Context Broker. Cada um dos elementos criados está dentro de suas respectivas pastas dentro da pasta [/platform/data_model](/platform/data_model). Note que da forma que o script `setup.py` está escrito qualquer arquivo .json que esteja dentro da pasta `orionEntities` tentará ser enviado para o Orion, os arquivos dentro da pasta `iotAgentJson` será enviado para o IoT Agent JSON e por fim uma subscrição para todas as entidades do Orion é feita no Cygnus. 
 
-### Probe
+#### Probe
 
 Este container foi desenvolvido para simular o comportamento de uma sonda de solo. O script python `uploaddata.py` disponível na pasta [/platform/probe](/platform/probe) faz o envio dos dados contidos no arquivo `SoilProbeData.csv` localizado na mesma pasta. O Envio dos dados é feito a cada 30 minutos pelo contianer pois foi essa a taxa de coleta utilizada em um experimento realizado com uma sonda de solo real. 
 
