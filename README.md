@@ -12,11 +12,18 @@ Caso queira entrar em contato utilize o e-mail ralves@fei.edu.br ou rgomesal@hot
 
 Aqui você encontra artigos sobre o desenvolvimento deste trabalho, artigos sobre autores parceiros ou então artigos importantes sobre a aplicação de tecnologia na agricultura. 
 
-- R. G. Alves et al., "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Available at: https://ieeexplore.ieee.org/document/9033075
+- Alves, R. G. et al. "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Disponível em:: https://ieeexplore.ieee.org/document/9033075
 
-- Kamienski, C.; Soininen, J.-P.; Taumberger, M.; Dantas, R.; Toscano, A.; Salmon Cinotti, T.; Filev Maia, R.; Torre Neto, A. Smart Water Management Platform: IoT-Based Precision Irrigation for Agriculture. Sensors 2019, 19, 276. Available at: http://www.mdpi.com/1424-8220/19/2/276.
+- KAMIENSKI, C. et al. "Smart Water Management Platform: IoT-Based Precision Irrigation for Agriculture", Sensors, v. 19, n. 2, p. 276, 11 jan. 2019. DOI: 10.3390/s19020276. Disponível em: http://www.mdpi.com/1424-8220/19/2/276.
 
-- S. Monteleone, E. A. de Moraes and R. F. Maia, "Analysis of the variables that affect the intention to adopt Precision Agriculture for smart water management in Agriculture 4.0 context," 2019 Global IoT Summit (GIoTS), Aarhus, Denmark, 2019, pp. 1-6, Available at: https://ieeexplore.ieee.org/document/8766384.
+- MONTELEONE, S.; DE MORAES, E. A. ;  MAIA, R. F. "Analysis of the variables that affect the intention to adopt Precision Agriculture for smart water management in Agriculture 4.0 context," 2019 Global IoT Summit (GIoTS), Aarhus, Denmark, 2019, pp. 1-6, Disponível em: https://ieeexplore.ieee.org/document/8766384.
+
+- ZYRIANOFF, I. et al. "Architecting and Deploying IoT Smart Applications: A Performance–Oriented Approach", Sensors 2020, 20, 84. Disponível em: https://www.mdpi.com/1424-8220/20/1/84
+
+- WOLFERT, S., GE, L., VERDOUW, C., et al. "Big Data in Smart Farming – A review", Agricultural Systems, v. 153, p. 69–80, 2017. DOI: 10.1016/j.agsy.2017.01.023. Disponível em: http://dx.doi.org/10.1016/j.agsy.2017.01.023.
+
+- VERDOUW, C. "Internet of Things in agriculture.", CAB Reviews: Perspectives in Agriculture, Veterinary Science, Nutrition and Natural Resources, v. 11, n. 035, 2016. Disponível em: http://www.cabi.org/cabreviews/review/20163379897.
+
 
 ## Ferramentas utilizadas
 
@@ -34,9 +41,10 @@ Este trabalho utiliza as seguintes ferramentas:
     - Servidor OPC UA desenvolvido em Python pelo autor
 - Para o desenvolvimento do código e outros serviços
     - [Visual Studio Code](https://code.visualstudio.com/) 
-    - [Postman](https://www.postman.com/)
+    - [Postman](https://www.postman.com/) - Utilize a coleção entitulada "PostmanCollection". 
     - [Open Weather OneCall API](/platform/weather_handler) 
     - [Wunderground API](https://www.wunderground.com/)
+
 
 
 ## Representação geral da fazenda a ser simulada
@@ -220,7 +228,7 @@ Este container foi desenvolvido para simular o comportamento de uma sonda de sol
 
 ## Simulação do sistema de irrigação
 
-Para a simulação do sistema de irrigação foi desenvolvido um modelo utilizando o software [Plant Simulation](https://www.plm.automation.siemens.com/global/pt/products/manufacturing-planning/plant-simulation-throughput-optimization.html). A visualização da simulação é indicada na figura abaixo:
+Para a simulação do sistema de irrigação foi desenvolvido um modelo utilizando o software [Plant Simulation](https://www.plm.automation.siemens.com/global/pt/products/manufacturing-planning/plant-simulation-throughput-optimization.html). A simulação está na pasta [/simulation](/simulation). A visualização da simulação é indicada na figura abaixo:
 
 ![Visualização da simulação no Plant Simulation](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/plantsimulation1.png)
 

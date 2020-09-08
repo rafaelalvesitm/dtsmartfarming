@@ -1,0 +1,1317 @@
+{
+	"info": {
+		"_postman_id": "ddbb3424-d41e-4350-aea9-71e541d4fa2a",
+		"name": "DigitalTwinSmartFarm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orion",
+			"item": [
+				{
+					"name": "Orion Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1026/version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion Query Entities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/entities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities"
+							]
+						},
+						"description": "Get all entities. Be aware of tenency with the keys fiware-service and fiware-servicepath"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion query entity option keyvalues",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:SoilProbe:001/attrs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:SoilProbe:001",
+								"attrs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orion Create Entity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"WeatherCurrentWunder\",\n    \"type\": \"WeatherCurrentWunder\",\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"2016-11-30T07:00:00.00Z\"\n    },\n    \"temperature\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"pressure\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"windSpeed\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"stationName\": {\n        \"value\": \"Fazendinha\",\n        \"type\" : \"Text\"\n    },\n    \"windDeg\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"precipTotal\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"humidity\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						},
+						"description": "Create an entity inside Orion. It should have a json body according with https://fiware-datamodels.readthedocs.io/en/latest/index.html)"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Entity",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:SoilProbe:001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:SoilProbe:001"
+							]
+						},
+						"description": "Delete an entity from orion. localhost:1026/v2/entities{entity ID}"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion create subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "iot_lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"description\": \"Probe111 Subscription\",\n        \"subject\": {\n            \"entities\": [{\n                \"id\": \"urn:ngsi-ld:Probe:001\",\n                \"type\": \"Probe\"\n            }],\n            \"condition\": {\n                \"attrs\": [\"temperature\", \"humidity\"]\n            }\n        },\n        \"notification\": {\n            \"http\": {\n                \"url\": \"http://draco:5050/v2/notify\"\n            },\n            \"attrs\": [\"temperature\", \"humidity\"]\n        },\n        \"throttling\": 1\n    }",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions"
+							]
+						},
+						"description": "Create and ENtity subscription to notify Draco or Cygnus"
+					},
+					"response": []
+				},
+				{
+					"name": "Orion get all subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/subscriptions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Command",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"turnalloff\": {\n        \"type\": \"command\",\n        \"value\": \"\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/Pivot/attrs?type=Device",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"Pivot",
+								"attrs"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Device"
+								}
+							]
+						},
+						"description": "Send a command thought Orion. http://localhost:1026/v2/entities/{entity ID}/attrs?type=Device"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "IoT-Agent JSON",
+			"item": [
+				{
+					"name": "IoT-Agent Device Operations ",
+					"item": [
+						{
+							"name": "Sent Command",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "fiware-service",
+										"value": "lab",
+										"type": "text"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"actionType\": \"update\",\n    \"entities\": [\n        {\n            \"type\": \"SoilProbe\",\n            \"id\": \"urn:ngsi-ld:SoilProbe:Probe001\",\n            \"open\": {\n                \"type\": \"command\",\n                \"value\": \"\"\n            }\n        }\n    ]\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4041/v2/op/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4041",
+									"path": [
+										"v2",
+										"op",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "IoT-Agent  - Delete a Provisioned Device",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "fiware-service",
+										"value": "lab"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4041/iot/devices/Probe001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4041",
+									"path": [
+										"iot",
+										"devices",
+										"Probe001"
+									]
+								},
+								"description": "This example removes a provisioned device by making a DELETE request to the `/iot/services/<device-id>` endpoint.\n\nThe device attributes will no longer be mapped and commands can no longer be sent to the device.\nIf the device is making active measurements, they will still be handled with default values\nif the associated service has not been deleted."
+							},
+							"response": []
+						},
+						{
+							"name": "IoT-Agent  - Read Provisioned Device Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "fiware-service",
+										"value": "lab"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4041/iot/devices/Probe1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4041",
+									"path": [
+										"iot",
+										"devices",
+										"Probe1"
+									]
+								},
+								"description": "This example obtains the full details of a provisioned device with a given `<device-id>` path.\n\nThe response includes all the commands and attributes mappings associated with the device\n\nProvisioned Device details can be read by making a GET request to the `/iot/devices/<device-id>` endpoint."
+							},
+							"response": []
+						},
+						{
+							"name": "IoT-Agent List all Provisioned Devices",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "fiware-service",
+										"value": "lab"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:4041/iot/devices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4041",
+									"path": [
+										"iot",
+										"devices"
+									]
+								},
+								"description": "This example lists all provisioned devices by making a GET request to the `/iot/devices` endpoint.\n\nThe response includes all the commands and attributes mappings associated with all devices"
+							},
+							"response": []
+						},
+						{
+							"name": "IoT -Agente create device",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "fiware-service",
+										"value": "lab",
+										"type": "text"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/",
+										"type": "text"
+									},
+									{
+										"key": "Cache-Control",
+										"value": " no-cache",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"devices\": [\n        {\n            \"device_id\": \"Probe001\",\n            \"entity_name\": \"urn:ngsi-ld:SoilProbe:001\",\n            \"entity_type\": \"SoilProbe\",\n            \"transport\": \"HTTP\",\n            \"attributes\": [\n                {\n                    \"object_id\": \"smr1\",\n                    \"name\": \"soilMoistureRawDepth1\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"smr2\",\n                    \"name\": \"soilMoistureRawDepth2\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"smc1\",\n                    \"name\": \"soilMoistureCalibratedDepth1\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"smc2\",\n                    \"name\": \"soilMoistureCalibratedDepth2\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"ah\",\n                    \"name\": \"airHumidity\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"at\",\n                    \"name\": \"airTemperature\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"st\",\n                    \"name\": \"soilTemperature\",\n                    \"type\": \"Number\"\n                }\n            ],\n            \"static_attributes\": [\n                {\n                    \"name\": \"refManagementZone\",\n                    \"type\": \"Relationship\",\n                    \"value\": \"urn:ngsi-ld:ManagementZone:001\"\n                }\n            ]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4041/iot/devices",
+									"host": [
+										"localhost"
+									],
+									"port": "4041",
+									"path": [
+										"iot",
+										"devices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "IoT-Agent update device",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "content-type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "fiware-service",
+										"value": "lab"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"smr1\": 32,\n    \"smr2\": 12,\n    \"smc1\": 13,\n    \"smc2\": 10,\n    \"ah\": 20,\n    \"at\": 20,\n    \"st\": 20\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:7896/iot/json?i=Probe001&k=key123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7896",
+									"path": [
+										"iot",
+										"json"
+									],
+									"query": [
+										{
+											"key": "i",
+											"value": "Probe001"
+										},
+										{
+											"key": "k",
+											"value": "key123"
+										},
+										{
+											"key": "t",
+											"value": "2020-01-01T00:00:00",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "IoT-Agent - Update device parameters ",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "fiware-service",
+										"value": "iot_lab",
+										"type": "text"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"attributes\": [\n        {\n            \"name\": \"location\",\n            \"type\": \"geo:json\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4041/iot/devices/Probe001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4041",
+									"path": [
+										"iot",
+										"devices",
+										"Probe001"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "IoT-Agent Json info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4041/iot/about",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"about"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "IoT Agent - Create a Service Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"services\": [\n   {\n     \"apikey\":      \"key123\",\n     \"cbroker\":     \"http://orion:1026\",\n     \"entity_type\": \"SoilProbe\",\n     \"resource\":    \"/iot/json\"\n   }\n ]\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4041/iot/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"services"
+							]
+						},
+						"description": "Invoking group provision is always the the first step in connecting devices since it is always necessary to\nsupply an authentication key with each measurement and the IoT Agent will not initially know which URL \nthe context broker is responding on.\n\nIt is possible to set up default commands and attributes for all devices as well, but this\nis not done within this tutorial as we will be provisioning each device separately.\n\nThis example provisions an anonymous group of devices. It tells the IoT Agent that a series of devices\nwill be sending messages to the `IOTA_HTTP_PORT` (where the IoT Agent is listening for **Northbound** communications)\n\nIn the example the IoT Agent is informed that the `/iot/d` endpoint will be used and that devices will authenticate\nthemselves by including the token `4jggokgpepnvsb2uv4s40d59ov`. For an UltraLight IoT Agent this means devices will\nbe sending GET or POST requests to: \n\n```\nhttp://iot-agent:7896/iot/d?i=<device_id>&k=4jggokgpepnvsb2uv4s40d59ov\n```\n\nWhich should be familiar UltraLight 2.0 syntax from the previous tutorial.\n\nWhen a measurement from an IoT device is received on the resource url it needs to be interpreted and passed\nto the context broker. The `entity_type` attribute provides a default `type` for each device which has made a \nrequest (in this case anonymous devices will be known as `Thing` entities. Furthermore the location of the \ncontext broker is required, so that the IoT Agent can pass on any measurements received to the correct location."
+					},
+					"response": []
+				},
+				{
+					"name": "IoT-Agent - GET Service Group",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4041/iot/services",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4041",
+							"path": [
+								"iot",
+								"services"
+							],
+							"query": [
+								{
+									"key": "fiware-service",
+									"value": "lab",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Entities ",
+			"item": [
+				{
+					"name": "Soil Probe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:SoilProbe:001\",\n    \"type\": \"SoilProbe\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"3 depth soil probe\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"manufacturer\": {\n        \"type\": \"Text\",\n        \"value\": \"Centro Universitário FEI\"\n    },\n    \"numberOfSensors\": {\n        \"type\": \"Number\",\n        \"value\": \"3\"\n    },\n    \"soilMoistureRawDepth1\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureRawDepth2\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureCalibratedDepth1\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureCalibratedDepth2\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"airHumidity\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"airTemperature\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilTemperature\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:001\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sprinkler",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:Sprinkler:1\",\n    \"type\": \"Sprinkler\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Sprinkler 1\"\n    },\n    \"manufacturer\": {\n        \"type\": \"Text\",\n        \"value\": \"FEI\"\n    },\n    \"status\": {\n        \"type\": \"Text\",\n        \"value\": \"\"\n    },\n    \"flowRate\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"refCentralPivot\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CentralPivot:1\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CentralPivot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:CentralPivot:1\",\n    \"type\": \"CentralPivot\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Main Pivot\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"manufacturer\": {\n        \"type\": \"Text\",\n        \"value\": \"FEI\"\n    },\n    \"rotation\": {\n        \"type\": \"Text\",\n        \"value\": \"clockwise\"\n    },\n    \"radialVelocity\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"status\": {\n        \"type\": \"Text\",\n        \"value\": \"Off\"\n    },\n    \"angle\": {\n        \"type\": \"Text\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\",\n            \"urn:ngsi-ld:ManagementZone:3\",\n            \"urn:ngsi-ld:ManagementZone:4\",\n            \"urn:ngsi-ld:ManagementZone:5\",\n            \"urn:ngsi-ld:ManagementZone:6\",\n            \"urn:ngsi-ld:ManagementZone:7\",\n            \"urn:ngsi-ld:ManagementZone:8\"\n        ]\n    },\n    \"refSprinkler\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:Sprinkler:1\",\n            \"urn:ngsi-ld:Sprinkler:2\",\n            \"urn:ngsi-ld:Sprinkler:3\",\n            \"urn:ngsi-ld:Sprinkler:4\",\n            \"urn:ngsi-ld:Sprinkler:5\",\n            \"urn:ngsi-ld:Sprinkler:6\",\n            \"urn:ngsi-ld:Sprinkler:7\",\n            \"urn:ngsi-ld:Sprinkler:8\",\n            \"urn:ngsi-ld:Sprinkler:9\",\n            \"urn:ngsi-ld:Sprinkler:10\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weather Forecast",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"WeatherForecast\",\r\n    \"type\": \"WeatherCurrent\",\r\n    \"dateForecast\": {\r\n        \"type\": \"DateTime\",\r\n        \"value\": \"2016-11-30T07:00:00.00Z\"\r\n    },\r\n    \"probability\": {\r\n        \"type\": \"Number\",\r\n        \"value\": \"0\"\r\n    },\r\n    \"temperatureMax\": {\r\n        \"value\": 3.3,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"temperatureMin\": {\r\n        \"value\": 3.3,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"pressure\": {\r\n        \"value\": 938.9,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"windSpeed\": {\r\n        \"value\": 2,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"location\": {\r\n        \"type\": \"geo:json\",\r\n        \"value\": {\r\n            \"type\": \"Point\",\r\n            \"coordinates\": [\r\n                -23.73,\r\n                -46.58\r\n            ]\r\n        }\r\n    },\r\n    \"stationName\": {\r\n        \"value\": \"Fazendinha\",\r\n        \"type\" : \"Text\"\r\n    },\r\n    \"windDeg\": {\r\n        \"value\": -45,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"humidity\": {\r\n        \"value\": 1,\r\n        \"type\" : \"Number\"\r\n    }\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weather observed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"WeatherCurrent\",\n    \"type\": \"WeatherCurrent\",\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"2016-11-30T07:00:00.00Z\"\n    },\n    \"temperature\": {\n        \"value\": 3.3,\n        \"type\" : \"Number\"\n    },\n    \"pressure\": {\n        \"value\": 938.9,\n        \"type\" : \"Number\"\n    },\n    \"windSpeed\": {\n        \"value\": 2,\n        \"type\" : \"Number\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"stationName\": {\n        \"value\": \"Fazendinha\",\n        \"type\" : \"Text\"\n    },\n    \"windDeg\": {\n        \"value\": -45,\n        \"type\" : \"Number\"\n    },\n    \"humidity\": {\n        \"value\": 1,\n        \"type\" : \"Number\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fuzzy Needs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:FuzzyNeeds:1\",\n    \"type\": \"FuzzyNeeds\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"Water needs mgm 1\"\n    },\n    \"etc\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"moisture\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"daysAfterSeeding\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecast\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecastProbability\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:1\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Orion}}/v2/entities/",
+							"host": [
+								"{{Orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Irrigation Recomendation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab",
+								"type": "text"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:IrrigationRecomendation:1\",\n    \"type\": \"IrrigationRecomendation\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Recommendation first zone\"\n    },\n    \"irrigationInMilimiters\": {\n        \"type\": \"Number\",\n        \"value\": \"3\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:001\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Orion}}/v2/entities/",
+							"host": [
+								"{{Orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Management Zone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:ManagementZone:1\",\n    \"type\": \"ManagementZone\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Zone 1\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"refFuzzyNeeds\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:FuzzyNeeds:1\"\n    },\n    \"refIrrigationRecommendarion\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecomendation:1\"\n    },\n    \"refSoilProbe\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:SoilProbe:1\"\n    },\n    \"refCentralPivot\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CentralPivot:1\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Orion}}/v2/entities/",
+							"host": [
+								"{{Orion}}"
+							],
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ccc252e6-a75a-47be-95ce-e6cdfb6cf216",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "193fc76b-8d97-4fc7-a9bf-9ba9c8bc84bb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MySQL - Persisting Context",
+			"item": [
+				{
+					"name": "Cygnus - Obtain version information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5080/v1/version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5080",
+							"path": [
+								"v1",
+								"version"
+							]
+						},
+						"description": "Once Cygnus is running, You can check the status by making an HTTP request to the exposed `CYGNUS_API_PORT` port. \nIf the response is blank, this is usually because Cygnus is not running or is listening on another port.\n\n>**Troubleshooting:** What if the response is blank ?\n>\n> * To check that a docker container is running try\n>\n>```bash\n>docker ps\n>```\n>\n>You should see several containers running. If `cygnus` is not running, you can restart the containers as necessary."
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Subscribe to Context Changes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Notify Cygnus of all context changes\",\n    \"subject\": {\n        \"entities\": [\n            {\n                \"idPattern\": \".*\"\n            }\n        ]\n    },\n    \"notification\": {\n        \"http\": {\n            \"url\": \"http://cygnus:5050/notify\"\n        }\n    },\n    \"throttling\": 1\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{Orion}}/v2/subscriptions/",
+							"host": [
+								"{{Orion}}"
+							],
+							"path": [
+								"v2",
+								"subscriptions",
+								""
+							]
+						},
+						"description": "Once a dynamic context system is up and running, we need to inform **Cygnus** of changes in context.\n\nThis is done by making a POST request to the `/v2/subscription` endpoint of the Orion Context Broker.\n\n* The `fiware-service` and `fiware-servicepath` headers are used to filter the subscription to only listen to measurements from the attached IoT Sensors\n* The `idPattern` in the request body ensures that Cygnus will be informed of all context data changes.\n* The notification `url` must match the configured `CYGNUS_MYSQL_SERVICE_PORT`\n* The `attrsFormat=legacy` is required since Cygnus currently only accepts notifications in the older NGSI v1 format.\n* The `throttling` value defines the rate that changes are sampled.\n\nAs you can see, the database used to persist context data has no impact on the details of the subscription. It is the same for each database."
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Check Subscription is working",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/subscriptions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions",
+								""
+							]
+						},
+						"description": "If a subscription has been created, you can check to see if it is firing by making a GET \nrequest to the `/v2/subscriptions` endpoint.\n\nWithin the `notification` section of the response, you can see several additional `attributes` which describe the health of the subscription\n\nIf the criteria of the subscription have been met, `timesSent` should be greater than `0`.\nA zero value would indicate that the `subject` of the subscription is incorrect or the subscription \nhas created with the wrong `fiware-service-path` or `fiware-service` header\n\nThe `lastNotification` should be a recent timestamp - if this is not the case, then the devices\nare not regularly sending data. Remember to unlock the **Smart Door** and switch on the **Smart Lamp**\n\nThe `lastSuccess` should match the `lastNotification` date - if this is not the case \nthen **Cygnus** is not receiving the subscription properly. Check that the host name\nand port are correct. \n\nFinally, check that the `status` of the subscription is `active` - an expired subscription\nwill not fire."
+					},
+					"response": []
+				},
+				{
+					"name": "Orion - Check Subscription is working Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "fiware-service",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"value": "/"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:1026/v2/subscriptions/5ed7face956b798c0fe9d523",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"subscriptions",
+								"5ed7face956b798c0fe9d523"
+							]
+						},
+						"description": "If a subscription has been created, you can check to see if it is firing by making a GET \nrequest to the `/v2/subscriptions` endpoint.\n\nWithin the `notification` section of the response, you can see several additional `attributes` which describe the health of the subscription\n\nIf the criteria of the subscription have been met, `timesSent` should be greater than `0`.\nA zero value would indicate that the `subject` of the subscription is incorrect or the subscription \nhas created with the wrong `fiware-service-path` or `fiware-service` header\n\nThe `lastNotification` should be a recent timestamp - if this is not the case, then the devices\nare not regularly sending data. Remember to unlock the **Smart Door** and switch on the **Smart Lamp**\n\nThe `lastSuccess` should match the `lastNotification` date - if this is not the case \nthen **Cygnus** is not receiving the subscription properly. Check that the host name\nand port are correct. \n\nFinally, check that the `status` of the subscription is `active` - an expired subscription\nwill not fire."
+					},
+					"response": []
+				}
+			],
+			"description": "Similarly, to persisting historic context data into **MySQL**, we will again\nneed an additional container which hosts the MySQL server, once again the default Docker image for this\ndata can be used. The MySQL instance is listening on the standard `3306` port and the overall architecture\ncan be seen below:\n\n![](https://fiware.github.io/tutorials.Historic-Context-Flume/img/cygnus-mysql.png)\n\nOnce again we have a system with two databases, since the MongoDB container is still required \nto hold data related to the Orion Context Broker and the IoT Agent. \n\n\n## MySQL - Database Server Configuration\n\n```yaml\nmysql-db:\n      restart: always\n      image: mysql:5.7\n      hostname: mysql-db\n      container_name: db-mysql\n      expose:\n        - \"3306\"\n      ports:\n        - \"3306:3306\"\n      networks:\n        - default\n      environment:\n        - \"MYSQL_ROOT_PASSWORD=123\"\n        - \"MYSQL_ROOT_HOST=%\"\n```\n\nThe `mysql-db` container is listening on a single port: \n\n* Port `3306` is the default port for a MySQL server. It has been exposed so you can also run other database tools to display data if you wish\n\nThe `mysql-db` container is driven by environment variables as shown:\n\n| Key               |Value.    |Description                               |\n|-------------------|----------|------------------------------------------|\n|MYSQL_ROOT_PASSWORD|`123`.    | specifies a password that is set for the MySQL `root` account.|\n|MYSQL_ROOT_HOST    |`postgres`| By default, MySQL creates the `root'@'localhost` account. This account can only be connected to from inside the container. Setting this environment variable allows root connections from other hosts | \n\n\n## MySQL - Cygnus Configuration\n\n```yaml\ncygnus:\n    image: fiware/cygnus-ngsi:latest\n    hostname: cygnus\n    container_name: fiware-cygnus\n    networks:\n        - default\n    depends_on:\n        - mysql-db\n    expose:\n        - \"5080\"\n    ports:\n        - \"5080:5080\"\n    environment:\n        - \"CYGNUS_MYSQL_HOST=mysql-db\"\n        - \"CYGNUS_MYSQL_PORT=3306\"\n        - \"CYGNUS_MYSQL_USER=root\"\n        - \"CYGNUS_MYSQL_PASS=123\"\n        - \"CYGNUS_MYSQL_SERVICE_PORT=5050\"\n        - \"CYGNUS_LOG_LEVEL=DEBUG\"\n        - \"CYGNUS_API_PORT=5080\"\n        - \"CYGNUS_SERVICE_PORT=5050\"\n```\n\n\n\nThe `cygnus` container is listening on two ports: \n\n* The service will be listening on port `5050` for notifications from the Orion context broker\n* Port `5080` is exposed purely for tutorial access - so that cUrl or Postman can make provisioning commands\n  without being part of the same network.\n\n\nThe `cygnus` container is driven by environment variables as shown:\n\n| Key                           |Value         |Description|\n|-------------------------------|--------------|-----------|\n|CYGNUS_MYSQL_HOST              |`mysql-db`    | Hostname of the MySQL server used to persist historical context data |\n|CYGNUS_MYSQL_PORT              |`3306`        | Port that the MySQL server uses to listen to commands |\n|CYGNUS_MYSQL_USER              |`root`        | Username for the MySQL database user | \n|CYGNUS_MYSQL_PASS              |`123`         | Password for the MySQL database user |\n|CYGNUS_LOG_LEVEL               |`DEBUG`       | The logging level for Cygnus |\n|CYGNUS_SERVICE_PORT            |`5050`        | Notification Port that Cygnus listens when subcribing to context data changes|\n|CYGNUS_API_PORT                |`5080`        | Port that Cygnus listens on for operational reasons |\n\n## MySQL - Start up\n\nTo start the system with a **MySQL** database run the following command:\n\n```console\n./services mysql\n``` \n\n### Generating Context Data\n\nFor the purpose of this tutorial, we must be monitoring a system where the context is periodically being updated.\nThe dummy IoT Sensors can be used to do this. Open the device monitor page at `http://localhost:3000/device/monitor`\nand unlock a **Smart Door** and switch on a **Smart Lamp**. This can be done by selecting an appropriate the command \nfrom the drop down list and pressing the `send` button. The stream of measurements coming from the devices can then\nbe seen on the same page:\n\n![](https://fiware.github.io/tutorials.Historic-Context/img/door-open.gif)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e929496f-1f10-42a2-ad41-5ed843edb99c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f2e23ec-7f00-42a4-ad85-ca1c8f844914",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d31bd19b-33f4-48de-bc02-24f94860d1fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d00803ee-a5e2-4ad5-8146-5bdd5ecff90f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bb60f3ac-06bd-4453-bdc6-1b21662b65ca",
+			"key": "Orion",
+			"value": "https://localhost:1026"
+		},
+		{
+			"id": "79050d2b-d8dc-4317-bdd5-30bb11c3fbb5",
+			"key": "IoT_Agent_json",
+			"value": "https://localhost:4041"
+		},
+		{
+			"id": "5ca64189-f890-4329-af40-9ffd6b535da5",
+			"key": "cygnus",
+			"value": "localhost:5080"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
