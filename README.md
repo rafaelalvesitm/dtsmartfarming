@@ -12,7 +12,7 @@ Caso queira entrar em contato utilize o e-mail ralves@fei.edu.br ou rgomesal@hot
 
 Aqui você encontra artigos sobre o desenvolvimento deste trabalho, artigos sobre autores parceiros ou então artigos importantes sobre a aplicação de tecnologia na agricultura. 
 
-- Alves, R. G. et al. "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Disponível em:: https://ieeexplore.ieee.org/document/9033075
+- ALVES, R. G. et al. "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Disponível em:: https://ieeexplore.ieee.org/document/9033075
 
 - KAMIENSKI, C. et al. "Smart Water Management Platform: IoT-Based Precision Irrigation for Agriculture", Sensors, v. 19, n. 2, p. 276, 11 jan. 2019. DOI: 10.3390/s19020276. Disponível em: http://www.mdpi.com/1424-8220/19/2/276.
 
