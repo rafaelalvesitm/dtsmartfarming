@@ -1,0 +1,36 @@
+{
+    "id": "urn:ngsi-ld:CropType:Pepper",
+    "type": "CropType",
+    "name": {
+        "type": "text",
+        "value": "Pepper"
+    },
+    "stageIniDays": {
+        "type": "Number",
+        "value": "25"
+    },
+    "stageDevDays": {
+        "type": "Number",
+        "value": "35"
+    },
+    "stageMidDays": {
+        "type": "Number",
+        "value": "40"
+    },
+    "stageLateDays": {
+        "type": "Number",
+        "value": "20"
+    },
+    "stageIniKc": {
+        "type": "Number",
+        "value": "0.6"
+    },
+    "stageMidKc": {
+        "type": "Number",
+        "value": "1.05"
+    },
+    "stageLateKc": {
+        "type": "Number",
+        "value": "0.9"
+    }
+}

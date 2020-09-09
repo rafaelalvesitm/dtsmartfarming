@@ -45,8 +45,6 @@ Este trabalho utiliza as seguintes ferramentas:
     - [Open Weather OneCall API](/platform/weather_handler) 
     - [Wunderground API](https://www.wunderground.com/)
 
-
-
 ## Representação geral da fazenda a ser simulada
 
 A figura a seguir indica o modelo que foi adotado para realizar a simulação. O modelo leva em consideração uma bomba de água com vazão de 1 litro por segundo que deve irrigar duas áreas: uma denominada área de controle e a outra denominada área fuzzy. Em cada área existe um aspersor (sprinkler) que fará a dispersão da água em circulo garantindo uma melhor cobertura da irrigação. Cada área tem 8 x 22 metros sendo portanto uma área total de 176 m² por região. Em cada área, uma sonda de solo será simulada simulando assim diversos parametros como a temperatura do solo, umidade do solo em 2 níveis, temperatura do ar, umidade do ar e iluminância. 
