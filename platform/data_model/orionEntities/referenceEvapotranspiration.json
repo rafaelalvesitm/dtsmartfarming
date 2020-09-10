@@ -2,12 +2,16 @@
     "id": "urn:ngsi-ld:referenceEvapotranspiration:1",
     "type": "referenceEvapotranspiration",
     "name": {
-        "type": "text",
+        "type": "Text",
         "value": "Reference Evapotranspiration"
+    },
+    "dateObserved": {
+        "type": "DateTime",
+        "value": "2020-09-10T11:15:51.739895"
     },
     "dailyTmax": {
         "type": "Number",
-        "value": "FEI"
+        "value": ""
     },
     "dailyTmin": {
         "type": "Number",
@@ -29,12 +33,20 @@
         "type": "Number",
         "value": ""
     },
+    "dailyVmax": {
+        "type": "Number",
+        "value": ""
+    },
+    "dailyVmin": {
+        "type": "Number",
+        "value": ""
+    },
     "dailyVmed": {
         "type": "Number",
         "value": ""
     },
     "evapotranspiration": {
-        "type": "number",
+        "type": "Number",
         "value": ""
     },
     "refManagementZone": {

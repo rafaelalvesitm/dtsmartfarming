@@ -109,15 +109,17 @@ services:
         networks:
             - default
 
-    fuzzyneeds:
+    irrigation_recommendation:
         build:
-            context: ./fuzzyneeds
-        image: fuzzyneeds:test
-        container_name: fuzzyneeds 
+            context: ./irrigation_recommendation
+        image: irrigation_recommendation:test
+        container_name: irrigation_recommendation
         networks:
             - default
         depends_on:
             - orion
+            - mysql-db
+            - cygnus
 
     weatherHandler:
         build:
