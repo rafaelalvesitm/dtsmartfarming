@@ -1,0 +1,40 @@
+A query abaixo serve para obter os dados e criar dashboards no Grafana. 
+Lembrando que o nome das variáveis estão determinados no Orion e IoT Agent e que a subscrição atual do Cygnus engloba todas as variáveis do probe. 
+
+docker exec -it  db-mysql mysql -h mysql-db -P 3306  -u root -p123
+
+# Get Max temperature for the day
+SELECT 
+  MAX(CASE attrName WHEN 'temperature' THEN attrValue END)
+  FROM `WeatherCurrent_WeatherCurrent` 
+  WHERE date(recvTime) = curdate() 
+
+# Get Min temperature for the day
+SELECT 
+  MIN(CASE attrName WHEN 'temperature' THEN attrValue END)
+  FROM `WeatherCurrent_WeatherCurrent` 
+  WHERE date(recvTime) = curdate()
+
+# Get Average temperature for the day
+SELECT 
+  AVG(CASE attrName WHEN 'temperature' THEN attrValue END)
+  FROM `WeatherCurrent_WeatherCurrent` 
+  WHERE date(recvTime) = curdate()
+
+#Get Max  humidity for the day
+SELECT 
+  MAX(CASE attrName WHEN 'humidity' THEN attrValue END)
+  FROM `WeatherCurrent_WeatherCurrent` 
+  WHERE date(recvTime) = curdate() 
+
+#Get Average humidity for the day
+SELECT 
+  AVG(CASE attrName WHEN 'humidity' THEN attrValue END)
+  FROM `WeatherCurrent_WeatherCurrent` 
+  WHERE date(recvTime) = curdate() 
+
+# Get Average wind speed for the day
+SELECT 
+  AVG(CASE attrName WHEN 'windSpeed' THEN attrValue END) 
+  FROM `WeatherCurrent_WeatherCurrent` 
+  WHERE date(recvTime) = curdate() 

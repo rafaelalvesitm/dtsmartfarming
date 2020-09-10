@@ -1,5 +1,5 @@
 {
-    "id": "urn:ngsi-ld:CropInstance:1",
+    "id": "urn:ngsi-ld:CropInstance:Pepper",
     "type": "CropInstance",
     "name": {
         "type": "text",

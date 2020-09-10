@@ -67,3 +67,49 @@ SELECT
   MAX(CASE attrName WHEN "c_sp1_open" THEN attrValue END) as "SP3"
 FROM Pivot_Device
 GROUP By recvTime
+
+
+Data filter
+# Get first luminosity hour
+SELECT 
+  recvTime,
+  CASE attrName WHEN 'luminosity' THEN attrValue END as 'Luminosity'
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE attrname = "luminosity" and date(recvTime) = curdate() and attrValue >0
+  order by recvTime ASC
+  limit 1
+
+# Get last luminosity Hour
+SELECT 
+  recvTime,
+  CASE attrName WHEN 'luminosity' THEN attrValue END as 'Luminosity'
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE attrname = "luminosity" and date(recvTime) = curdate() and attrValue >0
+  order by recvTime DESC
+  limit 1
+
+# Get Max temperature for the day
+SELECT 
+  MAX(CASE attrName WHEN 'temperature' THEN attrValue END)
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE date(recvTime) = curdate() 
+
+SELECT 
+  MIN(CASE attrName WHEN 'airTemperature' THEN attrValue END) as 'airTemperature'
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE date(recvTime) = curdate() 
+
+SELECT 
+  AVG(CASE attrName WHEN 'airTemperature' THEN attrValue END) as 'airTemperature'
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE date(recvTime) = curdate() 
+
+SELECT 
+  MIN(CASE attrName WHEN 'airHumidity' THEN attrValue END) as 'airHumidity'
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE date(recvTime) = curdate() 
+
+SELECT 
+  AVG(CASE attrName WHEN 'airHumidity' THEN attrValue END) as 'airHumidity'
+  FROM `urn_ngsi-ld_SoilProbe_1_SoilProbe` 
+  WHERE date(recvTime) = curdate() 

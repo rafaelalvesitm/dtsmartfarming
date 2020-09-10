@@ -4,4 +4,4 @@ COPY / /
 
 RUN pip install requests
 
-CMD [ "python", "./setup.py" ]
+CMD [ "python","-u", "./setup.py" ]

@@ -4,4 +4,4 @@ ADD / /
 
 RUN pip install requests
 
-CMD [ "python", "./uploaddata.py" ]
+CMD [ "python","-u", "./uploaddata.py" ]
