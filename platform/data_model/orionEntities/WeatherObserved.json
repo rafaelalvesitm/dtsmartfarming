@@ -38,5 +38,12 @@
     "humidity": {
         "value": "",
         "type" : "Number"
+    },
+    "refManagementZone": {
+        "type": "Relationship",
+        "value": [
+            "urn:ngsi-ld:ManagementZone:1",
+            "urn:ngsi-ld:ManagementZone:2"
+        ]
     }
 }

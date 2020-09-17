@@ -55,5 +55,13 @@
             "urn:ngsi-ld:ManagementZone:1",
             "urn:ngsi-ld:ManagementZone:2"
         ]
+    },
+    "refFuzzyNeeds": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:FuzzyNeeds:1"
+    },
+    "refIrrigationRecommmendation": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:IrrigationRecommendation:1"
     }
 }

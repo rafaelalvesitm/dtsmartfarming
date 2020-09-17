@@ -32,5 +32,9 @@
     "stageLateKc": {
         "type": "Number",
         "value": "0.9"
+    }, 
+    "refCropInstance": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:CropInstance:Pepper"
     }
 }

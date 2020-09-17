@@ -27,6 +27,14 @@
     },
     "refManagementZone": {
         "type": "Relationship",
-        "value": "urn:ngsi-ld:ManagementZone:1"
+        "value": "urn:ngsi-ld:ManagementZone:2"
+    },
+    "refReferenceEvapotranspiration": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:referenceEvapotranspiration:1"
+    },
+    "refIrrigationRecommendation": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:IrrigationRecommendation:2"
     }
 }

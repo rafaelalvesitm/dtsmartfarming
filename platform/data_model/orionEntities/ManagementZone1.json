@@ -15,10 +15,6 @@
             ]
         }
     },
-    "refFuzzyNeeds": {
-        "type": "Relationship",
-        "value": "urn:ngsi-ld:FuzzyNeeds:1"
-    },
     "refIrrigationRecommendarion": {
         "type": "Relationship",
         "value": "urn:ngsi-ld:IrrigationRecomendation:1"
@@ -27,8 +23,32 @@
         "type": "Relationship",
         "value": "urn:ngsi-ld:SoilProbe:1"
     },
-    "refCentralPivot": {
+    "refIrrigationSystem": {
         "type": "Relationship",
-        "value": "urn:ngsi-ld:CentralPivot:1"
+        "value": "urn:ngsi-ld:IrrigationSystem:1"
+    },
+    "refCropInstance": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:CropInstance:Pepper"
+    },
+    "refIrrigationRecommendation": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:IrrigationRecommendation:1"
+    },
+    "refWeatherForecastWunder": {
+        "type": "Relationship",
+        "value": "WeatherForecastWunder"
+    },
+    "refWeatherCurrentWunder": {
+        "type": "Relationship",
+        "value": "WeatherCurrentWunder"
+    },
+    "refWeatherForecast": {
+        "type": "Relationship",
+        "value": "WeatherForecast"
+    },
+    "refWeatherCurrent": {
+        "type": "Relationship",
+        "value": "WeatherCurrentWunder"
     }
 }

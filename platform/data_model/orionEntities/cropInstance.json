@@ -15,5 +15,9 @@
             "urn:ngsi-ld:ManagementZone:1",
             "urn:ngsi-ld:ManagementZone:2"
         ]
+    }, 
+    "refCropType": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:CropType:Pepper"
     }
 }

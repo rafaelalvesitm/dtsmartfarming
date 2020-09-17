@@ -2,6 +2,8 @@ import requests
 import json
 import os
 import time
+from datetime import datetime
+import time
  
 time.sleep(30)
 
@@ -77,5 +79,24 @@ headers = {
 }
 
 response = requests.request("POST", url, headers=headers, data = payload)
+
+print(response.text.encode('utf8'))
+
+url = "http://orion:1026/v2/entities/urn:ngsi-ld:CropInstance:Pepper/attrs"
+
+payload = json.dumps({
+  "SeedingDay":
+    {"value": datetime.now().isoformat(),
+  "type":"DateTime"
+  }
+  })
+
+headers = {
+  'fiware-service': 'lab',
+  'fiware-servicepath': '/',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PATCH", url, headers=headers, data = payload)
 
 print(response.text.encode('utf8'))

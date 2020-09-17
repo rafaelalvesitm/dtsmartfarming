@@ -32,5 +32,12 @@
     "precipitation": {
         "type" : "Number",
         "value": "" 
+    },
+    "refManagementZone": {
+        "type": "Relationship",
+        "value": [
+            "urn:ngsi-ld:ManagementZone:1",
+            "urn:ngsi-ld:ManagementZone:2"
+        ]
     }
 }

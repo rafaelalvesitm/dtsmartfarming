@@ -1,6 +1,6 @@
 {
-    "id": "urn:ngsi-ld:IrrigationRecomendation:1",
-    "type": "IrrigationRecomendation",
+    "id": "urn:ngsi-ld:IrrigationRecommendation:1",
+    "type": "IrrigationRecommendation",
     "name": {
         "type": "Text",
         "value": "Recommendation mgm1"
@@ -12,5 +12,13 @@
     "refManagementZone": {
         "type": "Relationship",
         "value": "urn:ngsi-ld:ManagementZone:1"
+    },
+    "refReferenceEvapotranspiration": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:referenceEvapotranspiration:1"
+    },
+    "refIrrigationSystem": {
+        "type": "Relationship",
+        "value": "urn:ngsi-ld:referenceEvapotranspiration:1"
     }
 }

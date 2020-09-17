@@ -1,0 +1,69 @@
+{
+    "id": "urn:ngsi-ld:rainAvg:SBC",
+    "type": "rainAvg",
+    "location": {
+        "type": "geo:json",
+        "value": {
+            "type": "Point",
+            "coordinates": [
+                -23.73,
+                -46.58
+            ]
+        }
+    },
+    "Jan":{
+        "type": "Number",
+        "value": "7.23"
+    },
+    "Fev":{
+        "type": "Number",
+        "value": "6.48"
+    },
+    "Mar":{
+        "type": "Number",
+        "value": "5.03"
+    },
+    "Apr":{
+        "type": "Number",
+        "value": "3.06"
+    },
+    "Mai":{
+        "type": "Number",
+        "value": "2.29"
+    },
+    "Jun":{
+        "type": "Number",
+        "value": "1.97"
+    },
+    "Jul":{
+        "type": "Number",
+        "value": "1.65"
+    },
+    "Ago":{
+        "type": "Number",
+        "value": "1.61"
+    },
+    "Sep":{
+        "type": "Number",
+        "value": "3.13"
+    },
+    "Oct":{
+        "type": "Number",
+        "value": "3.35"
+    },
+    "Nov":{
+        "type": "Number",
+        "value": "4.06"
+    },
+    "Dec":{
+        "type": "Number",
+        "value": "5.06"
+    },
+    "refManagementZone": {
+        "type": "Relationship",
+        "value": [
+            "urn:ngsi-ld:ManagementZone:1",
+            "urn:ngsi-ld:ManagementZone:2"
+        ]
+    }
+}
