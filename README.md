@@ -1,4 +1,4 @@
-# Fazenda Inteligente: Desenvolvimento de um gêmeo digital para um sistema de irrigação.
+# Gêmeo digital para  um  sitema de irrigação.
 
 Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento. O projeto visa desenvolver uma simulação computacional de um sistema de irrigação utilizando o software Plant Simulation e realizar a conexão da simulação com uma plataforma de itnernet das coisas para validar, digitalmnete, um processo de irrigação dado uma prescrição de irrigação obtida pela plataforma de internet das coisas.
 
