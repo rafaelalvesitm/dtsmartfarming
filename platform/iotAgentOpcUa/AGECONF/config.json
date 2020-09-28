@@ -191,7 +191,7 @@
   "defaultType": null,
   "contexts": [
     {
-      "id": "IrrigationSystem",
+      "id": "urn:ngsi-ld:IrrigationSystem:1",
       "type": "Device",
       "service": "lab",
       "subservice": "/",
@@ -364,7 +364,7 @@
   ],
   "contextSubscriptions": [
     {
-      "id": "IrrigationSystem",
+      "id": "urn:ngsi-ld:IrrigationSystem:1",
       "type": "Device",
       "mappings": [
         {
