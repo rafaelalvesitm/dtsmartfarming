@@ -1,4 +1,4 @@
-# Gêmeo digital para  um  sitema de irrigação.
+# Gêmeo digital para  um  sistema de irrigação.
 
 Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento. O projeto visa desenvolver uma simulação computacional de um sistema de irrigação utilizando o software Plant Simulation e realizar a conexão da simulação com uma plataforma de itnernet das coisas para validar, digitalmnete, um processo de irrigação dado uma prescrição de irrigação obtida pela plataforma de internet das coisas.
 
@@ -8,21 +8,6 @@ Verifique o meu [curriculo lattes](http://lattes.cnpq.br/6950937359307635) ou en
 
 Caso queira entrar em contato utilize o e-mail ralves@fei.edu.br ou rgomesal@hotmail.com
 
-## Artigos interessantes. 
-
-Aqui você encontra artigos sobre o desenvolvimento deste trabalho, artigos sobre autores parceiros ou então artigos importantes sobre a aplicação de tecnologia na agricultura. 
-
-- ALVES, R. G. et al. "A digital twin for smart farming," 2019 IEEE Global Humanitarian Technology Conference (GHTC), Seattle, WA, USA, 2019, pp. 1-4. Disponível em:: https://ieeexplore.ieee.org/document/9033075
-
-- KAMIENSKI, C. et al. "Smart Water Management Platform: IoT-Based Precision Irrigation for Agriculture", Sensors, v. 19, n. 2, p. 276, 11 jan. 2019. DOI: 10.3390/s19020276. Disponível em: http://www.mdpi.com/1424-8220/19/2/276.
-
-- MONTELEONE, S.; DE MORAES, E. A. ;  MAIA, R. F. "Analysis of the variables that affect the intention to adopt Precision Agriculture for smart water management in Agriculture 4.0 context," 2019 Global IoT Summit (GIoTS), Aarhus, Denmark, 2019, pp. 1-6, Disponível em: https://ieeexplore.ieee.org/document/8766384.
-
-- ZYRIANOFF, I. et al. "Architecting and Deploying IoT Smart Applications: A Performance–Oriented Approach", Sensors 2020, 20, 84. Disponível em: https://www.mdpi.com/1424-8220/20/1/84
-
-- WOLFERT, S., GE, L., VERDOUW, C., et al. "Big Data in Smart Farming – A review", Agricultural Systems, v. 153, p. 69–80, 2017. DOI: 10.1016/j.agsy.2017.01.023. Disponível em: http://dx.doi.org/10.1016/j.agsy.2017.01.023.
-
-- VERDOUW, C. "Internet of Things in agriculture.", CAB Reviews: Perspectives in Agriculture, Veterinary Science, Nutrition and Natural Resources, v. 11, n. 035, 2016. Disponível em: http://www.cabi.org/cabreviews/review/20163379897.
 
 
 ## Ferramentas utilizadas
