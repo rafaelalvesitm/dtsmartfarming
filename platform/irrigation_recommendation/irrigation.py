@@ -510,9 +510,9 @@ def fuzzy_recommendation():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(get_daily_info, 'interval', hours=1, start_date='2020-09-25 09:00:00')
-scheduler.add_job(evapotranspiration, 'interval', hours=1, start_date='2020-09-25 09:05:00')
-scheduler.add_job(fao_recommendation, 'interval', hours=1, start_date='2020-09-25 09:10:00')
-scheduler.add_job(fuzzy_recommendation, 'interval', hours=1, start_date='2020-09-25 09:15:00')
+scheduler.add_job(get_daily_info, 'interval', minutes=5, start_date='2020-09-25 09:00:00')
+scheduler.add_job(evapotranspiration, 'interval', minutes=5, start_date='2020-09-25 09:01:00')
+scheduler.add_job(fao_recommendation, 'interval', minutes=5, start_date='2020-09-25 09:2:00')
+scheduler.add_job(fuzzy_recommendation, 'interval', minutes=5, start_date='2020-09-25 09:3:00')
 
 scheduler.start()
