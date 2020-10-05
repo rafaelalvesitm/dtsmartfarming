@@ -5,7 +5,7 @@
     "port": 1026
   },
   "server": {
-    "port": 4003,
+    "port": 4001,
     "baseRoot": "/"
   },
   "deviceRegistry": {
@@ -184,14 +184,14 @@
   "browseServerOptions": null,
   "service": "lab",
   "subservice": "/",
-  "providerUrl": "http://iot-agent-opcua:4003",
+  "providerUrl": "http://iot-agent-opcua:4001",
   "pollingExpiration": "200000",
   "pollingDaemonFrequency": "20000",
   "deviceRegistrationDuration": "P1M",
   "defaultType": null,
   "contexts": [
     {
-      "id": "urn:ngsi-ld:IrrigationSystem:1",
+      "id": "IrrigationSystem",
       "type": "Device",
       "service": "lab",
       "subservice": "/",
@@ -364,7 +364,7 @@
   ],
   "contextSubscriptions": [
     {
-      "id": "urn:ngsi-ld:IrrigationSystem:1",
+      "id": "IrrigationSystem",
       "type": "Device",
       "mappings": [
         {

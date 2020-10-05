@@ -169,7 +169,7 @@ def evapotranspiration():
     # day_corr is the current date in the range 1 to 365
     elev = 801 # Elevation from sea level. Used the city of São Bernardo- São Paulo - Brazil. Change if needed. 
     p = 92.183188 # Atmospheric Pressure use eq 101.3*math.pow((293-0.0065*elev)/293,5.26). Used the city of São Bernardo- São Paulo - Brazil. Change if needed. 
-    phi = -0,414081215084 # latitude in radians.  Used the city of São Bernardo- São Paulo - Brazil. Change if needed.
+    phi = -0.414081215084 # latitude in radians.  Used the city of São Bernardo- São Paulo - Brazil. Change if needed.
     y = 0.665*math.pow(10,-3)*p # y is the psycometric constant
     dr = 1 + 0.033*math.cos((2*math.pi*day_corr)/365) # Dr is Relative Distance Earth-Sun
     delt = 0.409 * math.sin(((2*math.pi*day_corr)/365)-1.39) # Delt is solar declination
@@ -510,9 +510,9 @@ def fuzzy_recommendation():
 
 
 scheduler = BlockingScheduler()
-scheduler.add_job(get_daily_info, 'interval', minutes=5, start_date='2020-09-25 09:00:00')
-scheduler.add_job(evapotranspiration, 'interval', minutes=5, start_date='2020-09-25 09:01:00')
-scheduler.add_job(fao_recommendation, 'interval', minutes=5, start_date='2020-09-25 09:2:00')
-scheduler.add_job(fuzzy_recommendation, 'interval', minutes=5, start_date='2020-09-25 09:3:00')
+scheduler.add_job(get_daily_info, 'interval', hours=1, start_date='2020-09-25 09:00:00')
+scheduler.add_job(evapotranspiration, 'interval', hours=1, start_date='2020-09-25 09:01:00')
+scheduler.add_job(fao_recommendation, 'interval', hours=1, start_date='2020-09-25 09:2:00')
+scheduler.add_job(fuzzy_recommendation, 'interval', hours=1, start_date='2020-09-25 09:3:00')
 
 scheduler.start()

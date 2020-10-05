@@ -53,7 +53,7 @@ def get_openweather():
     for daily in r["daily"]:
         rain = 0
         if "rain" in daily.keys():
-            rain= daily["rain"]
+            rain = daily["rain"]
         else:
             rain = 0
 
@@ -180,6 +180,6 @@ def get_wunder():
 
 # Configure the scheduler to execute the function get_data each hour
 scheduler = BlockingScheduler()
-scheduler.add_job(get_openweather, 'interval', minutes=1, start_date='2020-08-25 09:00:00') #This star data should be a past time and is used to indicate that the scheduler should run in round hours lin 10,11,12 etc. 
-scheduler.add_job(get_wunder, "interval", minutes = 1, start_date = "2020-08-25 09:00:00")
+scheduler.add_job(get_openweather, 'interval', hours = 1, start_date='2020-08-25 09:00:00') #This star data should be a past time and is used to indicate that the scheduler should run in round hours lin 10,11,12 etc. 
+scheduler.add_job(get_wunder, "interval", hours = 1, start_date = "2020-08-25 09:01:00")
 scheduler.start() 

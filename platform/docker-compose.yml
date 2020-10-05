@@ -166,11 +166,11 @@ services:
        
     iot-agent-opcua:
         hostname: iot-agent-opcua
-        image: iotagent4fiware/iotagent-opcua:latest
+        image: iotagent4fiware/iotagent-opcua:v1.3.7
         networks:
             - default
         ports:
-            - "4003:4003"
+            - "4001:4001"
             - "4081:8080"
         depends_on:
             - OpcUAServer

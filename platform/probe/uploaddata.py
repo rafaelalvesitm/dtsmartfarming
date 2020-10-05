@@ -50,5 +50,5 @@ with open('sensores.csv') as csv_file:
                 print(f"an error has ocurred when trying to send data in row {line_count}") # Indicate that an error has occured
 
             line_count += 1
-            time.sleep(5) # Wait 30 minutes to send the next data point
+            time.sleep(1800) # Wait 30 minutes to send the next data point
         print(f"Processed {line_count} lines") # Print a log with the number of lines processed 
