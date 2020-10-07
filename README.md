@@ -2,11 +2,11 @@
 
 Este repositório contém os códigos e componentes utilizados para a minha dissertação entitulada "Fazenda Inteligente: Desenvolvimento de um gêmeo digital para o sistema de irrigação" ainda em andamento. O projeto visa desenvolver uma simulação computacional de um sistema de irrigação utilizando o software Plant Simulation e realizar a conexão da simulação com uma plataforma de Internet das Coisas para validar, digitalmente, um processo de irrigação dado uma prescrição de irrigação obtida pela plataforma de internet das coisas.
 
+Para maiores detalhes sobre os componentes utilizados, artigos relevantes, etc acesse a [WIKI](https://github.com/rafaelalvesitm/dtsmartfarming/wiki)
+
 A figura a seguir indica o modelo que foi adotado para realizar a simulação. O modelo leva em consideração uma bomba de água com vazão de 1 litro por segundo que deve irrigar duas áreas: uma denominada área de controle e a outra denominada área fuzzy. Em cada área existe um aspersor que fará a dispersão da água em circulo garantindo uma melhor cobertura da irrigação. Cada área tem 8 x 22 metros sendo portanto uma área total de 176 m² por região. Em cada área, uma sonda de solo será simulada para enviar diversos parametros como a temperatura do solo, umidade do solo em 2 níveis, temperatura do ar, umidade do ar e iluminância. 
 
 ![Modelo de sistema de irrigação adotado](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/sistemairrigacao.png)
-
-Para maiores detalhes sobre os componentes utilizados, artigos relevantes, etc acesse a [WIKI](https://github.com/rafaelalvesitm/dtsmartfarming/wiki)
 
 ## Etapas para montar a plataforma de Internet das Coisas
 
