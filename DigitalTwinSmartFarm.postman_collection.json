@@ -44,38 +44,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:1026/v2/entities",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "1026",
-							"path": [
-								"v2",
-								"entities"
-							]
-						},
-						"description": "Get all entities. Be aware of tenency with the keys fiware-service and fiware-servicepath"
-					},
-					"response": []
-				},
-				{
-					"name": "Orion query entity option keyvalues",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "fiware-service",
-								"value": "lab"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:SoilProbe:001/attrs",
+							"raw": "http://localhost:1026/v2/entities/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -84,10 +53,75 @@
 							"path": [
 								"v2",
 								"entities",
-								"urn:ngsi-ld:SoilProbe:001",
+								""
+							],
+							"query": [
+								{
+									"key": "options",
+									"value": "keyValues",
+									"disabled": true
+								},
+								{
+									"key": "type",
+									"value": "CropInstance",
+									"disabled": true
+								},
+								{
+									"key": "q",
+									"value": "refManagementZone==urn:ngsi-ld:ManagementZone:1",
+									"disabled": true
+								},
+								{
+									"key": "attrs",
+									"value": "id",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all entities. Be aware of tenency with the keys fiware-service and fiware-servicepath"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Data to Entity",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"evapotranspiration\": {\r\n        \"value\": \"3.2\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:referenceEvapotranspiration:1/attrs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								"urn:ngsi-ld:referenceEvapotranspiration:1",
 								"attrs"
 							]
-						}
+						},
+						"description": "Get all entities. Be aware of tenency with the keys fiware-service and fiware-servicepath"
 					},
 					"response": []
 				},
@@ -113,7 +147,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"WeatherCurrentWunder\",\n    \"type\": \"WeatherCurrentWunder\",\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"2016-11-30T07:00:00.00Z\"\n    },\n    \"temperature\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"pressure\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"windSpeed\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"stationName\": {\n        \"value\": \"Fazendinha\",\n        \"type\" : \"Text\"\n    },\n    \"windDeg\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"precipTotal\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"humidity\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    }\n}",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:FuzzyNeeds:1\",\n    \"type\": \"FuzzyNeeds\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"Water needs mgm 1\"\n    },\n    \"etc\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"moisture\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"daysAfterSeeding\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecast\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecastProbability\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:2\"\n    },\n    \"refReferenceEvapotranspiration\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:referenceEvapotranspiration:1\"\n    },\n    \"refIrrigationRecommendation\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecommendation:2\"\n    }\n}",
 							"options": {
 								"raw": {}
 							}
@@ -164,7 +198,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:SoilProbe:001",
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:referenceEvapotranspiration:1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -173,7 +207,7 @@
 							"path": [
 								"v2",
 								"entities",
-								"urn:ngsi-ld:SoilProbe:001"
+								"urn:ngsi-ld:referenceEvapotranspiration:1"
 							]
 						},
 						"description": "Delete an entity from orion. localhost:1026/v2/entities{entity ID}"
@@ -280,13 +314,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"turnalloff\": {\n        \"type\": \"command\",\n        \"value\": \"\"\n    }\n}",
+							"raw": "{\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Recommendation mgm2\"\n    }\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "http://localhost:1026/v2/entities/Pivot/attrs?type=Device",
+							"raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:IrrigationRecommendation:2/attrs",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -295,13 +329,14 @@
 							"path": [
 								"v2",
 								"entities",
-								"Pivot",
+								"urn:ngsi-ld:IrrigationRecommendation:2",
 								"attrs"
 							],
 							"query": [
 								{
 									"key": "type",
-									"value": "Device"
+									"value": "Device",
+									"disabled": true
 								}
 							]
 						},
@@ -455,6 +490,13 @@
 									"path": [
 										"iot",
 										"devices"
+									],
+									"query": [
+										{
+											"key": "Options",
+											"value": "keyValues",
+											"disabled": true
+										}
 									]
 								},
 								"description": "This example lists all provisioned devices by making a GET request to the `/iot/devices` endpoint.\n\nThe response includes all the commands and attributes mappings associated with all devices"
@@ -491,7 +533,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"devices\": [\n        {\n            \"device_id\": \"Probe001\",\n            \"entity_name\": \"urn:ngsi-ld:SoilProbe:001\",\n            \"entity_type\": \"SoilProbe\",\n            \"transport\": \"HTTP\",\n            \"attributes\": [\n                {\n                    \"object_id\": \"smr1\",\n                    \"name\": \"soilMoistureRawDepth1\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"smr2\",\n                    \"name\": \"soilMoistureRawDepth2\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"smc1\",\n                    \"name\": \"soilMoistureCalibratedDepth1\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"smc2\",\n                    \"name\": \"soilMoistureCalibratedDepth2\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"ah\",\n                    \"name\": \"airHumidity\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"at\",\n                    \"name\": \"airTemperature\",\n                    \"type\": \"Number\"\n                },\n                {\n                    \"object_id\": \"st\",\n                    \"name\": \"soilTemperature\",\n                    \"type\": \"Number\"\n                }\n            ],\n            \"static_attributes\": [\n                {\n                    \"name\": \"refManagementZone\",\n                    \"type\": \"Relationship\",\n                    \"value\": \"urn:ngsi-ld:ManagementZone:001\"\n                }\n            ]\n        }\n    ]\n}",
+									"raw": "{\n  \"devices\": [\n    {\n      \"device_id\": \"bell001\",\n      \"entity_name\": \"urn:ngsi-ld:Bell:001\",\n      \"entity_type\": \"Bell\",\n      \"transport\": \"HTTP\",\n      \"endpoint\": \"http://iot-sensors:3001/iot/bell001\",\n      \"commands\": [\n        { \"name\": \"ring\", \"type\": \"command\" }\n       ],\n       \"static_attributes\": [\n         {\"name\":\"refStore\", \"type\": \"Relationship\",\"value\": \"urn:ngsi-ld:Store:001\"}\n      ]\n    }\n  ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -769,7 +811,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"urn:ngsi-ld:SoilProbe:001\",\n    \"type\": \"SoilProbe\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"3 depth soil probe\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"manufacturer\": {\n        \"type\": \"Text\",\n        \"value\": \"Centro Universitário FEI\"\n    },\n    \"numberOfSensors\": {\n        \"type\": \"Number\",\n        \"value\": \"3\"\n    },\n    \"soilMoistureRawDepth1\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureRawDepth2\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureCalibratedDepth1\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureCalibratedDepth2\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"airHumidity\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"airTemperature\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilTemperature\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:001\"\n    }\n}",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:SoilProbe:1\",\n    \"type\": \"SoilProbe\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"2 depth soil probe\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.725252,\n                -46.583149\n            ]\n        }\n    },\n    \"manufacturer\": {\n        \"type\": \"text\",\n        \"value\": \"FEI\"\n    },\n    \"numberOfSensors\": {\n        \"type\": \"number\",\n        \"value\": \"3\"\n    },\n    \"soilMoistureRawDepth1\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureRawDepth2\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureCalibratedDepth1\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"soilMoistureCalibratedDepth2\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"airHumidity\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"airTemperature\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"soilTemperature\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"luminosity\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }\n}",
 							"options": {
 								"raw": {}
 							}
@@ -790,7 +832,7 @@
 					"response": []
 				},
 				{
-					"name": "Sprinkler",
+					"name": "Crop Instance",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -813,7 +855,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"urn:ngsi-ld:Sprinkler:1\",\n    \"type\": \"Sprinkler\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Sprinkler 1\"\n    },\n    \"manufacturer\": {\n        \"type\": \"Text\",\n        \"value\": \"FEI\"\n    },\n    \"status\": {\n        \"type\": \"Text\",\n        \"value\": \"\"\n    },\n    \"flowRate\": {\n        \"type\": \"number\",\n        \"value\": \"\"\n    },\n    \"refCentralPivot\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CentralPivot:1\"\n    }\n}",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:CropInstance:Pepper\",\n    \"type\": \"CropInstance\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"Pepper\"\n    },\n    \"SeedingDay\": {\n        \"type\": \"Datetime\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }, \n    \"refCropType\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CropType:Pepper\"\n    }\n}",
 							"options": {
 								"raw": {}
 							}
@@ -834,7 +876,7 @@
 					"response": []
 				},
 				{
-					"name": "CentralPivot",
+					"name": "Crop Type",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -857,103 +899,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"urn:ngsi-ld:CentralPivot:1\",\n    \"type\": \"CentralPivot\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Main Pivot\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"manufacturer\": {\n        \"type\": \"Text\",\n        \"value\": \"FEI\"\n    },\n    \"rotation\": {\n        \"type\": \"Text\",\n        \"value\": \"clockwise\"\n    },\n    \"radialVelocity\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"status\": {\n        \"type\": \"Text\",\n        \"value\": \"Off\"\n    },\n    \"angle\": {\n        \"type\": \"Text\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\",\n            \"urn:ngsi-ld:ManagementZone:3\",\n            \"urn:ngsi-ld:ManagementZone:4\",\n            \"urn:ngsi-ld:ManagementZone:5\",\n            \"urn:ngsi-ld:ManagementZone:6\",\n            \"urn:ngsi-ld:ManagementZone:7\",\n            \"urn:ngsi-ld:ManagementZone:8\"\n        ]\n    },\n    \"refSprinkler\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:Sprinkler:1\",\n            \"urn:ngsi-ld:Sprinkler:2\",\n            \"urn:ngsi-ld:Sprinkler:3\",\n            \"urn:ngsi-ld:Sprinkler:4\",\n            \"urn:ngsi-ld:Sprinkler:5\",\n            \"urn:ngsi-ld:Sprinkler:6\",\n            \"urn:ngsi-ld:Sprinkler:7\",\n            \"urn:ngsi-ld:Sprinkler:8\",\n            \"urn:ngsi-ld:Sprinkler:9\",\n            \"urn:ngsi-ld:Sprinkler:10\"\n        ]\n    }\n}",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:CropType:Pepper\",\n    \"type\": \"CropType\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"Pepper\"\n    },\n    \"stageIniDays\": {\n        \"type\": \"Number\",\n        \"value\": \"25\"\n    },\n    \"stageDevDays\": {\n        \"type\": \"Number\",\n        \"value\": \"35\"\n    },\n    \"stageMidDays\": {\n        \"type\": \"Number\",\n        \"value\": \"40\"\n    },\n    \"stageLateDays\": {\n        \"type\": \"Number\",\n        \"value\": \"20\"\n    },\n    \"stageIniKc\": {\n        \"type\": \"Number\",\n        \"value\": \"0.6\"\n    },\n    \"stageMidKc\": {\n        \"type\": \"Number\",\n        \"value\": \"1.05\"\n    },\n    \"stageLateKc\": {\n        \"type\": \"Number\",\n        \"value\": \"0.9\"\n    }, \n    \"refCropInstance\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CropInstance:Pepper\"\n    }\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
 							"raw": "localhost:1026/v2/entities/",
-							"host": [
-								"localhost"
-							],
-							"port": "1026",
-							"path": [
-								"v2",
-								"entities",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Weather Forecast",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "fiware-service",
-								"value": "lab",
-								"type": "text"
-							},
-							{
-								"key": "fiware-servicepath",
-								"value": "/",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"WeatherForecast\",\r\n    \"type\": \"WeatherCurrent\",\r\n    \"dateForecast\": {\r\n        \"type\": \"DateTime\",\r\n        \"value\": \"2016-11-30T07:00:00.00Z\"\r\n    },\r\n    \"probability\": {\r\n        \"type\": \"Number\",\r\n        \"value\": \"0\"\r\n    },\r\n    \"temperatureMax\": {\r\n        \"value\": 3.3,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"temperatureMin\": {\r\n        \"value\": 3.3,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"pressure\": {\r\n        \"value\": 938.9,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"windSpeed\": {\r\n        \"value\": 2,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"location\": {\r\n        \"type\": \"geo:json\",\r\n        \"value\": {\r\n            \"type\": \"Point\",\r\n            \"coordinates\": [\r\n                -23.73,\r\n                -46.58\r\n            ]\r\n        }\r\n    },\r\n    \"stationName\": {\r\n        \"value\": \"Fazendinha\",\r\n        \"type\" : \"Text\"\r\n    },\r\n    \"windDeg\": {\r\n        \"value\": -45,\r\n        \"type\" : \"Number\"\r\n    },\r\n    \"humidity\": {\r\n        \"value\": 1,\r\n        \"type\" : \"Number\"\r\n    }\r\n}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:1026/v2/entities/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "1026",
-							"path": [
-								"v2",
-								"entities",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Weather observed",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							},
-							{
-								"key": "fiware-service",
-								"type": "text",
-								"value": "lab"
-							},
-							{
-								"key": "fiware-servicepath",
-								"type": "text",
-								"value": "/"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": \"WeatherCurrent\",\n    \"type\": \"WeatherCurrent\",\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"2016-11-30T07:00:00.00Z\"\n    },\n    \"temperature\": {\n        \"value\": 3.3,\n        \"type\" : \"Number\"\n    },\n    \"pressure\": {\n        \"value\": 938.9,\n        \"type\" : \"Number\"\n    },\n    \"windSpeed\": {\n        \"value\": 2,\n        \"type\" : \"Number\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"stationName\": {\n        \"value\": \"Fazendinha\",\n        \"type\" : \"Text\"\n    },\n    \"windDeg\": {\n        \"value\": -45,\n        \"type\" : \"Number\"\n    },\n    \"humidity\": {\n        \"value\": 1,\n        \"type\" : \"Number\"\n    }\n}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:1026/v2/entities/",
-							"protocol": "http",
 							"host": [
 								"localhost"
 							],
@@ -991,16 +943,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"urn:ngsi-ld:FuzzyNeeds:1\",\n    \"type\": \"FuzzyNeeds\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"Water needs mgm 1\"\n    },\n    \"etc\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"moisture\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"daysAfterSeeding\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecast\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecastProbability\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:1\"\n    }\n}",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:FuzzyNeeds:1\",\n    \"type\": \"FuzzyNeeds\",\n    \"name\": {\n        \"type\": \"text\",\n        \"value\": \"Water needs mgm 1\"\n    },\n    \"etc\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"moisture\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"daysAfterSeeding\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecast\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"rainForecastProbability\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:2\"\n    },\n    \"refReferenceEvapotranspiration\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:referenceEvapotranspiration:1\"\n    },\n    \"refIrrigationRecommendation\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecommendation:2\"\n    }\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "{{Orion}}/v2/entities/",
+							"raw": "localhost:1026/v2/entities/",
 							"host": [
-								"{{Orion}}"
+								"localhost"
 							],
+							"port": "1026",
 							"path": [
 								"v2",
 								"entities",
@@ -1011,50 +964,7 @@
 					"response": []
 				},
 				{
-					"name": "Irrigation Recomendation",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "fiware-service",
-								"value": "lab",
-								"type": "text"
-							},
-							{
-								"key": "fiware-servicepath",
-								"value": "/",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\": \"urn:ngsi-ld:IrrigationRecomendation:1\",\n    \"type\": \"IrrigationRecomendation\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Recommendation first zone\"\n    },\n    \"irrigationInMilimiters\": {\n        \"type\": \"Number\",\n        \"value\": \"3\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:001\"\n    }\n}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "{{Orion}}/v2/entities/",
-							"host": [
-								"{{Orion}}"
-							],
-							"path": [
-								"v2",
-								"entities",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Management Zone",
+					"name": "Irrigation reccommendation",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -1077,16 +987,325 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"urn:ngsi-ld:ManagementZone:1\",\n    \"type\": \"ManagementZone\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Zone 1\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"refFuzzyNeeds\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:FuzzyNeeds:1\"\n    },\n    \"refIrrigationRecommendarion\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecomendation:1\"\n    },\n    \"refSoilProbe\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:SoilProbe:1\"\n    },\n    \"refCentralPivot\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CentralPivot:1\"\n    }\n}",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:IrrigationRecommendation:1\",\n    \"type\": \"IrrigationRecommendation\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Recommendation mgm1\"\n    },\n    \"irrigationInMilimiters\": {\n        \"type\": \"Number\",\n        \"value\": \"3\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:ManagementZone:1\"\n    },\n    \"refReferenceEvapotranspiration\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:referenceEvapotranspiration:1\"\n    },\n    \"refIrrigationSystem\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:referenceEvapotranspiration:1\"\n    }\n}",
 							"options": {
 								"raw": {}
 							}
 						},
 						"url": {
-							"raw": "{{Orion}}/v2/entities/",
+							"raw": "localhost:1026/v2/entities/",
 							"host": [
-								"{{Orion}}"
+								"localhost"
 							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Managment Zone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:ManagementZone:1\",\n    \"type\": \"ManagementZone\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Zone 1\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                13.3986,\n                52.5547\n            ]\n        }\n    },\n    \"refIrrigationRecommendarion\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecomendation:1\"\n    },\n    \"refSoilProbe\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:SoilProbe:1\"\n    },\n    \"refIrrigationSystem\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationSystem:1\"\n    },\n    \"refCropInstance\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:CropInstance:Pepper\"\n    },\n    \"refIrrigationRecommendation\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecommendation:1\"\n    },\n    \"refWeatherForecastWunder\": {\n        \"type\": \"Relationship\",\n        \"value\": \"WeatherForecastWunder\"\n    },\n    \"refWeatherCurrentWunder\": {\n        \"type\": \"Relationship\",\n        \"value\": \"WeatherCurrentWunder\"\n    },\n    \"refWeatherForecast\": {\n        \"type\": \"Relationship\",\n        \"value\": \"WeatherForecast\"\n    },\n    \"refWeatherCurrent\": {\n        \"type\": \"Relationship\",\n        \"value\": \"WeatherCurrentWunder\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rain Avg",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:rainAvg:SBC\",\n    \"type\": \"rainAvg\",\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"Jan\":{\n        \"type\": \"Number\",\n        \"value\": \"7.23\"\n    },\n    \"Fev\":{\n        \"type\": \"Number\",\n        \"value\": \"6.48\"\n    },\n    \"Mar\":{\n        \"type\": \"Number\",\n        \"value\": \"5.03\"\n    },\n    \"Apr\":{\n        \"type\": \"Number\",\n        \"value\": \"3.06\"\n    },\n    \"Mai\":{\n        \"type\": \"Number\",\n        \"value\": \"2.29\"\n    },\n    \"Jun\":{\n        \"type\": \"Number\",\n        \"value\": \"1.97\"\n    },\n    \"Jul\":{\n        \"type\": \"Number\",\n        \"value\": \"1.65\"\n    },\n    \"Ago\":{\n        \"type\": \"Number\",\n        \"value\": \"1.61\"\n    },\n    \"Sep\":{\n        \"type\": \"Number\",\n        \"value\": \"3.13\"\n    },\n    \"Oct\":{\n        \"type\": \"Number\",\n        \"value\": \"3.35\"\n    },\n    \"Nov\":{\n        \"type\": \"Number\",\n        \"value\": \"4.06\"\n    },\n    \"Dec\":{\n        \"type\": \"Number\",\n        \"value\": \"5.06\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reference Evapotranspiration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"urn:ngsi-ld:referenceEvapotranspiration:1\",\n    \"type\": \"referenceEvapotranspiration\",\n    \"name\": {\n        \"type\": \"Text\",\n        \"value\": \"Reference Evapotranspiration\"\n    },\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"2020-09-10T11:15:51.739895\"\n    },\n    \"dailyTmax\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyTmin\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyTmed\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyRhmax\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyRhmin\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyRhmed\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyVmax\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyVmin\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"dailyVmed\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"evapotranspiration\": {\n        \"type\": \"Number\",\n        \"value\": \"\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    },\n    \"refFuzzyNeeds\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:FuzzyNeeds:1\"\n    },\n    \"refIrrigationRecommmendation\": {\n        \"type\": \"Relationship\",\n        \"value\": \"urn:ngsi-ld:IrrigationRecommendation:1\"\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weather Current - Wunderground",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"WeatherCurrentWunder\",\n    \"type\": \"WeatherCurrentWunder\",\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"\"\n    },\n    \"temperature\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"pressure\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"windSpeed\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"stationName\": {\n        \"value\": \"Fazendinha\",\n        \"type\" : \"Text\"\n    },\n    \"windDeg\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"precipTotal\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"humidity\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weather Forecast - Wunderground",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"WeatherForecastWunder\",\n    \"type\": \"WeatherForecastWunder\",\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        },\n        \"metadata\": {}\n    },\n    \"stationName\": {\n        \"type\": \"Text\",\n        \"value\": \"Fazendinha\",\n        \"metadata\": {}\n    },\n    \"dateForecast\": {\n        \"type\" : \"Date\",\n        \"value\": \"\"\n    },\n    \"temperatureMax\": {\n        \"type\" : \"Number\",\n        \"value\": \"\"\n    },\n    \"temperatureMin\": {\n        \"type\" : \"Number\",\n        \"value\": \"\"\n    },\n    \"precipitation\": {\n        \"type\" : \"Number\",\n        \"value\": \"\" \n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weather Current - OpenWeather",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"WeatherCurrent\",\n    \"type\": \"WeatherCurrent\",\n    \"dateObserved\": {\n        \"type\": \"DateTime\",\n        \"value\": \"2016-11-30T07:00:00.00Z\"\n    },\n    \"temperature\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"pressure\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"windSpeed\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        }\n    },\n    \"stationName\": {\n        \"value\": \"Fazendinha\",\n        \"type\" : \"Text\"\n    },\n    \"windDeg\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"humidity\": {\n        \"value\": \"\",\n        \"type\" : \"Number\"\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
+							"path": [
+								"v2",
+								"entities",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weather Forecast - OpenWeather",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "fiware-service",
+								"type": "text",
+								"value": "lab"
+							},
+							{
+								"key": "fiware-servicepath",
+								"type": "text",
+								"value": "/"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"WeatherForecast\",\n    \"type\": \"WeatherForecast\",\n    \"dateForecast\": {\n        \"type\": \"Datetime\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"humidity\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"location\": {\n        \"type\": \"geo:json\",\n        \"value\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -23.73,\n                -46.58\n            ]\n        },\n        \"metadata\": {}\n    },\n    \"pressure\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"probability\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"rain\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"stationName\": {\n        \"type\": \"Text\",\n        \"value\": \"Fazendinha\",\n        \"metadata\": {}\n    },\n    \"temperatureMax\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"temperatureMin\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"windDeg\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"windSpeed\": {\n        \"type\": \"Number\",\n        \"value\": \"\",\n        \"metadata\": {}\n    },\n    \"refManagementZone\": {\n        \"type\": \"Relationship\",\n        \"value\": [\n            \"urn:ngsi-ld:ManagementZone:1\",\n            \"urn:ngsi-ld:ManagementZone:2\"\n        ]\n    }\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "localhost:1026/v2/entities/",
+							"host": [
+								"localhost"
+							],
+							"port": "1026",
 							"path": [
 								"v2",
 								"entities",
@@ -1171,10 +1390,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{Orion}}/v2/subscriptions/",
+							"raw": "http://localhost:1026/v2/subscriptions/",
+							"protocol": "http",
 							"host": [
-								"{{Orion}}"
+								"localhost"
 							],
+							"port": "1026",
 							"path": [
 								"v2",
 								"subscriptions",
@@ -1298,17 +1519,17 @@
 	],
 	"variable": [
 		{
-			"id": "bb60f3ac-06bd-4453-bdc6-1b21662b65ca",
+			"id": "6ca8d0bc-3802-45bf-933d-37c5d90e7cbd",
 			"key": "Orion",
 			"value": "https://localhost:1026"
 		},
 		{
-			"id": "79050d2b-d8dc-4317-bdd5-30bb11c3fbb5",
+			"id": "178e3165-b7fc-43ca-9441-46b961e8f1a2",
 			"key": "IoT_Agent_json",
 			"value": "https://localhost:4041"
 		},
 		{
-			"id": "5ca64189-f890-4329-af40-9ffd6b535da5",
+			"id": "00a1b15b-8183-4501-871c-0736efeadac3",
 			"key": "cygnus",
 			"value": "localhost:5080"
 		}
