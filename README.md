@@ -6,6 +6,8 @@ A figura a seguir indica o modelo que foi adotado para realizar a simulação. O
 
 ![Modelo de sistema de irrigação adotado](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/sistemairrigacao.png)
 
+Para maiores detalhes sobre os componentes utilizados, artigos relevantes, etc acesse a [WIKI](https://github.com/rafaelalvesitm/dtsmartfarming/wiki)
+
 ## Etapas para montar a plataforma de Internet das Coisas
 
 Primeiramente é necessário [instalar o Docker](https://docs.docker.com/get-docker/) e o [docker-compose](https://docs.docker.com/compose/). Para usuários do Windows é recomendado utilizar o WSL2 com uma versão do Ubuntu, para isso siga o [tutorial do link](https://docs.docker.com/docker-for-windows/wsl/).
