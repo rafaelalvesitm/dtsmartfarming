@@ -276,6 +276,9 @@ def fao_recommendation():
     payload = json.dumps({
         "irrigationInMilimiters": {
             "value": eto*kc
+        },
+        "timeCalculated" : {
+            "value": datetime.now().isoformat()
         }
     })
 
@@ -489,6 +492,9 @@ def fuzzy_recommendation():
         "irrigationInMilimiters": {
             "value": daily_irrig,
             "type": "Float"
+        },
+        "timeCalculated" : {
+            "value": datetime.now().isoformat()
         }
     })
 

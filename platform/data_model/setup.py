@@ -86,9 +86,10 @@ url = "http://orion:1026/v2/entities/urn:ngsi-ld:CropInstance:Pepper/attrs"
 
 payload = json.dumps({
   "SeedingDay":
-    {"value": datetime.now().isoformat(),
-  "type":"DateTime"
-  }
+    {
+      "value": datetime.now().isoformat(),
+      "type":"DateTime"
+    }
   })
 
 headers = {

@@ -5,6 +5,10 @@
         "type": "Text",
         "value": "Recommendation mgm2"
     },
+    "timeCalculated": {
+        "type": "Datetime",
+        "value": ""
+    },
     "irrigationInMilimiters": {
         "type": "Number",
         "value": ""

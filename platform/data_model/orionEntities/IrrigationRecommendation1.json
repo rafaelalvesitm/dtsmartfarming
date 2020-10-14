@@ -5,9 +5,13 @@
         "type": "Text",
         "value": "Recommendation mgm1"
     },
+    "timeCalculated": {
+        "type": "Datetime",
+        "value": ""
+    },
     "irrigationInMilimiters": {
         "type": "Number",
-        "value": "3"
+        "value": ""
     },
     "refManagementZone": {
         "type": "Relationship",
