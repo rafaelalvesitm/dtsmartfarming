@@ -14,7 +14,7 @@ A figura a seguir indica o modelo que foi adotado para realizar a simulação. O
 
 * Caso queira interagir com os componentes da plataforma é recomendado utilizar o [Postman](https://www.postman.com/) importando o arquivo [Postman Collection](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/DigitalTwinSmartFarm.postman_collection.json)
 
-* Caso prefira você pode conferir como montar a plataforma através deste vídeo no Youtube.
+* Caso prefira você pode conferir como montar a plataforma através deste vídeo no Youtube. (Ainda em desenvolvimento)
 
 Primeiramente é necessário [instalar o Docker](https://docs.docker.com/get-docker/) e o [docker-compose](https://docs.docker.com/compose/). Para usuários do Windows é recomendado utilizar o WSL2 com uma versão do Ubuntu, para isso siga o [tutorial do link](https://docs.docker.com/docker-for-windows/wsl/).
 
@@ -26,7 +26,7 @@ Após tal configuração é necessário configurar o grafana para se conectar a 
 
 Inicialmente o Grafana irá pedir um login e senha sendo eles `admin` e `admin`. Logo após será necessário alterar a senha que fica a critério do usuário. O próximo passo é fazer o cadastro do banco de dados como mostra as figuras a seguir:
 
-![Selecione Data Sourcer para conectar um banco de dados ao Grafana ](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/grafana.png)
+![Selecione Data Source para conectar um banco de dados ao Grafana ](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/grafana.png)
 
 ![Configure os parametros de acordo com o banco de dados](https://github.com/rafaelalvesitm/dtsmartfarming/blob/master/pictures/grafana2.png)
 
