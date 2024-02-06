@@ -1,12 +1,11 @@
-FROM python:3
+FROM python:3.10
 
-ADD / /
+ADD . .
 
-RUN /usr/local/bin/python -m pip install --upgrade pip &&\
-    pip install requests && \
+RUN pip install requests && \
     pip install apscheduler && \
     pip install pymysql && \
-    pip install -U scikit-fuzzy && \
-    python -m pip install -U matplotlib
+    pip install scikit-fuzzy && \
+    pip install matplotlib
 
 CMD [ "python","-u", "./irrigation.py" ]
